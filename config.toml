@@ -78,7 +78,7 @@ disqusShortname = "haozhu233"
         [[languages.en.menu.main]]
         name = "Blog"
         weight = 2
-        url = "/posts/"
+        url = "/post/"
 
         [[languages.en.menu.main]]
         name = "Projects"
@@ -111,7 +111,7 @@ disqusShortname = "haozhu233"
             [[languages.cn.menu.main]]
             name = "中文博客"
             weight = 2
-            url = "/cn/posts/"
+            url = "/cn/post/"
 
             [[languages.cn.menu.main]]
             name = "开源项目"

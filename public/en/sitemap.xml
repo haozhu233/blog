@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/posts/use-git-on-rstudio-cloud/</loc>
+    <loc>/post/use-git-on-rstudio-cloud/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
   </url>
   
@@ -87,9 +87,19 @@
   </url>
   
   <url>
-    <loc>/posts/</loc>
+    <loc>/post/</loc>
     <lastmod>2019-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="/cn/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/"
+                />
   </url>
   
   <url>

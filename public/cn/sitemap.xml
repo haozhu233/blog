@@ -3,7 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/cn/post/arduino.cn/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/cn/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -60,6 +66,12 @@
   </url>
   
   <url>
+    <loc>/cn/tags/arduino/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/cn/categories/</loc>
     <priority>0</priority>
     <xhtml:link
@@ -75,7 +87,24 @@
   </url>
   
   <url>
+    <loc>/cn/post/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="/cn/post/"
+                />
+  </url>
+  
+  <url>
     <loc>/cn/tags/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -87,6 +116,24 @@
                 hreflang="cn"
                 href="/cn/tags/"
                 />
+  </url>
+  
+  <url>
+    <loc>/cn/tags/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/cn/categories/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/cn/tags/%E6%83%B3%E6%B3%95/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

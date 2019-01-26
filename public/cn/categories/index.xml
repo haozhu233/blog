@@ -10,5 +10,14 @@
 	<atom:link href="/cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>中文</title>
+      <link>/cn/categories/%E4%B8%AD%E6%96%87/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/cn/categories/%E4%B8%AD%E6%96%87/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
