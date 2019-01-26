@@ -1,0 +1,124 @@
+baseurl = "/"
+title = "Hao Zhu"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+theme = "hugo-coder"
+
+languagecode = "en"
+
+paginate = 20
+canonifyurls = true
+
+pygmentsstyle = "b2"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+disqusShortname = "haozhu233"
+
+[params]
+    author = "Hao Zhu"
+    description = "Hao's Blog"
+    keywords = "blog,developer,personal"
+    info = "Data Scientist, R Software Developer"
+    avatarurl = "images/hao.jpg"
+    footercontent = ""
+
+    dateformat = "January 2, 2006"
+
+    hideCredits = false
+    hideCopyright = false
+
+    # Git Commit in Footer, uncomment the line below to enable it.
+    # commit = "https://github.com/luizdepra/hugo-coder/tree/"
+
+    rtl = false
+
+    # Use inverted colors
+    inverted = false
+
+    # Custom CSS
+    custom_css = []
+
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github"
+    weight = 1
+    url = "https://github.com/haozhu233/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter"
+    weight = 3
+    url = "https://twitter.com/haozhu233/"
+[[params.social]]
+    name = "LinkedIn"
+    icon = "fab fa-linkedin"
+    weight = 4
+    url = "https://www.linkedin.com/in/haozhu233/"
+
+
+[languages]
+    [languages.en]
+        languagename = "English" # The language name to be displayed in the selector.
+        title = ""
+
+        # You can configure the theme parameter for each language.
+        [languages.en.params]
+        author = "Hao Zhu"
+        info = "Data Scientist, Software Developer"
+        description = "Hao's Blog"
+        keywords = "blog,developer,personal"
+
+        [languages.en.menu] # It is possible to change the menu too.
+
+        [[languages.en.menu.main]]
+        name = "About"
+        weight = 1
+        url = "/about/"
+
+        [[languages.en.menu.main]]
+        name = "Blog"
+        weight = 2
+        url = "/posts/"
+
+        [[languages.en.menu.main]]
+        name = "Projects"
+        weight = 3
+        url = "/projects/"
+
+        [[languages.en.menu.main]]
+        name = "Contact me"
+        weight = 5
+        url = "/contact/"
+
+
+    [languages.cn]
+        languagename = "中文"
+        title = ""
+
+        [languages.cn.params]
+            author = "朱昊"
+            description = ""
+            info = "R开发者，喜欢可视化，IoT 和 计算机视觉"
+            keywords = "博客，开发，R"
+
+        [languages.cn.menu]
+
+            [[languages.cn.menu.main]]
+            name = "关于"
+            weight = 1
+            url = "/cn/about/"
+
+            [[languages.cn.menu.main]]
+            name = "中文博客"
+            weight = 2
+            url = "/cn/posts/"
+
+            [[languages.cn.menu.main]]
+            name = "开源项目"
+            weight = 3
+            url = "/cn/projects/"
+
+            [[languages.cn.menu.main]]
+            name = "联系方式"
+            weight = 5
+            url = "/cn/contact/"

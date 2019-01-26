@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Use git on RStudio Cloud</title>
+      <link>/posts/use-git-on-rstudio-cloud/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/use-git-on-rstudio-cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hi! I&amp;rsquo;m Hao Zhu, a Data Scientist and Software Developer at Marcus Institute for Aging Research. I make tools that are easy to use and hopefully helpful for the scientific community.
+As a user, I hate to use tools that either have no vignette at all or have a 500 page manual. I like software that don&amp;rsquo;t give me too many but some choices. I hate to see ugly plots. I like everything that can be turned into dynamic.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/contact/</guid>
+      <description>You can find me on twitter @haozhu233 or contact me through email, which can be found on this page in the maintainer field.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/projects/</guid>
+      <description> R  kableExtra: One of the most popular package to make beautiful tables in R memor: Customizable R Markdown LaTeX Template giphyr: RStudio Addin to download GIF from giphy.com and insert to rmarkdown  </description>
+    </item>
+    
+  </channel>
+</rss>
