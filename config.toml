@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://haozhu233.com/"
 title = "Hao Zhu"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -60,12 +60,12 @@ disqusShortname = "haozhu233"
 [languages]
     [languages.en]
         languagename = "English" # The language name to be displayed in the selector.
-        title = ""
+        title = "Hao Zhu"
 
         # You can configure the theme parameter for each language.
         [languages.en.params]
         author = "Hao Zhu"
-        info = "Data Scientist, Software Developer"
+        info = "Data Scientist, R Software Developer, likes everything dynamic"
         description = "Hao's Blog"
         keywords = "blog,developer,personal"
 

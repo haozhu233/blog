@@ -24,7 +24,7 @@ Streaming arduino sensor signals right into @rstudio! I wonder if there is reall
     </item>
     
     <item>
-      <title></title>
+      <title>关于</title>
       <link>/cn/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -33,21 +33,21 @@ Streaming arduino sensor signals right into @rstudio! I wonder if there is reall
     </item>
     
     <item>
-      <title></title>
-      <link>/cn/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/cn/contact/</guid>
-      <description>在推特上找我呗，或者我还有个咸鱼微博号 豪猪233。</description>
-    </item>
-    
-    <item>
-      <title></title>
+      <title>开源项目</title>
       <link>/cn/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/cn/projects/</guid>
       <description>等会再写哈</description>
+    </item>
+    
+    <item>
+      <title>联系方式</title>
+      <link>/cn/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/cn/contact/</guid>
+      <description>在推特上找我呗，或者我还有个咸鱼微博号 豪猪233。</description>
     </item>
     
   </channel>

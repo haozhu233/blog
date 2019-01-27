@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>Hao Zhu</title>
     <link>/</link>
-    <description>Recent content on </description>
+    <description>Recent content on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
@@ -42,7 +42,7 @@ New Features Live view of HTML table in RStudio HTML tables generated through ka
     </item>
     
     <item>
-      <title></title>
+      <title>About</title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -52,7 +52,7 @@ As a user, I hate to use tools that either have no vignette at all or have a 500
     </item>
     
     <item>
-      <title></title>
+      <title>Contact</title>
       <link>/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -61,7 +61,7 @@ As a user, I hate to use tools that either have no vignette at all or have a 500
     </item>
     
     <item>
-      <title></title>
+      <title>Projects</title>
       <link>/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

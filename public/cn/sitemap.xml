@@ -24,48 +24,6 @@
   </url>
   
   <url>
-    <loc>/cn/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/about/"
-                />
-  </url>
-  
-  <url>
-    <loc>/cn/contact/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/contact/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/contact/"
-                />
-  </url>
-  
-  <url>
-    <loc>/cn/projects/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/projects/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/projects/"
-                />
-  </url>
-  
-  <url>
     <loc>/cn/tags/arduino/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -131,9 +89,51 @@
   </url>
   
   <url>
+    <loc>/cn/about/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="/cn/about/"
+                />
+  </url>
+  
+  <url>
+    <loc>/cn/projects/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/projects/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="/cn/projects/"
+                />
+  </url>
+  
+  <url>
     <loc>/cn/tags/%E6%83%B3%E6%B3%95/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/cn/contact/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="/contact/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="/cn/contact/"
+                />
   </url>
   
 </urlset>

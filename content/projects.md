@@ -1,4 +1,5 @@
 +++
+title = "Projects"
 slug = "projects"
 +++
 
