@@ -6,18 +6,39 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 25 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Use git on RStudio Cloud</title>
-      <link>/post/use-git-on-rstudio-cloud/</link>
-      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      <title>Start and Pause in a Streaming Plot using plotly</title>
+      <link>/post/start-and-pause-in-a-streaming-plot-using-plotly/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/use-git-on-rstudio-cloud/</guid>
-      <description></description>
+      <guid>/post/start-and-pause-in-a-streaming-plot-using-plotly/</guid>
+      <description>plotly has a very nice example about how to making a streaming plot in R. When I was working on the arduino package, I need this feature because I want to create a plotting panel where data will be plotted once collected. So I used that example and quickly created a streaming app.
+Here is the core part from the example
+p &amp;lt;- plot_ly( y = c(rand(),rand(),rand()), type = &amp;#39;scatter&amp;#39;, mode = &amp;#39;lines&amp;#39;, line = list( color = &amp;#39;#25FEFD&amp;#39;, width = 3 ) ) %&amp;gt;% layout(yaxis = list(range = c(0,10))) output$plot &amp;lt;- renderPlotly(p) observeEvent(input$button, { while(TRUE){ Sys.</description>
+    </item>
+    
+    <item>
+      <title>What’s New in kableExtra 0.7.0</title>
+      <link>/post/what-s-new-in-kableextra-0-7-0/</link>
+      <pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/what-s-new-in-kableextra-0-7-0/</guid>
+      <description>kableExtra 0.7.0 is on CRAN now. This update includes quite a few long-waited new features, including immediate display of HTML table in the Viewer panel and a remake for footnote (in replacement for add_footnote), and some important bug fixes.
+New Features Live view of HTML table in RStudio HTML tables generated through kableExtra now has its own class and will be previewed in the Viewer panel when it’s printed.</description>
+    </item>
+    
+    <item>
+      <title>REDCap API and R Shiny</title>
+      <link>/post/2015-04-03-redcap-api-and-r-shiny/</link>
+      <pubDate>Fri, 03 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2015-04-03-redcap-api-and-r-shiny/</guid>
+      <description>REDCap, as says on its website, is a &amp;ldquo;mature and secure web application for building and managing online surveys and databases&amp;rdquo;. It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes.</description>
     </item>
     
     <item>

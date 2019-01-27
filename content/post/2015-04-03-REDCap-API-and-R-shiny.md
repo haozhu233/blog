@@ -1,0 +1,11 @@
+---
+title: REDCap API and R Shiny
+date: 2015-04-03
+---
+
+
+[REDCap](http://project-redcap.org/), as says on its website, is a "mature and secure web application for building and managing online surveys and databases". It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes. It allows us to streamline the whole process of data collection, data cleaning and data analysis. In fact, there have been quite a few people who practiced this methodology. There is a R package called [REDCapR](http://cran.r-project.org/web/packages/REDCapR/index.html) on CRAN and here is its [github repo](https://github.com/OuhscBbmc/REDCapR). Thanks to their efforts, the process of importing data from the REDCap API is a lot easier than it used to be. There are some other interesting materials that might be helpful. I'm listing them here: [(Slide)Using the API through R to automate Redcap exports](http://biostat.mc.vanderbilt.edu/wiki/pub/Main/JoAnnAlvarez/api.pdf)and[R Tip – Directly Access the REDCap API from R](http://www.thomasrehman.net/2011/07/14/r-tip-directly-access-the-redcap-api-from-r/).  
+
+What I'm trying to say in this blog post is that after we import the real-time-updated data from the REDCap API, we can use ["R shiny"](http://shiny.rstudio.com/) to maximize the benefits of having a streamline process. With R shiny, we can build a project website (better be an internal website for clinical research), which can display the real-time study enrollment information and some basic demographic information as the enrollment continues. REDCap itself has some basic data analytic tools to do some basic analyses but those tool are preprogramed and cannot fit in all the needs. The combination of REDCap API and R shiny allows statistical programmers and statisticians to build customized displaying panels, which can accurately demonstrate to investigators what they need to know during the study.   
+
+I'm going to pilot this method in a study I'm recently working on. I'll provide an update on this post later this year based on my practice.  

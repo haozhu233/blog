@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Hao Zhu">
+    <meta name="description" content="Hao&#39;s Blog">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="REDCap API and R Shiny"/>
+<meta name="twitter:description" content="REDCap, as says on its website, is a &ldquo;mature and secure web application for building and managing online surveys and databases&rdquo;. It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes."/>
+
+
+    <base href="/post/2015-04-03-redcap-api-and-r-shiny/">
+    <title>
+  REDCap API and R Shiny · 
+</title>
+
+    <link rel="canonical" href="/post/2015-04-03-redcap-api-and-r-shiny/">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/post/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="/cn/">中文</a>
+            </li>
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>REDCap API and R Shiny</h1>
+    </header>
+
+    <p><a href="http://project-redcap.org/">REDCap</a>, as says on its website, is a &ldquo;mature and secure web application for building and managing online surveys and databases&rdquo;. It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes. It allows us to streamline the whole process of data collection, data cleaning and data analysis. In fact, there have been quite a few people who practiced this methodology. There is a R package called <a href="http://cran.r-project.org/web/packages/REDCapR/index.html">REDCapR</a> on CRAN and here is its <a href="https://github.com/OuhscBbmc/REDCapR">github repo</a>. Thanks to their efforts, the process of importing data from the REDCap API is a lot easier than it used to be. There are some other interesting materials that might be helpful. I&rsquo;m listing them here: <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/JoAnnAlvarez/api.pdf">(Slide)Using the API through R to automate Redcap exports</a>and<a href="http://www.thomasrehman.net/2011/07/14/r-tip-directly-access-the-redcap-api-from-r/">R Tip – Directly Access the REDCap API from R</a>.</p>
+
+<p>What I&rsquo;m trying to say in this blog post is that after we import the real-time-updated data from the REDCap API, we can use <a href="http://shiny.rstudio.com/">&ldquo;R shiny&rdquo;</a> to maximize the benefits of having a streamline process. With R shiny, we can build a project website (better be an internal website for clinical research), which can display the real-time study enrollment information and some basic demographic information as the enrollment continues. REDCap itself has some basic data analytic tools to do some basic analyses but those tool are preprogramed and cannot fit in all the needs. The combination of REDCap API and R shiny allows statistical programmers and statisticians to build customized displaying panels, which can accurately demonstrate to investigators what they need to know during the study.</p>
+
+<p>I&rsquo;m going to pilot this method in a study I&rsquo;m recently working on. I&rsquo;ll provide an update on this post later this year based on my practice.</p>
+
+  </article>
+</section>
+
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/luizdepra/hugo-coder/">Coder</a> & <a href="https://github.com/rstudio/blogdown">blogdown</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

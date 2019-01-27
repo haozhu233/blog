@@ -20,6 +20,7 @@ disqusShortname = "haozhu233"
     description = "Hao's Blog"
     keywords = "blog,developer,personal"
     info = "Data Scientist, R Software Developer"
+    subinfo = "Developer of kableExtra, giphyr and arduino"
     avatarurl = "images/hao.jpg"
     footercontent = ""
 
@@ -98,7 +99,7 @@ disqusShortname = "haozhu233"
         [languages.cn.params]
             author = "朱昊"
             description = ""
-            info = "R开发者，喜欢可视化，IoT 和 计算机视觉"
+            info = "R开发者，喜欢 数据可视化，IoT 和 计算机视觉"
             keywords = "博客，开发，R"
 
         [languages.cn.menu]

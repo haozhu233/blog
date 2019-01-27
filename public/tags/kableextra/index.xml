@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kableextra on </title>
+    <link>/tags/kableextra/</link>
+    <description>Recent content in Kableextra on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/kableextra/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What’s New in kableExtra 0.7.0</title>
+      <link>/post/what-s-new-in-kableextra-0-7-0/</link>
+      <pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/what-s-new-in-kableextra-0-7-0/</guid>
+      <description>kableExtra 0.7.0 is on CRAN now. This update includes quite a few long-waited new features, including immediate display of HTML table in the Viewer panel and a remake for footnote (in replacement for add_footnote), and some important bug fixes.
+New Features Live view of HTML table in RStudio HTML tables generated through kableExtra now has its own class and will be previewed in the Viewer panel when it’s printed.</description>
+    </item>
+    
+  </channel>
+</rss>

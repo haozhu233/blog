@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on </title>
-    <link>/post/</link>
-    <description>Recent content in Posts on </description>
+    <title>R on </title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -30,15 +30,6 @@ p &amp;lt;- plot_ly( y = c(rand(),rand(),rand()), type = &amp;#39;scatter&amp;#3
       <guid>/post/what-s-new-in-kableextra-0-7-0/</guid>
       <description>kableExtra 0.7.0 is on CRAN now. This update includes quite a few long-waited new features, including immediate display of HTML table in the Viewer panel and a remake for footnote (in replacement for add_footnote), and some important bug fixes.
 New Features Live view of HTML table in RStudio HTML tables generated through kableExtra now has its own class and will be previewed in the Viewer panel when it’s printed.</description>
-    </item>
-    
-    <item>
-      <title>REDCap API and R Shiny</title>
-      <link>/post/2015-04-03-redcap-api-and-r-shiny/</link>
-      <pubDate>Fri, 03 Apr 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2015-04-03-redcap-api-and-r-shiny/</guid>
-      <description>REDCap, as says on its website, is a &amp;ldquo;mature and secure web application for building and managing online surveys and databases&amp;rdquo;. It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes.</description>
     </item>
     
   </channel>

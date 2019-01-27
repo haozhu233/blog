@@ -1,0 +1,55 @@
+---
+title: What’s New in kableExtra 0.7.0
+author: Hao Zhu
+date: '2018-01-16'
+slug: what-s-new-in-kableextra-0-7-0
+categories:
+  - R
+tags:
+  - R
+  - R package
+  - kableExtra
+---
+
+kableExtra 0.7.0 is on CRAN now. This update includes quite a few long-waited new features, including immediate display of HTML table in the Viewer panel and a remake for `footnote` (in replacement for `add_footnote`), and some important bug fixes. 
+
+# New Features
+## Live view of HTML table in RStudio
+HTML tables generated through `kableExtra` now has its own class and will be previewed in the Viewer panel when it's printed. I personally have wanted this feature for a long time. :)
+
+<iframe src="https://giphy.com/embed/3ohc0PDQHiunV8qluo" width="480" height="198" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+
+## footnote in replacement of add_footnote
+Believe it or not, `add_footnote` is the first function I wrote for `kableExtra` and it was written about 1 year before the second function `kable_styling` was written. 😂 Some of the designs are sort of out-dated and restricted my ability to add new features to it. Therefore, I created this new `footnote` function in hope that it can replace `add_footnote` on most parts. 
+
+What you will gain:
+- Ability to use 4 notation systems (general, number, alphabet or symbol) at the same time. A lot of folks have asked me for this feature because of the APA style recommendation. It was completely not possible with `add_footnote` and its auto-numbering system. Now you can.
+- Ability to add non-labelled footnotes via the `general` type
+- Ability to add customizable section header
+- Ability to put all footnotes in a section into a chunk. In the past, you can only add footnotes as a list.
+
+What you will loose:
+- The auto-numbered in-table notations (for `footnote` please use `footnote_marker_***()` to make in-table notations. See package vignette for details.)
+
+I don't want to break people's existing code whenever possible so `add_footnote` will still be there for a while. I will try to maintain it but maybe not that actively.
+
+```{r}
+library(knitr)
+library(kableExtra)
+kable(mtcars[1:5, 1:5], "html") %>%
+  kable_styling("striped", full_width = F) %>%
+  footnote(alphabet = c("Footnote 1", "Footnote 2"))
+```
+
+## Now those `*_spec()` functions can underline/strikeout or add some customized CSS to texts
+```{r}
+kable(mtcars[1:5, 1:5], "html") %>%
+  kable_styling("striped", full_width = F) %>%
+  row_spec(1, strikeout = T) %>%
+  row_spec(2, underline = T) %>%
+  footnote(alphabet = c("Footnote 1", "Footnote 2"))
+```
+
+# Important bug fixes
+- `bold`, `italic` and `monospace` in `cell_spec` now can take vectorized values.
+- Changed from `xml2::read_xml` to `xml2::read_html` with settings to avoid some strange bugs on some machines. 

@@ -1,0 +1,332 @@
+---
+title: What’s New in kableExtra 0.7.0
+author: Hao Zhu
+date: '2018-01-16'
+slug: what-s-new-in-kableextra-0-7-0
+categories:
+  - R
+tags:
+  - R
+  - R package
+  - kableExtra
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>kableExtra 0.7.0 is on CRAN now. This update includes quite a few long-waited new features, including immediate display of HTML table in the Viewer panel and a remake for <code>footnote</code> (in replacement for <code>add_footnote</code>), and some important bug fixes.</p>
+<div id="new-features" class="section level1">
+<h1>New Features</h1>
+<div id="live-view-of-html-table-in-rstudio" class="section level2">
+<h2>Live view of HTML table in RStudio</h2>
+<p>HTML tables generated through <code>kableExtra</code> now has its own class and will be previewed in the Viewer panel when it’s printed. I personally have wanted this feature for a long time. :)</p>
+<iframe src="https://giphy.com/embed/3ohc0PDQHiunV8qluo" width="480" height="198" frameBorder="0" class="giphy-embed" allowFullScreen>
+</iframe>
+</div>
+<div id="footnote-in-replacement-of-add_footnote" class="section level2">
+<h2>footnote in replacement of add_footnote</h2>
+<p>Believe it or not, <code>add_footnote</code> is the first function I wrote for <code>kableExtra</code> and it was written about 1 year before the second function <code>kable_styling</code> was written. 😂 Some of the designs are sort of out-dated and restricted my ability to add new features to it. Therefore, I created this new <code>footnote</code> function in hope that it can replace <code>add_footnote</code> on most parts.</p>
+<p>What you will gain:
+- Ability to use 4 notation systems (general, number, alphabet or symbol) at the same time. A lot of folks have asked me for this feature because of the APA style recommendation. It was completely not possible with <code>add_footnote</code> and its auto-numbering system. Now you can.
+- Ability to add non-labelled footnotes via the <code>general</code> type
+- Ability to add customizable section header
+- Ability to put all footnotes in a section into a chunk. In the past, you can only add footnotes as a list.</p>
+<p>What you will loose:
+- The auto-numbered in-table notations (for <code>footnote</code> please use <code>footnote_marker_***()</code> to make in-table notations. See package vignette for details.)</p>
+<p>I don’t want to break people’s existing code whenever possible so <code>add_footnote</code> will still be there for a while. I will try to maintain it but maybe not that actively.</p>
+<pre class="r"><code>library(knitr)
+library(kableExtra)
+kable(mtcars[1:5, 1:5], &quot;html&quot;) %&gt;%
+  kable_styling(&quot;striped&quot;, full_width = F) %&gt;%
+  footnote(alphabet = c(&quot;Footnote 1&quot;, &quot;Footnote 2&quot;))</code></pre>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mazda RX4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>a</sup> Footnote 1
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>b</sup> Footnote 2
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="now-those-_spec-functions-can-underlinestrikeout-or-add-some-customized-css-to-texts" class="section level2">
+<h2>Now those <code>*_spec()</code> functions can underline/strikeout or add some customized CSS to texts</h2>
+<pre class="r"><code>kable(mtcars[1:5, 1:5], &quot;html&quot;) %&gt;%
+  kable_styling(&quot;striped&quot;, full_width = F) %&gt;%
+  row_spec(1, strikeout = T) %&gt;%
+  row_spec(2, underline = T) %&gt;%
+  footnote(alphabet = c(&quot;Footnote 1&quot;, &quot;Footnote 2&quot;))</code></pre>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+mpg
+</th>
+<th style="text-align:right;">
+cyl
+</th>
+<th style="text-align:right;">
+disp
+</th>
+<th style="text-align:right;">
+hp
+</th>
+<th style="text-align:right;">
+drat
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;text-decoration: line-through;">
+Mazda RX4
+</td>
+<td style="text-align:right;text-decoration: line-through;">
+21.0
+</td>
+<td style="text-align:right;text-decoration: line-through;">
+6
+</td>
+<td style="text-align:right;text-decoration: line-through;">
+160
+</td>
+<td style="text-align:right;text-decoration: line-through;">
+110
+</td>
+<td style="text-align:right;text-decoration: line-through;">
+3.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;text-decoration: underline;">
+Mazda RX4 Wag
+</td>
+<td style="text-align:right;text-decoration: underline;">
+21.0
+</td>
+<td style="text-align:right;text-decoration: underline;">
+6
+</td>
+<td style="text-align:right;text-decoration: underline;">
+160
+</td>
+<td style="text-align:right;text-decoration: underline;">
+110
+</td>
+<td style="text-align:right;text-decoration: underline;">
+3.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Datsun 710
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+108
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+3.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet 4 Drive
+</td>
+<td style="text-align:right;">
+21.4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+258
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+3.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Hornet Sportabout
+</td>
+<td style="text-align:right;">
+18.7
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+360
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>a</sup> Footnote 1
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>b</sup> Footnote 2
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+<div id="important-bug-fixes" class="section level1">
+<h1>Important bug fixes</h1>
+<ul>
+<li><code>bold</code>, <code>italic</code> and <code>monospace</code> in <code>cell_spec</code> now can take vectorized values.</li>
+<li>Changed from <code>xml2::read_xml</code> to <code>xml2::read_html</code> with settings to avoid some strange bugs on some machines.</li>
+</ul>
+</div>
