@@ -58,7 +58,7 @@ void loop() {
 }
 ```
 
-## Step 2: Read data from Serial Port itoR
+## Step 2: Read data from Serial Port to R
 
 Right now, there seems to be several ways to read in data from serial port. However, based on my personal experience, none of them made me happy with the results. They are either lacking the very important "flushing" feature or just weired (I might explain this in details in the future). Therefore, I wrote my own thing and I think so far it works as I expected. 
 
@@ -78,7 +78,7 @@ library(arduinor)
 con <- ar_init("/dev/cu.SLAB_USBtoUART", baud = 9600)
 ```
 
-2. Now, let see if we can read in something. `ar_monitor` is a function that will stream the serial readings into your R console like what you see in the "Serial Monitor" in Arduino IDE (that's where this function name came from). If somehow you can't get any meaningful values, check your `ar_init` commands and make sure the `baud` rate was set correctly (if the port is wrong, you will get notified by the `ar_init` function). 
+2. Now, let see if we can read in something. `ar_monitor` is a function that will stream the serial readings into your R console like what you see in the "Serial Monitor" in Arduino IDE (that's where this function name came from). If somehow you can't get any meaningful values, check your `ar_init` commands and make sure the `baud` rate was set correctly (if the port is wrong, you will get notified by the `ar_init` function but you won't get notified if your Baud rate is wrong). 
 
 ```r
 ar_monitor(con)
