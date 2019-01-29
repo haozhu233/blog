@@ -65,7 +65,7 @@ disqusShortname = "haozhu233"
         # You can configure the theme parameter for each language.
         [languages.en.params]
         author = "Hao Zhu"
-        info = "Data Scientist, R Software Developer, likes everything dynamic"
+        info = "R Developer; Data Scientist; Loves everything dynamic"
         description = "Hao's Blog"
         keywords = "blog,developer,personal"
 
