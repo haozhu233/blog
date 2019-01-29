@@ -58,7 +58,7 @@ void loop() {
 }
 ```
 
-## Step 2: Read data from Serial Port in R
+## Step 2: Read data from Serial Port itoR
 
 Right now, there seems to be several ways to read in data from serial port. However, based on my personal experience, none of them made me happy with the results. They are either lacking the very important "flushing" feature or just weired (I might explain this in details in the future). Therefore, I wrote my own thing and I think so far it works as I expected. 
 
