@@ -150,7 +150,7 @@
 
 <p>As an open-source project, Arduino allows people to write C-like code to program a microcontroller. It also has an IDE, which comes with a Serial Monitor. As a data scientist, from the moment I saw the data inside the Serial Monitor, I began to wonder if we can get the data out of this box and maybe visualize them in R, where I have a lot more tools to generate better visualizations.</p>
 
-<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/r-arduino/arduino">an R package</a> called <code>arduino</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduino</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
+<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/r-arduino/arduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduino</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
 
 <p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter.png" alt="" width="50%"/></p>
 
@@ -191,13 +191,13 @@ void loop() {
 <p>So, let&rsquo;s get this package before we start. Again, if you only have a Windows machine, sorry about that. Let&rsquo;s hope my <code>libserialport</code> project can go well.</p>
 
 <p>Right now this package is only on github.</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;r-arduino/arduino&#34;</span>)</code></pre></div>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;r-arduino/arduinor&#34;</span>)</code></pre></div>
 <p>Once you get this package installed, we can start to do something fun.</p>
 
 <ol>
 <li>First, we setup a connection to the serial port. The two values I put here are the port name and baud rate. The port name can be set and find in the Arduino IDE (bottom-right corner) and the baud rate, as I said above was something you set in your <code>void setup</code>.</li>
 </ol>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#fff;font-weight:bold">library</span>(arduino)
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#fff;font-weight:bold">library</span>(arduinor)
 con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_USBtoUART&#34;</span>, baud = <span style="color:#ff0;font-weight:bold">9600</span>)</code></pre></div>
 <ol>
 <li>Now, let see if we can read in something. <code>ar_monitor</code> is a function that will stream the serial readings into your R console like what you see in the &ldquo;Serial Monitor&rdquo; in Arduino IDE (that&rsquo;s where this function name came from). If somehow you can&rsquo;t get any meaningful values, check your <code>ar_init</code> commands and make sure the <code>baud</code> rate was set correctly (if the port is wrong, you will get notified by the <code>ar_init</code> function).</li>
@@ -241,9 +241,9 @@ con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_US
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
-<p>Previously, in my tweet, I was using a ESP8266 microcontroller unit (MCU) + a MPU9250 9-axis motion sensor. Both are quite common nowadays. I picked ESP8266 because it has a Wifi module. (If I know how 🤔,) I should be able to setup a websocket server and send data to my computer through Wifi but at least for now, I&rsquo;m still relying on USB serial connection. If you know how to get the Wifi piece work, feel free to DM me on twitter or leave a comment below. MPU9250 is a pretty common kit for motion.  activityIf  remember iPhone 6 was using its prior version MPU6050.</p>
+<p>Previously, in my tweet, I was using a ESP8266 microcontroller unit (MCU) + a MPU9250 9-axis motion sensor. Both are quite common nowadays. I picked ESP8266 because it has a Wifi module. (If I know how 🤔,) I should be able to setup a websocket server and send data to my computer through Wifi but at least for now, I&rsquo;m still relying on USB serial connection. If you know how to get the Wifi piece work, feel free to DM me on twitter or leave a comment below. MPU9250 is a pretty common kit for motion activity. I remember iPhone 6 was using its prior version MPU6050.</p>
 
-<p>Iyou get all the chips on Amazon, the whole cost will be like \$20 for an individual project but if you have a friend in China, you can ask him/her to get them for you re taobao. , where it can go really cheapIt will be around or below \$10 in total.</p>
+<p>If you get all the chips on Amazon, the whole cost will be like \$20 for an individual project but if you have a friend in China, you can ask him/her to get them for you on taobao, where it can go really cheap. It will be around or below \$10 in total.</p>
 
 <p>For the arduino code, I was basically following <a href="https://playground.arduino.cc/Main/MPU-6050">this example</a> on the official website. The tutorial is for MPU6050 but since MPU9250 is basically a MPU6050 + a magnetometer, if you are not looking for anything like <a href="https://en.wikipedia.org/wiki/Sensor_fusion">motion fusion</a>, they are pretty much the same.</p>
 
