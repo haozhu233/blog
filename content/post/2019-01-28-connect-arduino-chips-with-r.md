@@ -121,7 +121,9 @@ One thing to be noted that, since plotly can only take a maximum of 20~25 Hz (20
 
 {{< tweet 1088851449096880128 >}}
 
-Previously, in my tweet, I was using a ESP8266 microcontroller unit (MCU) + a MPU9250 9-axis motion sensor. Both are quite common nowadays. I picked ESP8266 because it has a Wifi module. (If I know how 🤔,) I should be able to setup a websocket server and send data to my computer through Wifi but at least for now, I'm still relying on USB serial connection. If you know how to get the Wifi piece work, feel free to DM me on twitter or leave a comments below. MPU9250 is a pretty common kit for motion. If you get all the chips on Amazon, the whole cost will be like \$20 for an individual project but if you have a friend in China, you can ask him/her to get them for you really on taobao. It will be around or below \$10 in total. 
+Previously, in my tweet, I was using a ESP8266 microcontroller unit (MCU) + a MPU9250 9-axis motion sensor. Both are quite common nowadays. I picked ESP8266 because it has a Wifi module. (If I know how 🤔,) I should be able to setup a websocket server and send data to my computer through Wifi but at least for now, I'm still relying on USB serial connection. If you know how to get the Wifi piece work, feel free to DM me on twitter or leave a comment below. MPU9250 is a pretty common kit for motion.  activityIf  remember iPhone 6 was using its prior version MPU6050. 
+
+Iyou get all the chips on Amazon, the whole cost will be like \$20 for an individual project but if you have a friend in China, you can ask him/her to get them for you re taobao. , where it can go really cheapIt will be around or below \$10 in total. 
 
 For the arduino code, I was basically following [this example](https://playground.arduino.cc/Main/MPU-6050) on the official website. The tutorial is for MPU6050 but since MPU9250 is basically a MPU6050 + a magnetometer, if you are not looking for anything like [motion fusion](https://en.wikipedia.org/wiki/Sensor_fusion), they are pretty much the same. 
 
