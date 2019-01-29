@@ -102,13 +102,40 @@ p &lt;- plot_ly( y = c(rand(),rand(),rand()), type = &#39;scatter&#39;, mode = &
 
       <div class="content">
         
-  <section class="container page">
-  <article>
-    <header>
-      <h1>Start and Pause in a Streaming Plot using plotly</h1>
-    </header>
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Start and Pause in a Streaming Plot using plotly</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-01-27T00:00:00Z'>
+                January 27, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="/categories/r/">R</a></div>
 
-    <p><a href="https://plot.ly">plotly</a> has <a href="https://plot.ly/r/streaming/">a very nice example</a> about how to making a streaming plot in R. When I was working on the <code>arduino</code> package, I need this feature because I want to create a plotting panel where data will be plotted once collected. So I used that example and quickly created a streaming app.</p>
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/r/">R</a>
+      <span class="separator">•</span>
+    <a href="/tags/tutorial/">tutorial</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        <p><a href="https://plot.ly">plotly</a> has <a href="https://plot.ly/r/streaming/">a very nice example</a> about how to making a streaming plot in R. When I was working on the <code>arduino</code> package, I need this feature because I want to create a plotting panel where data will be plotted once collected. So I used that example and quickly created a streaming app.</p>
 
 <p>Here is the core part from the example</p>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">p &lt;- plot_ly(
@@ -167,9 +194,34 @@ observe({
 
 <p>You can find the real example in the <code>arduino</code> package.</p>
 
-  </article>
-</section>
+      </div>
 
+      <footer>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "haozhu233" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
 
       </div>
 

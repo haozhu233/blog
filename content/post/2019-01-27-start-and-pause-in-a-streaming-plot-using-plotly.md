@@ -9,7 +9,7 @@ tags:
 - R
 - tutorial
 ---
-
+ 
 [plotly](https://plot.ly) has [a very nice example](https://plot.ly/r/streaming/) about how to making a streaming plot in R. When I was working on the `arduino` package, I need this feature because I want to create a plotting panel where data will be plotted once collected. So I used that example and quickly created a streaming app. 
 
 Here is the core part from the example

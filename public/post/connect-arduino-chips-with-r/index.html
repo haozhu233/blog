@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Hao Zhu">
+    <meta name="description" content="Hao&#39;s Blog">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Connecting Arduino Chips with R"/>
+<meta name="twitter:description" content="For now, the example below requires you to have a Mac or Linux computer. Windows support might come later.
+ Sensors are fun. They are small electronic chips that can sense this world. Our smartphones have a bunch of sensors, like gyroscope and accelerometer, but you can also connect these sensors with either an Arduino or a Raspberry Pi. (In this post, I won&rsquo;t talk about Raspberry Pi because although I have one Raspberry Pi at home, the only thing I did with that board so far is to get it out of box&hellip; 😳)"/>
+
+
+    <base href="/post/connect-arduino-chips-with-r/">
+    <title>
+  Connecting Arduino Chips with R · Hao Zhu
+</title>
+
+    <link rel="canonical" href="/post/connect-arduino-chips-with-r/">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Hao Zhu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/post/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="/cn/">中文</a>
+            </li>
+          
+        
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Connecting Arduino Chips with R</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-01-28T00:00:00Z'>
+                January 28, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              6 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="/categories/r/">R</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/arduino/">arduino</a>
+      <span class="separator">•</span>
+    <a href="/tags/r/">R</a>
+      <span class="separator">•</span>
+    <a href="/tags/r-package/">R package</a>
+      <span class="separator">•</span>
+    <a href="/tags/tutorial/">tutorial</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+
+<blockquote>
+<p>For now, the example below requires you to have a Mac or Linux computer. Windows support might come later.</p>
+</blockquote>
+
+<p>Sensors are fun. They are small electronic chips that can sense this world. Our smartphones have a bunch of sensors, like gyroscope and accelerometer, but you can also connect these sensors with either an <a href="https://www.arduino.cc/">Arduino</a> or a <a href="https://www.raspberrypi.org/">Raspberry Pi</a>. (In this post, I won&rsquo;t talk about Raspberry Pi because although I have one Raspberry Pi at home, the only thing I did with that board so far is to get it out of box&hellip; 😳)</p>
+
+<p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/arduino_ide_monitor.png" alt="" width="50%"/></p>
+
+<p>As an open-source project, Arduino allows people to write C-like code to program a microcontroller. It also has an IDE, which comes with a Serial Monitor. As a data scientist, from the moment I saw the data inside the Serial Monitor, I began to wonder if we can get the data out of this box and maybe visualize them in R, where I have a lot more tools to generate better visualizations.</p>
+
+<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/r-arduino/arduino">an R package</a> called <code>arduino</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduino</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
+
+<p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter.png" alt="" width="50%"/></p>
+
+<h2 id="step-1-get-the-chip-work">Step 1: Get the Chip work</h2>
+
+<p>Obviously, the first step is to get the chip work at least on its own. Since this is not an Arduino tutorial, I won&rsquo;t spend too much time here. If you are new to Arduino, you will find a lot of good resources on <a href="https://www.arduino.cc/en/Tutorial/HomePage?from=Main.Tutorials">their website</a> and on github, if you search on Google. Also, the IDE comes with a bunch of examples at <code>File</code> -&gt; <code>Examples</code>.</p>
+
+<p>So for this tutorial, since the setup for every board and sensor might get a little different, I will only demo a very basic serial connection example, which should work on any Arduino Chips. Basically, it will send time and a random number to the serial port of your computer and there is nothing fancy. After you upload the script to the chip, you should be able to see something similar to Figure 1 in your <code>Tool</code> -&gt; <code>Serial Monitor</code>.</p>
+
+<p>When you send code to the chip, if you run into errors like &ldquo;Port is not open&rdquo;, please check out Tools -&gt; Port and select the USB port. For example, on my Mac, the port name is <code>/dev/cu.SLAB_USBtoUART</code>. Also, if you are using an third party chip like ESP8266 or ESP32, you will need to <a href="https://learn.sparkfun.com/tutorials/esp8266-thing-hookup-guide/installing-the-esp8266-arduino-addon">install driver to your arduino IDE</a>.</p>
+
+<p>Arduino Code below. Here we set the <a href="https://en.wikipedia.org/wiki/Baud">&ldquo;Baud Rate&rdquo;</a> to be 9600. This number is important as we will use it later.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#include &lt;Wire.h&gt;
+
+int16_t randomNumber;
+unsigned long Time;
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600); // Setup the Baud rate
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  Time = millis();
+  randomNumber = random(100);
+  
+  Serial.print(Time);
+  Serial.print(&#34;,&#34;);
+  Serial.println(randomNumber);
+  
+  delay(100); // 100ms, So the sampling frequency should be 10Hz
+}</pre></div>
+<h2 id="step-2-read-data-from-serial-port-in-r">Step 2: Read data from Serial Port in R</h2>
+
+<p>Right now, there seems to be several ways to read in data from serial port. However, based on my personal experience, none of them made me happy with the results. They are either lacking the very important &ldquo;flushing&rdquo; feature or just weired (I might explain this in details in the future). Therefore, I wrote my own thing and I think so far it works as I expected.</p>
+
+<p>So, let&rsquo;s get this package before we start. Again, if you only have a Windows machine, sorry about that. Let&rsquo;s hope my <code>libserialport</code> project can go well.</p>
+
+<p>Right now this package is only on github.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;r-arduino/arduino&#34;</span>)</code></pre></div>
+<p>Once you get this package installed, we can start to do something fun.</p>
+
+<ol>
+<li>First, we setup a connection to the serial port. The two values I put here are the port name and baud rate. The port name can be set and find in the Arduino IDE (bottom-right corner) and the baud rate, as I said above was something you set in your <code>void setup</code>.</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#fff;font-weight:bold">library</span>(arduino)
+con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_USBtoUART&#34;</span>, baud = <span style="color:#ff0;font-weight:bold">9600</span>)</code></pre></div>
+<ol>
+<li>Now, let see if we can read in something. <code>ar_monitor</code> is a function that will stream the serial readings into your R console like what you see in the &ldquo;Serial Monitor&rdquo; in Arduino IDE (that&rsquo;s where this function name came from). If somehow you can&rsquo;t get any meaningful values, check your <code>ar_init</code> commands and make sure the <code>baud</code> rate was set correctly (if the port is wrong, you will get notified by the <code>ar_init</code> function).</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ar_monitor(con)
+&gt; Flushing Port...
+&gt; <span style="color:#ff0;font-weight:bold">97922</span>,<span style="color:#ff0;font-weight:bold">44</span>
+&gt; <span style="color:#ff0;font-weight:bold">98022</span>,<span style="color:#ff0;font-weight:bold">55</span>
+&gt; <span style="color:#ff0;font-weight:bold">98122</span>,<span style="color:#ff0;font-weight:bold">69</span>
+&gt; <span style="color:#ff0;font-weight:bold">98223</span>,<span style="color:#ff0;font-weight:bold">61</span>
+&gt; <span style="color:#ff0;font-weight:bold">98323</span>,<span style="color:#ff0;font-weight:bold">38</span>
+&gt; <span style="color:#ff0;font-weight:bold">98423</span>,<span style="color:#ff0;font-weight:bold">77</span>
+&gt; <span style="color:#ff0;font-weight:bold">98523</span>,<span style="color:#ff0;font-weight:bold">51</span>
+&gt; <span style="color:#ff0;font-weight:bold">98623</span>,<span style="color:#ff0;font-weight:bold">20</span>
+&gt; <span style="color:#ff0;font-weight:bold">98723</span>,<span style="color:#ff0;font-weight:bold">17</span>
+&gt; <span style="color:#ff0;font-weight:bold">98823</span>,<span style="color:#ff0;font-weight:bold">74</span>
+&gt; <span style="color:#ff0;font-weight:bold">98923</span>,<span style="color:#ff0;font-weight:bold">12</span>
+&gt; <span style="color:#ff0;font-weight:bold">99024</span>,<span style="color:#ff0;font-weight:bold">35</span>
+&gt; <span style="color:#ff0;font-weight:bold">99124</span>,<span style="color:#ff0;font-weight:bold">51</span>
+&gt; <span style="color:#ff0;font-weight:bold">99224</span>,<span style="color:#ff0;font-weight:bold">4</span>
+&gt; <span style="color:#ff0;font-weight:bold">99324</span>,<span style="color:#ff0;font-weight:bold">19</span></code></pre></div>
+<ol>
+<li>If you want to save the results and analyze them later, use <code>ar_collect</code>. By default, it will collect 100 entries but you can change this number by adjusting the <code>size</code> option</li>
+</ol>
+
+<p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_collect.png" alt="" width="80%"/></p>
+
+<ol>
+<li>Now here comes the fun part. The <code>ar_plotter</code> function allows you to visualize the stream of the data. By default, this function will split the string input by comma but you can write you own separtion function. In this example, you can also provide the names for those two columns as &ldquo;Time&rdquo;, &ldquo;Random&rdquo;.</li>
+</ol>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ar_plotter(con, <span style="color:#fff;font-weight:bold">c</span>(<span style="color:#0ff;font-weight:bold">&#34;Time&#34;</span>, <span style="color:#0ff;font-weight:bold">&#34;Random&#34;</span>))</code></pre></div>
+<p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter2.png" alt="" width="100%"/></p>
+
+<p>With this app, you can choose to start/pause, reset, pick different variables and start to collect data into a file.</p>
+
+<p>One thing to be noted that, since plotly can only take a maximum of 20~25 Hz (20~25 times per second), I added a 40ms (0.04s) delay to every reading. You can turn of this behavior by setting <code>reduce_freq</code> = <code>FALSE</code> but you will be at risk of freezing your R session if your sampling frequency is too high. If you really need to collect high frequency sampling data, please use <code>ar_collect</code>, which is much simpler to do this job.</p>
+
+<h2 id="but-i-want-your-accelerometer-example">&ldquo;But I want your accelerometer example&hellip;&rdquo;</h2>
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Streaming arduino sensor signals right into <a href="https://twitter.com/rstudio?ref_src=twsrc%5Etfw">@rstudio</a>! I wonder if there is really anything <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> can’t do 😎😎😎 <a href="https://t.co/nT6q6TT6xc">pic.twitter.com/nT6q6TT6xc</a></p>&mdash; Hao Zhu (@haozhu233) <a href="https://twitter.com/haozhu233/status/1088851449096880128?ref_src=twsrc%5Etfw">January 25, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>Previously, in my tweet, I was using a ESP8266 microcontroller unit (MCU) + a MPU9250 9-axis motion sensor. Both are quite common nowadays. I picked ESP8266 because it has a Wifi module. (If I know how 🤔,) I should be able to setup a websocket server and send data to my computer through Wifi but at least for now, I&rsquo;m still relying on USB serial connection. If you know how to get the Wifi piece work, feel free to DM me on twitter or leave a comments below. MPU9250 is a pretty common kit for motion. If you get all the chips on Amazon, the whole cost will be like \$20 for an individual project but if you have a friend in China, you can ask him/her to get them for you really on taobao. It will be around or below \$10 in total.</p>
+
+<p>For the arduino code, I was basically following <a href="https://playground.arduino.cc/Main/MPU-6050">this example</a> on the official website. The tutorial is for MPU6050 but since MPU9250 is basically a MPU6050 + a magnetometer, if you are not looking for anything like <a href="https://en.wikipedia.org/wiki/Sensor_fusion">motion fusion</a>, they are pretty much the same.</p>
+
+<p>Once you get the chip set up, the rest should be the same.</p>
+
+      </div>
+
+      <footer>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "haozhu233" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/luizdepra/hugo-coder/">Coder</a> & <a href="https://github.com/rstudio/blogdown">blogdown</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>
