@@ -20,12 +20,12 @@ Sensors are fun. They are small electronic chips that can sense this world. Our 
 
 As an open-source project, Arduino allows people to write C-like code to program a microcontroller. It also has an IDE, which comes with a Serial Monitor. As a data scientist, from the moment I saw the data inside the Serial Monitor, I began to wonder if we can get the data out of this box and maybe visualize them in R, where I have a lot more tools to generate better visualizations. 
 
-Therefore, after some trial and error, I managed to use rcpp to port a C-based library [ArduinoSerial](https://github.com/todbot/arduino-serial) into R as [an R package](https://github.com/r-arduino/arduinor) called `arduinor` and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the "entry-level" visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can't use this `arduino` R package on a Windows machine either - it won't build. In the future, it might be possible to extend the support to Windows through using this [libserialport](https://sigrok.org/wiki/Libserialport) C++ package. 
+Therefore, after some trial and error, I managed to use rcpp to port a C-based library [ArduinoSerial](https://github.com/todbot/arduino-serial) into R as [an R package](https://github.com/r-arduino/arduinor) called `arduinor` and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the "entry-level" visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can't use this `arduino`r R package on a Windows machine either - it won't build. In the future, it might be possible to extend the support to Windows through using this [libserialport](https://sigrok.org/wiki/Libserialport) C++ package. 
 
 <img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter.png" alt="" width="50%"/>
 
 
-## Step 1: Get the Chip work
+## Step 1: Get the Chip wto ork
 Obviously, the first step is to get the chip work at least on its own. Since this is not an Arduino tutorial, I won't spend too much time here. If you are new to Arduino, you will find a lot of good resources on [their website](https://www.arduino.cc/en/Tutorial/HomePage?from=Main.Tutorials) and on github, if you search on Google. Also, the IDE comes with a bunch of examples at `File` -> `Examples`.
 
 So for this tutorial, since the setup for every board and sensor might get a little different, I will only demo a very basic serial connection example, which should work on any Arduino Chips. Basically, it will send time and a random number to the serial port of your computer and there is nothing fancy. After you upload the script to the chip, you should be able to see something similar to Figure 1 in your `Tool` -> `Serial Monitor`.
@@ -127,6 +127,6 @@ If you get all the chips on Amazon, the whole cost will be like \$20 for an indi
 
 For the arduino code, I was basically following [this example](https://playground.arduino.cc/Main/MPU-6050) on the official website. The tutorial is for MPU6050 but since MPU9250 is basically a MPU6050 + a magnetometer, if you are not looking for anything like [motion fusion](https://en.wikipedia.org/wiki/Sensor_fusion), they are pretty much the same. 
 
-Once you get the chip set up, the rest should be the same. 
+Once you get up,  the chip correctlythe rest should be the same. 
 
 

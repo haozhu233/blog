@@ -150,11 +150,11 @@
 
 <p>As an open-source project, Arduino allows people to write C-like code to program a microcontroller. It also has an IDE, which comes with a Serial Monitor. As a data scientist, from the moment I saw the data inside the Serial Monitor, I began to wonder if we can get the data out of this box and maybe visualize them in R, where I have a lot more tools to generate better visualizations.</p>
 
-<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/r-arduino/arduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduino</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
+<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/r-arduino/arduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduino</code>r R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
 
 <p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter.png" alt="" width="50%"/></p>
 
-<h2 id="step-1-get-the-chip-work">Step 1: Get the Chip work</h2>
+<h2 id="step-1-get-the-chip-wto-ork">Step 1: Get the Chip wto ork</h2>
 
 <p>Obviously, the first step is to get the chip work at least on its own. Since this is not an Arduino tutorial, I won&rsquo;t spend too much time here. If you are new to Arduino, you will find a lot of good resources on <a href="https://www.arduino.cc/en/Tutorial/HomePage?from=Main.Tutorials">their website</a> and on github, if you search on Google. Also, the IDE comes with a bunch of examples at <code>File</code> -&gt; <code>Examples</code>.</p>
 
@@ -247,7 +247,7 @@ con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_US
 
 <p>For the arduino code, I was basically following <a href="https://playground.arduino.cc/Main/MPU-6050">this example</a> on the official website. The tutorial is for MPU6050 but since MPU9250 is basically a MPU6050 + a magnetometer, if you are not looking for anything like <a href="https://en.wikipedia.org/wiki/Sensor_fusion">motion fusion</a>, they are pretty much the same.</p>
 
-<p>Once you get the chip set up, the rest should be the same.</p>
+<p>Once you get up,  the chip correctlythe rest should be the same.</p>
 
       </div>
 
