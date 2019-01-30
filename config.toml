@@ -1,4 +1,4 @@
-baseurl = "https://haozhu233.com/"
+baseurl = "https://zhuhao.org/"
 title = "Hao Zhu"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 

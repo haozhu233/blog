@@ -150,11 +150,11 @@
 
 <p>As an open-source project, Arduino allows people to write C-like code to program a microcontroller. It also has an IDE, which comes with a Serial Monitor. As a data scientist, from the moment I saw the data inside the Serial Monitor, I began to wonder if we can get the data out of this box and maybe visualize them in R, where I have a lot more tools to generate better visualizations.</p>
 
-<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/r-arduino/arduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduino</code>r R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
+<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/hebrewseniorlife/arduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduinor</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
 
 <p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter.png" alt="" width="50%"/></p>
 
-<h2 id="step-1-get-the-chip-wto-ork">Step 1: Get the Chip wto ork</h2>
+<h2 id="step-1-get-the-chip-to-work">Step 1: Get the Chip to work</h2>
 
 <p>Obviously, the first step is to get the chip work at least on its own. Since this is not an Arduino tutorial, I won&rsquo;t spend too much time here. If you are new to Arduino, you will find a lot of good resources on <a href="https://www.arduino.cc/en/Tutorial/HomePage?from=Main.Tutorials">their website</a> and on github, if you search on Google. Also, the IDE comes with a bunch of examples at <code>File</code> -&gt; <code>Examples</code>.</p>
 
@@ -184,14 +184,14 @@ void loop() {
   
   delay(100); // 100ms, So the sampling frequency should be 10Hz
 }</pre></div>
-<h2 id="step-2-read-data-from-serial-port-in-r">Step 2: Read data from Serial Port in R</h2>
+<h2 id="step-2-read-data-from-serial-port-to-r">Step 2: Read data from Serial Port to R</h2>
 
 <p>Right now, there seems to be several ways to read in data from serial port. However, based on my personal experience, none of them made me happy with the results. They are either lacking the very important &ldquo;flushing&rdquo; feature or just weired (I might explain this in details in the future). Therefore, I wrote my own thing and I think so far it works as I expected.</p>
 
 <p>So, let&rsquo;s get this package before we start. Again, if you only have a Windows machine, sorry about that. Let&rsquo;s hope my <code>libserialport</code> project can go well.</p>
 
 <p>Right now this package is only on github.</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;r-arduino/arduinor&#34;</span>)</code></pre></div>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;hebrewseniorlife/arduinor&#34;</span>)</code></pre></div>
 <p>Once you get this package installed, we can start to do something fun.</p>
 
 <ol>
@@ -200,7 +200,7 @@ void loop() {
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#fff;font-weight:bold">library</span>(arduinor)
 con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_USBtoUART&#34;</span>, baud = <span style="color:#ff0;font-weight:bold">9600</span>)</code></pre></div>
 <ol>
-<li>Now, let see if we can read in something. <code>ar_monitor</code> is a function that will stream the serial readings into your R console like what you see in the &ldquo;Serial Monitor&rdquo; in Arduino IDE (that&rsquo;s where this function name came from). If somehow you can&rsquo;t get any meaningful values, check your <code>ar_init</code> commands and make sure the <code>baud</code> rate was set correctly (if the port is wrong, you will get notified by the <code>ar_init</code> function).</li>
+<li>Now, let see if we can read in something. <code>ar_monitor</code> is a function that will stream the serial readings into your R console like what you see in the &ldquo;Serial Monitor&rdquo; in Arduino IDE (that&rsquo;s where this function name came from). If somehow you can&rsquo;t get any meaningful values, check your <code>ar_init</code> commands and make sure the <code>baud</code> rate was set correctly (if the port is wrong, you will get notified by the <code>ar_init</code> function but you won&rsquo;t get notified if your Baud rate is wrong).</li>
 </ol>
 <div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">ar_monitor(con)
 &gt; Flushing Port...
@@ -233,7 +233,7 @@ con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_US
 
 <p>With this app, you can choose to start/pause, reset, pick different variables and start to collect data into a file.</p>
 
-<p>One thing to be noted that, since plotly can only take a maximum of 20~25 Hz (20~25 times per second), I added a 40ms (0.04s) delay to every reading. You can turn of this behavior by setting <code>reduce_freq</code> = <code>FALSE</code> but you will be at risk of freezing your R session if your sampling frequency is too high. If you really need to collect high frequency sampling data, please use <code>ar_collect</code>, which is much simpler to do this job.</p>
+<p>One thing to be noted that, since plotly can only take a maximum of 20~25 Hz (20~25 times per second), I added a 40ms (0.04s) delay to every reading. You can turn of this behavior by setting <code>reduce_freq</code> = <code>FALSE</code> but you will be at risk of freezing your R session if your sampling frequency is too high. If you really need to collect high frequency sampling data, please use <code>ar_collect</code>, which is much simpler to do this job. Also, as human beings, we can only see things at around 24Hz while many sensor can give us a maximum of 8000Hz sampling rate. I would say just try to be a minimalist when you pick your sampling frequency.</p>
 
 <h2 id="but-i-want-your-accelerometer-example">&ldquo;But I want your accelerometer example&hellip;&rdquo;</h2>
 
@@ -247,7 +247,7 @@ con &lt;- ar_init(<span style="color:#0ff;font-weight:bold">&#34;/dev/cu.SLAB_US
 
 <p>For the arduino code, I was basically following <a href="https://playground.arduino.cc/Main/MPU-6050">this example</a> on the official website. The tutorial is for MPU6050 but since MPU9250 is basically a MPU6050 + a magnetometer, if you are not looking for anything like <a href="https://en.wikipedia.org/wiki/Sensor_fusion">motion fusion</a>, they are pretty much the same.</p>
 
-<p>Once you get up,  the chip correctlythe rest should be the same.</p>
+<p>Once you setup the chip correctly, the rest should be the same.</p>
 
       </div>
 

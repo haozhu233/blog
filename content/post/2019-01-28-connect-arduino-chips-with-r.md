@@ -114,7 +114,7 @@ ar_plotter(con, c("Time", "Random"))
 
 With this app, you can choose to start/pause, reset, pick different variables and start to collect data into a file. 
 
-One thing to be noted that, since plotly can only take a maximum of 20~25 Hz (20~25 times per second), I added a 40ms (0.04s) delay to every reading. You can turn of this behavior by setting `reduce_freq` = `FALSE` but you will be at risk of freezing your R session if your sampling frequency is too high. If you really need to collect high frequency sampling data, please use `ar_collect`, which is much simpler to do this job. 
+One thing to be noted that, since plotly can only take a maximum of 20~25 Hz (20~25 times per second), I added a 40ms (0.04s) delay to every reading. You can turn of this behavior by setting `reduce_freq` = `FALSE` but you will be at risk of freezing your R session if your sampling frequency is too high. If you really need to collect high frequency sampling data, please use `ar_collect`, which is much simpler to do this job. Also, as human beings, we can only see things at around 24Hz while many sensor can give us a maximum of 8000Hz sampling rate. I would say just try to be a minimalist when you pick your sampling frequency. 
 
 
 ## "But I want your accelerometer example..."
