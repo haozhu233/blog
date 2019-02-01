@@ -25,9 +25,9 @@ Immediately after I replied I was using SketchApp, I realized he might be asking
 
 
 
-I'm not an artist and I guess my only "systematic" design training is to "seriously" read this [Dota 2 Workshop - Character Art Guide](https://support.steampowered.com/kb/9334-YDXV-8590/dota-2-workshop-character-art-guide) (yeah, I'm a useless dota2 player and my skill is really bad 😐), which was written to help guide community artists make clothes for heros. I mean although it sounds like a joke, the document itself is actually a very good Design 101 class. It mentioned quite a few points that might seem to be too basic to designer sbut good for me at least. A
+I'm not an artist and I guess my only "systematic" design training is to "seriously" read this [Dota 2 Workshop - Character Art Guide](https://support.steampowered.com/kb/9334-YDXV-8590/dota-2-workshop-character-art-guide) (yeah, I'm a useless dota2 player and my skill is really bad 😐), which was written to help guide community artists make clothes for heros. I mean although it sounds like a joke, the document itself is actually a very good Design 101 class. It mentioned quite a few points that might seem to be too basic to designers but good for me at least. 
 
-(Te copy rights of all the screenshots that have monster-ish things belong to Valve.)
+(The copyrights of all the screenshots that have monster-ish things belong to Valve.)
 
 
 ## Selection of Colors
