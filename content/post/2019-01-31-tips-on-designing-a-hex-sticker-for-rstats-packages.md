@@ -3,6 +3,7 @@ title: 'Tips on designing hex stickers for #rstats packages'
 author: Hao
 date: '2019-01-31'
 slug: tips-on-designing-a-hex-sticker-for-rstats-packages
+featured_image = “/post/2019-01-31-tips-on-designing-a-hex-sticker-for-rstats-packages_files/tinytex.png”
 categories:
   - R
 tags:
