@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/tips-on-designing-a-hex-sticker-for-rstats-packages/</loc>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/connect-arduino-chips-with-r/</loc>
     <lastmod>2019-01-28T00:00:00+00:00</lastmod>
   </url>
@@ -82,8 +87,14 @@
   </url>
   
   <url>
+    <loc>/tags/design/</loc>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/</loc>
-    <lastmod>2019-01-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -98,6 +109,12 @@
   </url>
   
   <url>
+    <loc>/tags/ideas/</loc>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/kableextra/</loc>
     <lastmod>2018-01-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -105,7 +122,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2019-01-28T00:00:00+00:00</lastmod>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
     <xhtml:link
                 rel="alternate"
@@ -134,14 +151,14 @@
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2019-01-28T00:00:00+00:00</lastmod>
+    <loc>/categories/r/</loc>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2019-01-28T00:00:00+00:00</lastmod>
+    <loc>/tags/r/</loc>
+    <lastmod>2019-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

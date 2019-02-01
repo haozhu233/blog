@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design on Hao Zhu</title>
+    <link>/tags/design/</link>
+    <description>Recent content in Design on Hao Zhu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 31 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tips on designing hex stickers for #rstats packages</title>
+      <link>/post/tips-on-designing-a-hex-sticker-for-rstats-packages/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tips-on-designing-a-hex-sticker-for-rstats-packages/</guid>
+      <description>Earlier today on twitter, Eric asked me this question
+Looks terrific! What is your workflow for designing these? I may try one for the podcast soon
+&amp;mdash; The R-Podcast (Eric) (@theRcast) January 31, 2019  Immediately after I replied I was using SketchApp, I realized he might be asking me about the actual &amp;ldquo;design workflow&amp;rdquo;. On this aspect, although I feel like I&amp;rsquo;m not the best person to say this but I did gain some experience through making the following 5 stickers.</description>
+    </item>
+    
+  </channel>
+</rss>
