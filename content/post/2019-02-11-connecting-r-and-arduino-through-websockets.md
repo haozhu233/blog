@@ -14,7 +14,7 @@ tags:
 In the [last post](/post/connect-arduino-chips-with-r/), I demonstrated how to send data from arduino to R through serial connection. This time, I'm going to talk about how to connect R and arduino through wireless **websocket** connection. Trust me, it's not as hard as it sounds like. 
 
 ## Hardware requirements
-Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32. These two chips come with a built-in WiFi kit (the ESP32 board even has a bluetooth module). Also, thanks to their popularity, there are plenty community-based libraries developed to easily utilize these hardware.
+Obviously, you need an arduino board that can connect to the Internet. Today, the most popular boards of this kind includes ESP8266 or ESP32. These two chips come with a built-in WiFi kit (the ESP32 board even has a bluetooth module). Also, thanks to their popularity, there are plenty community-based libraries developed to easily utilize these hardware.
 
 If you are in the US, you can get a development ESP32 board on Amazon for ~$11. You can even think about getting one with a small LED screen, which can tell you the IP addresses when you go wireless. 
 
@@ -23,7 +23,11 @@ If you are in the US, you can get a development ESP32 board on Amazon for ~$11. 
 In this example, I'm using the ESP8266 chip which I used in the previous example.  
 
 ## Websocket 101
-Our typical HTTP based internet is unidirectional. You sent out a request to the server and the server sends back a response. If you don't request, you won't get anything. For [websocket](https://en.wikipedia.org/wiki/WebSocket), the communication is more like human communication and is bidirectional - once the connection has been setup, both you and the server can send and receive information at any time. Websocket is also based on TCP, which means that it makes sure the messages you/server receive are "in-order". Websocket also has the term server & client. The server has the capacity to receive connections from multiple clients. It can send out information to certain client or boardcast the information to everyone that's connect. 
+
+* Our typical HTTP based internet is unidirectional. You sent out a request to the server and the server sends back a response. If you don't request, you won't get anything. 
+* For [websocket](https://en.wikipedia.org/wiki/WebSocket), the communication is more like human communication and is bidirectional - once the connection has been setup, both you and the server can send and receive information at any time. 
+* Websocket is also based on TCP, which means that it makes sure the messages you/server receive are "in-order". 
+* Websocket also has the term server & client. The server has the capacity to receive connections from multiple clients. It can send out information to certain client or boardcast the information to everyone that's connect. 
 
 ## Setup Websocket server on ESP8266
 
@@ -113,7 +117,7 @@ After you compile the script and upload it to your chip, you should be able to s
 <img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/Screen Shot 2019-02-11 at 3.57.42 PM.png" alt="" width="200px"/>
 
 ## Connecting R to the websocket server
-Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a [websocket](https://github.com/rstudio/websocket) package but is a little pre-matured at this stage. On the other hand, [webrockets](https://github.com/ropenscilabs/webrockets), which is a rOpenSci 2017 unconference project has all the features we need for now. However, it seems like it can't be built on Windows. (Windows User: ??? Again?! 😭😭😭)
+Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a [websocket](https://github.com/rstudio/websocket) package but is a little pre-matured at this stage. On the other hand, [webrockets](https://github.com/ropenscilabs/webrockets), which is a rOpenSci 2017 unconference project has all the features we need for now. However, it seems like it can't be built on Windows . (Windows User: ??? Again?! 😭😭😭)
 
 For now, let's pretend all makers are using Mac or Linux (well, clearly that's not true :P) and use `webrockets` as our dependencies. In the future, once rstudio's websocket project gets on the road, let's think about switching to that. 
 

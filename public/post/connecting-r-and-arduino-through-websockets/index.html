@@ -12,7 +12,7 @@
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Connecting R and arduino wirelessly through websockets"/>
 <meta name="twitter:description" content="In the last post, I demonstrated how to send data from arduino to R through serial connection. This time, I&rsquo;m going to talk about how to connect R and arduino through wireless websocket connection. Trust me, it&rsquo;s not as hard as it sounds like.
-Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32."/>
+Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Today, the most popular boards of this kind includes ESP8266 or ESP32."/>
 
 
     <base href="/post/connecting-r-and-arduino-through-websockets/">
@@ -142,7 +142,7 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
 
 <h2 id="hardware-requirements">Hardware requirements</h2>
 
-<p>Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32. These two chips come with a built-in WiFi kit (the ESP32 board even has a bluetooth module). Also, thanks to their popularity, there are plenty community-based libraries developed to easily utilize these hardware.</p>
+<p>Obviously, you need an arduino board that can connect to the Internet. Today, the most popular boards of this kind includes ESP8266 or ESP32. These two chips come with a built-in WiFi kit (the ESP32 board even has a bluetooth module). Also, thanks to their popularity, there are plenty community-based libraries developed to easily utilize these hardware.</p>
 
 <p>If you are in the US, you can get a development ESP32 board on Amazon for ~$11. You can even think about getting one with a small LED screen, which can tell you the IP addresses when you go wireless.</p>
 
@@ -152,7 +152,12 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
 
 <h2 id="websocket-101">Websocket 101</h2>
 
-<p>Our typical HTTP based internet is unidirectional. You sent out a request to the server and the server sends back a response. If you don&rsquo;t request, you won&rsquo;t get anything. For <a href="https://en.wikipedia.org/wiki/WebSocket">websocket</a>, the communication is more like human communication and is bidirectional - once the connection has been setup, both you and the server can send and receive information at any time. Websocket is also based on TCP, which means that it makes sure the messages you/server receive are &ldquo;in-order&rdquo;. Websocket also has the term server &amp; client. The server has the capacity to receive connections from multiple clients. It can send out information to certain client or boardcast the information to everyone that&rsquo;s connect.</p>
+<ul>
+<li>Our typical HTTP based internet is unidirectional. You sent out a request to the server and the server sends back a response. If you don&rsquo;t request, you won&rsquo;t get anything.</li>
+<li>For <a href="https://en.wikipedia.org/wiki/WebSocket">websocket</a>, the communication is more like human communication and is bidirectional - once the connection has been setup, both you and the server can send and receive information at any time.</li>
+<li>Websocket is also based on TCP, which means that it makes sure the messages you/server receive are &ldquo;in-order&rdquo;.</li>
+<li>Websocket also has the term server &amp; client. The server has the capacity to receive connections from multiple clients. It can send out information to certain client or boardcast the information to everyone that&rsquo;s connect.</li>
+</ul>
 
 <h2 id="setup-websocket-server-on-esp8266">Setup Websocket server on ESP8266</h2>
 
@@ -240,7 +245,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 
 <h2 id="connecting-r-to-the-websocket-server">Connecting R to the websocket server</h2>
 
-<p>Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a <a href="https://github.com/rstudio/websocket">websocket</a> package but is a little pre-matured at this stage. On the other hand, <a href="https://github.com/ropenscilabs/webrockets">webrockets</a>, which is a rOpenSci 2017 unconference project has all the features we need for now. However, it seems like it can&rsquo;t be built on Windows. (Windows User: ??? Again?! 😭😭😭)</p>
+<p>Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a <a href="https://github.com/rstudio/websocket">websocket</a> package but is a little pre-matured at this stage. On the other hand, <a href="https://github.com/ropenscilabs/webrockets">webrockets</a>, which is a rOpenSci 2017 unconference project has all the features we need for now. However, it seems like it can&rsquo;t be built on Windows . (Windows User: ??? Again?! 😭😭😭)</p>
 
 <p>For now, let&rsquo;s pretend all makers are using Mac or Linux (well, clearly that&rsquo;s not true :P) and use <code>webrockets</code> as our dependencies. In the future, once rstudio&rsquo;s websocket project gets on the road, let&rsquo;s think about switching to that.</p>
 

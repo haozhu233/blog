@@ -18,7 +18,7 @@
       
       <guid>/post/connecting-r-and-arduino-through-websockets/</guid>
       <description>In the last post, I demonstrated how to send data from arduino to R through serial connection. This time, I&amp;rsquo;m going to talk about how to connect R and arduino through wireless websocket connection. Trust me, it&amp;rsquo;s not as hard as it sounds like.
-Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32.</description>
+Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Today, the most popular boards of this kind includes ESP8266 or ESP32.</description>
     </item>
     
     <item>
