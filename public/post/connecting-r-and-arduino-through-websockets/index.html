@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Hao Zhu">
+    <meta name="description" content="Hao&#39;s Blog">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Connecting R and arduino wirelessly through websockets"/>
+<meta name="twitter:description" content="In the last post, I demonstrated how to send data from arduino to R through serial connection. This time, I&rsquo;m going to talk about how to connect R and arduino through wireless websocket connection. Trust me, it&rsquo;s not as hard as it sounds like.
+Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32."/>
+
+
+    <base href="/post/connecting-r-and-arduino-through-websockets/">
+    <title>
+  Connecting R and arduino wirelessly through websockets · Hao Zhu
+</title>
+
+    <link rel="canonical" href="/post/connecting-r-and-arduino-through-websockets/">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.53" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Hao Zhu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/post/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="/cn/">中文</a>
+            </li>
+          
+        
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Connecting R and arduino wirelessly through websockets</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-02-11T00:00:00Z'>
+                February 11, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              4 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="/categories/r/">R</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/arduino/">arduino</a>
+      <span class="separator">•</span>
+    <a href="/tags/r/">R</a>
+      <span class="separator">•</span>
+    <a href="/tags/tutorial/">tutorial</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+
+<p>In the <a href="/post/connect-arduino-chips-with-r/">last post</a>, I demonstrated how to send data from arduino to R through serial connection. This time, I&rsquo;m going to talk about how to connect R and arduino through wireless <strong>websocket</strong> connection. Trust me, it&rsquo;s not as hard as it sounds like.</p>
+
+<h2 id="hardware-requirements">Hardware requirements</h2>
+
+<p>Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32. These two chips come with a built-in WiFi kit (the ESP32 board even has a bluetooth module). Also, thanks to their popularity, there are plenty community-based libraries developed to easily utilize these hardware.</p>
+
+<p>If you are in the US, you can get a development ESP32 board on Amazon for ~$11. You can even think about getting one with a small LED screen, which can tell you the IP addresses when you go wireless.</p>
+
+<p><img src="/post/2019-02-08-connecting-r-and-arduino-through-websockets_files/amazon_esp32.png" alt="" width="400px"/></p>
+
+<p>In this example, I&rsquo;m using the ESP8266 chip which I used in the previous example.</p>
+
+<h2 id="websocket-101">Websocket 101</h2>
+
+<p>Our typical HTTP based internet is unidirectional. You sent out a request to the server and the server sends back a response. If you don&rsquo;t request, you won&rsquo;t get anything. For <a href="https://en.wikipedia.org/wiki/WebSocket">websocket</a>, the communication is more like human communication and is bidirectional - once the connection has been setup, both you and the server can send and receive information at any time. Websocket is also based on TCP, which means that it makes sure the messages you/server receive are &ldquo;in-order&rdquo;. Websocket also has the term server &amp; client. The server has the capacity to receive connections from multiple clients. It can send out information to certain client or boardcast the information to everyone that&rsquo;s connect.</p>
+
+<h2 id="setup-websocket-server-on-esp8266">Setup Websocket server on ESP8266</h2>
+
+<p>This code example below only demonstrates how to setup a websocket server for ESP8266. For ESP32 or other boards, you probably need to load different packages and the setup might be slightly different.</p>
+
+<p>Basically here you are trying to do 2 things:</p>
+
+<ol>
+<li>You want to connect your chip to a WiFi</li>
+<li>You want to start a websocket server</li>
+</ol>
+
+<p>In order to connect to WiFi, I&rsquo;m using the <code>ESP8266WiFI</code>, <code>WiFiClient</code> and the <code>ESP8266WiFiMulti</code> library. The <code>ESP8266WiFiMulti</code> library here allows you to save multiple WiFi credentials in your code. <strong>For security concerns, please make sure not to lose your arduino device after you do this.</strong></p>
+
+<p>To setup a websocket server, we are using this <a href="https://github.com/Links2004/arduinoWebSockets">arduinoWebSockets</a> library. You can find a bunch of examples for a number of different devices in the <code>examples</code> folder. In fact, I learned how to get it work on my ESP8266 following one example over there.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">#include &lt;ESP8266WiFi.h&gt;
+#include &lt;ESP8266WiFiMulti.h&gt;
+#include &lt;WiFiClient.h&gt;
+#include &lt;WebSocketsServer.h&gt;
+
+// Put in your WiFi credentials here
+const char* ssid = &#34;Your Wifi 1&#34;;
+const char* ssid2 = &#34;Your Wifi 2&#34;; const char* password2 = &#34;Wifi pw 2&#34;;
+const char* ssid3 = &#34;Your Wifi 3&#34;; const char* password3 = &#34;Wifi pw 3&#34;;
+
+ESP8266WiFiMulti wifiMulti;
+int16_t randomNumber1, randomNumber2;
+char outtxt[50];
+const int16_t wsPort = 81;
+WebSocketsServer ws = WebSocketsServer(wsPort);
+
+ 
+void setup(void){
+ Serial.begin(115200);
+ 
+ wifiMulti.addAP(ssid, NULL);
+ wifiMulti.addAP(ssid2, password2);
+ wifiMulti.addAP(ssid3, password3);
+ while (wifiMulti.run() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&#34;.&#34;);
+ }
+ Serial.println(&#34;&#34;); 
+ Serial.print(&#34;Connected to &#34;); Serial.println(WiFi.SSID()); 
+ Serial.print(&#34;ws://&#34;); Serial.print(WiFi.localIP());
+ Serial.print(&#34;:&#34;); Serial.println(wsPort);
+ 
+ // Setup webSocket server
+ ws.begin();
+ ws.onEvent(webSocketEvent);
+ Serial.println(&#34;webSocket server started!&#34;);
+}
+ 
+void loop(void){
+  randomNumber1 = random(100);
+  randomNumber2 = random(100);
+  sprintf(outtxt, &#34;%d,%d&#34;, randomNumber1, randomNumber2);
+  ws.loop();
+  ws.broadcastTXT(outtxt);
+  delay(100);
+}
+
+void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
+    switch(type) {
+        case WStype_DISCONNECTED: Serial.printf(&#34;[%u] Disconnected!\n&#34;, num);
+            break;
+        case WStype_CONNECTED:
+            {
+                IPAddress ip = ws.remoteIP(num);
+                Serial.printf(&#34;[%u] Connected from %d.%d.%d.%d url: %s\n&#34;, num, ip[0], ip[1], ip[2], ip[3], payload);
+                ws.sendTXT(num, &#34;Connected&#34;);
+            }
+            break;
+        case WStype_TEXT:
+            Serial.printf(&#34;[%u] get Text: %s\n&#34;, num, payload);
+            break;
+        case WStype_BIN:
+            Serial.printf(&#34;[%u] get binary length: %u\n&#34;, num, length);
+            break;
+    }
+}</pre></div>
+<p>After you compile the script and upload it to your chip, you should be able to see something like this:</p>
+
+<p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/Screen Shot 2019-02-11 at 3.57.42 PM.png" alt="" width="200px"/></p>
+
+<h2 id="connecting-r-to-the-websocket-server">Connecting R to the websocket server</h2>
+
+<p>Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a <a href="https://github.com/rstudio/websocket">websocket</a> package but I found it&rsquo;s a little pre-mature at this stage. On the other hand, <a href="https://github.com/ropenscilabs/webrockets">webrockets</a>, which is a rOpenSci unconference project has all the features we need for now. However, it seems like it can&rsquo;t be built on Windows. (Windows User: Again??? 😭😭😭)</p>
+
+<p>For now, let&rsquo;s pretend all makers are using Mac or Linux (well, clearly that&rsquo;s not true :P) and use <code>webrockets</code> as our dependencies. In the future, once rstudio&rsquo;s websocket project gets on the road, let&rsquo;s think about switching to that.</p>
+
+<p>Okay, enough explaining. Let&rsquo;s see how to use it in R.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#fff;font-weight:bold">library</span>(arduinor)
+
+con &lt;- ar_ws_init(<span style="color:#0ff;font-weight:bold">&#34;ws://192.168.xxx.xxx:81&#34;</span>)
+ar_ws_plotter(con)</code></pre></div>
+<p>Now, you get the same interface as your serial plotter! I hope this is not too easy. :P</p>
+
+<p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/ar_ws_plotter.png" alt="" width="80%"/></p>
+
+<p>Note that the default reading frequency here is 20Hz (50ms). If your frequency is too high, it might clog R session.</p>
+
+<h2 id="good-wifi-v-s-crappy-wifi">Good WiFi v.s. crappy Wifi</h2>
+
+<p>If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the hotspot hosted by my cellphone and my company&rsquo;s <em>guest</em> network.</p>
+
+<p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="50%" style="display: inline-block;"/>
+<img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="50%"/></p>
+
+      </div>
+
+      <footer>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "haozhu233" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/luizdepra/hugo-coder/">Coder</a> & <a href="https://github.com/rstudio/blogdown">blogdown</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -150,7 +150,7 @@
 
 <p>As an open-source project, Arduino allows people to write C-like code to program a microcontroller. It also has an IDE, which comes with a Serial Monitor. As a data scientist, from the moment I saw the data inside the Serial Monitor, I began to wonder if we can get the data out of this box and maybe visualize them in R, where I have a lot more tools to generate better visualizations.</p>
 
-<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/hebrewseniorlife/arduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduinor</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
+<p>Therefore, after some trial and error, I managed to use rcpp to port a C-based library <a href="https://github.com/todbot/arduino-serial">ArduinoSerial</a> into R as <a href="https://github.com/hr-arduinoarduinor">an R package</a> called <code>arduinor</code> and use that to stream data into R and RStudio. I also created a addin-like shiny app to make the &ldquo;entry-level&rdquo; visualization and data-collection a little easier. However, since this C package only runs on POSIX-compatible systems, you can&rsquo;t use this <code>arduinor</code> R package on a Windows machine either - it won&rsquo;t build. In the future, it might be possible to extend the support to Windows through using this <a href="https://sigrok.org/wiki/Libserialport">libserialport</a> C++ package.</p>
 
 <p><img src="/post/2019-01-28-connect-arduino-chips-with-r_files/ar_plotter.png" alt="" width="50%"/></p>
 
@@ -191,7 +191,7 @@ void loop() {
 <p>So, let&rsquo;s get this package before we start. Again, if you only have a Windows machine, sorry about that. Let&rsquo;s hope my <code>libserialport</code> project can go well.</p>
 
 <p>Right now this package is only on github.</p>
-<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;hebrewseniorlife/arduinor&#34;</span>)</code></pre></div>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">remotes::install_github(<span style="color:#0ff;font-weight:bold">&#34;hr-arduinoarduinor&#34;</span>)</code></pre></div>
 <p>Once you get this package installed, we can start to do something fun.</p>
 
 <ol>

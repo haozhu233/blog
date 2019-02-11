@@ -6,10 +6,20 @@
     <description>Recent content in Tutorial on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Feb 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Connecting R and arduino wirelessly through websockets</title>
+      <link>/post/connecting-r-and-arduino-through-websockets/</link>
+      <pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/connecting-r-and-arduino-through-websockets/</guid>
+      <description>In the last post, I demonstrated how to send data from arduino to R through serial connection. This time, I&amp;rsquo;m going to talk about how to connect R and arduino through wireless websocket connection. Trust me, it&amp;rsquo;s not as hard as it sounds like.
+Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Nowadays, the most popular boards of this kind includes ESP8266 or ESP32.</description>
+    </item>
     
     <item>
       <title>Connecting Arduino Chips with R</title>
