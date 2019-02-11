@@ -132,11 +132,11 @@ Now, you get the same interface as your serial plotter! I hope this is not too e
 
 Note that the default reading frequency here is 20Hz (50ms). If your frequency is too high, it might clog R session. 
 
-## Good WiFi v.s. crappy Wifi
-If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the hotspot hosted by my cellphone and my company's *guest* network. 
+## Good WiFi v.s. Bad WiFi
+If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the hotprivate spot hosted by my cellphone and a *guest* network I found in the public space. 
 
-<img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="50%" style="display: inline-block;"/>
-<img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="50%"/>
+<img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="45%" style="display: inline-block;"/>
+<img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="45%"/>
 
 
 
