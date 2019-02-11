@@ -113,7 +113,7 @@ After you compile the script and upload it to your chip, you should be able to s
 <img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/Screen Shot 2019-02-11 at 3.57.42 PM.png" alt="" width="200px"/>
 
 ## Connecting R to the websocket server
-Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a [websocket](https://github.com/rstudio/websocket) package but I found it's a little pre-mature at this stage. On the other hand, [webrockets](https://github.com/ropenscilabs/webrockets), which is a rOpenSci unconference project has all the features we need for now. However, it seems like it can't be built on Windows. (Windows User: Again??? 😭😭😭)
+Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a [websocket](https://github.com/rstudio/websocket) package but is a little pre-matured at this stage. On the other hand, [webrockets](https://github.com/ropenscilabs/webrockets), which is a rOpenSci 2017 unconference project has all the features we need for now. However, it seems like it can't be built on Windows. (Windows User: ??? Again?! 😭😭😭)
 
 For now, let's pretend all makers are using Mac or Linux (well, clearly that's not true :P) and use `webrockets` as our dependencies. In the future, once rstudio's websocket project gets on the road, let's think about switching to that. 
 
@@ -133,7 +133,7 @@ Now, you get the same interface as your serial plotter! I hope this is not too e
 Note that the default reading frequency here is 20Hz (50ms). If your frequency is too high, it might clog R session. 
 
 ## Good WiFi v.s. Bad WiFi
-If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the hotprivate spot hosted by my cellphone and a *guest* network I found in the public space. 
+If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the private hotspot hosted by my cellphone and a *guest* network I found in the public space. 
 
 <img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="45%" style="display: inline-block;"/>
 <img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="45%"/>

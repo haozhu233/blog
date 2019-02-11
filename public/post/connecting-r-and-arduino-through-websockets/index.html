@@ -240,7 +240,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 
 <h2 id="connecting-r-to-the-websocket-server">Connecting R to the websocket server</h2>
 
-<p>Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a <a href="https://github.com/rstudio/websocket">websocket</a> package but I found it&rsquo;s a little pre-mature at this stage. On the other hand, <a href="https://github.com/ropenscilabs/webrockets">webrockets</a>, which is a rOpenSci unconference project has all the features we need for now. However, it seems like it can&rsquo;t be built on Windows. (Windows User: Again??? 😭😭😭)</p>
+<p>Now we have a running websocket server boardcasting in our Wifi network. We need to create a websocket client in R. RStudio is working on a <a href="https://github.com/rstudio/websocket">websocket</a> package but is a little pre-matured at this stage. On the other hand, <a href="https://github.com/ropenscilabs/webrockets">webrockets</a>, which is a rOpenSci 2017 unconference project has all the features we need for now. However, it seems like it can&rsquo;t be built on Windows. (Windows User: ??? Again?! 😭😭😭)</p>
 
 <p>For now, let&rsquo;s pretend all makers are using Mac or Linux (well, clearly that&rsquo;s not true :P) and use <code>webrockets</code> as our dependencies. In the future, once rstudio&rsquo;s websocket project gets on the road, let&rsquo;s think about switching to that.</p>
 
@@ -257,7 +257,7 @@ ar_ws_plotter(con)</code></pre></div>
 
 <h2 id="good-wifi-v-s-bad-wifi">Good WiFi v.s. Bad WiFi</h2>
 
-<p>If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the hotprivate spot hosted by my cellphone and a <em>guest</em> network I found in the public space.</p>
+<p>If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the private hotspot hosted by my cellphone and a <em>guest</em> network I found in the public space.</p>
 
 <p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="45%" style="display: inline-block;"/>
 <img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="45%"/></p>
