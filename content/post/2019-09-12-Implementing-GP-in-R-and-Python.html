@@ -1,0 +1,192 @@
+---
+title: "Implementing Gaussian Process in Python and R"
+author: Hao Zhu
+date: "2019-09-12 (Updated on 2019-09-12)"
+output: html_document
+slug: gp_python_r
+categories:
+  - Deep Learning
+tags:
+  - R
+  - Python
+  - Deep Learning
+  - Gaussian Process
+---
+
+
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>Gaussian Process (GP) can be represented in the form of</p>
+<p><span class="math inline">\(f(\mathbf{x}) \sim \mathcal{GP}(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x&#39;}))\)</span></p>
+<p>where <span class="math inline">\(m(\mathbf{x})\)</span> is the mean function and <span class="math inline">\(k(\mathbf{x}, \mathbf{x&#39;})\)</span> is the covariance/kernel function. In this homework, we are trying to create some kernel functions from scratch and sample function values from the GP Prior and the GP Posterior.</p>
+</div>
+<div id="define-mean-kernel-functions" class="section level1">
+<h1>Define mean &amp; kernel functions</h1>
+<p>For simplicity, our mean function is set to be 0 for all x inputs.</p>
+<pre class="python"><code>import numpy as np
+from scipy.special import gamma, kv
+import matplotlib.pyplot as plt
+
+def mean_func(x):
+    return np.zeros(len(x))
+    
+# Squared Exponential kernel (Eq. 4.9 in the R&amp;W book)
+def sqexp_kernel_func(x1, x2, l = 1):
+    return np.exp(-0.5 * (np.subtract.outer(x1, x2)/l)**2)</code></pre>
+<p>In this assignment, we are implementing two popular kernels, namely the Squared Exponential kernel and the Matern kernel.</p>
+<p>The is defined as below:</p>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-4-1.png" alt="Covariance function for the Squared Exponential kernel" width="672" />
+<p class="caption">
+Figure 1: Covariance function for the Squared Exponential kernel
+</p>
+</div>
+<p>The Matern kernel (Eq. 4.14) is defined as below:</p>
+<pre class="python"><code>def matern_kernel_func(x1, x2, l = 1, v = 1):
+    r = np.abs(np.subtract.outer(x1, x2))
+    r[r == 0] = 1e-8
+    part1 = 2 ** (1 - v) / gamma(v)
+    part2 = (np.sqrt(2 * v) * r / l) ** v
+    part3 = kv(v, np.sqrt(2 * v) * r / l)
+    return part1 * part2 * part3</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-6-1.png" alt="Reproducing Figure 4.1 for the Matern kernel" width="672" />
+<p class="caption">
+Figure 2: Reproducing Figure 4.1 for the Matern kernel
+</p>
+</div>
+<p>I also tried to recreate Figure 4.1 of the R&amp;W book using the function we defined here. The result, shown in Figure 2, is pretty close.</p>
+</div>
+<div id="problem-1-sampling-from-the-prior" class="section level1">
+<h1>Problem 1: Sampling from the Prior</h1>
+<p>For Problem 1, I used the code skeleton provided on the course website. I also added a <code>cov_args</code> argument and used the <code>Key Word Arguments</code> in the <code>cov_func</code> call so it is more flexible to call different arguments in those covariance functions.</p>
+<pre class="python"><code>def draw_GP_prior_samples_at_x_grid(
+        x_grid_G, mean_func, cov_func, cov_args = {}, 
+        random_seed = 42,
+        n_samples = 5):
+    x_mean = mean_func(x_grid_G)
+    x_cov = cov_func(x_grid_G, x_grid_G, **cov_args)
+
+    # Use consistent random number generator for reproducibility
+    prng = np.random.RandomState(int(random_seed))
+    out = prng.multivariate_normal(x_mean, x_cov, n_samples)
+    
+    return out</code></pre>
+<div id="a-1b" class="section level2">
+<h2>1a &amp; 1b</h2>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-8-1.png" alt="Samples from the prior using a squared exponential kernel with different hyperparameter $\ell$" width="960" />
+<p class="caption">
+Figure 3: Samples from the prior using a squared exponential kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
+</p>
+</div>
+<p>The sampling from the prior using the squared exponential kernel is shown in Figure 3 above. As suggested by the R&amp;W book, hyperparameter length scale <span class="math inline">\(\ell\)</span> could be understood as “the distance you have to move in input space before the function value can change significantly”, which in the end controls the smoothness of the function. As <span class="math inline">\(\ell\)</span> increases, the function will be more smooth.</p>
+</div>
+<div id="c-1d" class="section level2">
+<h2>1c &amp; 1d</h2>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-9-1.png" alt="Samples from the prior using a Matern kernel with different hyperparameter $\ell$ and $\nu$" width="960" />
+<p class="caption">
+Figure 4: Samples from the prior using a Matern kernel with different hyperparameter <span class="math inline">\(\ell\)</span> and <span class="math inline">\(\nu\)</span>
+</p>
+</div>
+<p>The sampling from the prior using the Matern kernel is shown in Figure 4. The length scale <span class="math inline">\(\ell\)</span> again controls the scales of changes of the covariates. The new hypterparameter <span class="math inline">\(\nu\)</span> controls the sharpness of the ridge of the covariance. Both of these two hyperparameters are related to the smoothness of the function.</p>
+</div>
+</div>
+<div id="problem-2" class="section level1">
+<h1>Problem 2</h1>
+<p>In Problem 2, we have been given some training data for x and y. We were also told that the relationship between y and x has a noisy term where <span class="math inline">\(\sigma = 0.1\)</span>.</p>
+<p>Using Eq. 2.23, 2.24 from R&amp;W Ch.2 and the function skeleton provided, we developed the following functions to predict <span class="math inline">\(y_i\)</span> at given <span class="math inline">\(x_i\)</span> locations.</p>
+<pre class="python"><code>x_train_N = np.asarray([-2.,    -1.8,   -1.,  1.,  1.8,     2.])
+y_train_N = np.asarray([-3.,  0.2224,    3.,  3.,  0.2224, -3.])
+
+def draw_GP_posterior_samples_at_x_grid(
+        x_train_N, y_train_N, x_grid_G, mean_func, cov_func, cov_args = {},
+        sigma=0.1,
+        random_seed=42,
+        n_samples=5):
+    # In this case x = x_train_N, xs (x star) = x_grid_G
+    k_xx = cov_func(x_train_N, x_train_N, **cov_args)
+    k_xxs = cov_func(x_train_N, x_grid_G, **cov_args)
+    k_xsx = cov_func(x_grid_G, x_train_N, **cov_args)
+    k_xsxs = cov_func(x_grid_G, x_grid_G, **cov_args)
+    
+    I = np.identity(k_xx.shape[1])
+    k_xx_noise = np.linalg.inv(k_xx + sigma ** 2 * I)
+    kxsx_kxxNoise = np.matmul(k_xsx, k_xx_noise)
+    # Eq.2.23, 24
+    fsb = np.matmul(kxsx_kxxNoise, y_train_N)
+    cov_fs = k_xsxs - np.matmul(kxsx_kxxNoise, k_xxs)
+
+    # Use consistent random number generator for reproducibility
+    prng = np.random.RandomState(int(random_seed))
+    out = prng.multivariate_normal(fsb, cov_fs, n_samples)
+    
+    return out, fsb, cov_fs</code></pre>
+<div id="a-2b" class="section level2">
+<h2>2a &amp; 2b</h2>
+<div class="figure"><span id="fig:unnamed-chunk-11"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-11-1.png" alt="Samples from the posterior using a Squared Exponential kernel with different hyperparameter $\ell$" width="960" />
+<p class="caption">
+Figure 5: Samples from the posterior using a Squared Exponential kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
+</p>
+</div>
+<p>The posterior prediction plots using the Squared Exponential kernel are displayed in Figure 5.</p>
+<p>In this case, when <span class="math inline">\(\ell\)</span> is small, it is easier for the predicted posterior to return to normal (prior), which is the mean function, 0. As <span class="math inline">\(\ell\)</span> increases, it becomes more and more likely the predicted <span class="math inline">\(y_{x=0}\)</span> to stay at the “local” value, which is provided by the nearest neighbor in <code>y_train_N</code>.</p>
+</div>
+<div id="c" class="section level2">
+<h2>2c</h2>
+<div class="figure"><span id="fig:unnamed-chunk-12"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-12-1.png" alt="Samples from the posterior using a Matern kernel with different hyperparameter $\ell$" width="960" />
+<p class="caption">
+Figure 6: Samples from the posterior using a Matern kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
+</p>
+</div>
+<p>The posterior prediction plots using the Squared Exponential kernel are displayed in Figure 6.</p>
+</div>
+<div id="d" class="section level2">
+<h2>2d</h2>
+<p>Previously in the code for Figure 6 (hidden for cleanliness), we saved the calculated <span class="math inline">\(\overline{f}_*\)</span> and <span class="math inline">\(cov(f_*)\)</span> for the <span class="math inline">\(\ell = 4.0, \nu = 8\)</span> condition in variable <code>matern_mean</code>, <code>matern_cov</code> (this condition happens to be the last one in the loop). Therefore we used these two values (Eq. 2.23 &amp; 2.24 in the R&amp;W book) and calculated out the predicted value when x = +15. The formula and code we used to do the calculation are shown below.</p>
+<p><span class="math inline">\(\overline{f}_* = K(X_*,X)[K(X,X)+\sigma_n^2I]^{-1}\textbf{y}\)</span></p>
+<pre class="python"><code>idx_15 = np.abs(x_grid_G - 15).argmin()
+print(
+    &quot;The expected value at x = +15 is &quot; +
+    str(np.round(matern_mean[idx_15], 3))
+)</code></pre>
+<pre><code>## The expected value at x = +15 is -0.412</code></pre>
+<p>The calculated result is similar with what we observed in Figure 6.</p>
+</div>
+<div id="e" class="section level2">
+<h2>2e</h2>
+<p>As x moves away from the training point, the expected value is also expected to return to normal, which is 0. We have observed that at x = +15, the expected y is already very close to 0. Without any calculation, we can say that when x = +15, y is expected to be at 0.0.</p>
+</div>
+<div id="f" class="section level2">
+<h2>2f</h2>
+<p>Similar with question 2d, we can calculate the expected variance at x = +15 using the covariance function we exported earlier. The formula and code we used to do the calculation is shown below.
+<span class="math inline">\(cov(f_*) = K(X_*,X_*) - K(X_*,X)[K(X,X)+\sigma_n^2I]^{-1}K(X,X_*)\)</span><br />
+<span class="math inline">\(\sigma_*^2 = diag(cov(f_*))\)</span></p>
+<pre class="python"><code>print(
+    &quot;The expected variance at x = +15 is &quot; +
+    str(np.round(np.diag(matern_cov)[idx_15], 3))
+)</code></pre>
+<pre><code>## The expected variance at x = +15 is 1.0</code></pre>
+</div>
+<div id="g" class="section level2">
+<h2>2g</h2>
+<p>By default, the variance calculated from the diagonal of the covariance matrix are range from 0 to 1. This is the reason why we see <span class="math inline">\(\sigma_*^2 \approx 1\)</span> at x = +15. As x moves away from the training data, we can expect the predicted variance at x = +15 gets even closer to 1.</p>
+</div>
+<div id="h" class="section level2">
+<h2>2h</h2>
+<p>Based on the equation of GP, the expected value of <span class="math inline">\(f(x)\)</span> at input values <span class="math inline">\(x\)</span> far from the training data should be controlled by the mean function.</p>
+<p><span class="math inline">\(f(\mathbf{x}) \sim \mathcal{GP}(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x&#39;}))\)</span></p>
+<p>Therefore, if we want to have <span class="math inline">\(f(x \rightarrow \infty) = 5.0\)</span>, we just need to have a fixed value of 5.0 for the mean function.</p>
+<p><span class="math inline">\(m(\textbf{x}) = 5.0\)</span></p>
+</div>
+</div>
+<div id="i" class="section level1">
+<h1>2i</h1>
+<p>By default the default variance for <span class="math inline">\(f(x)\)</span> should equal to 1.0 for all x far from the training data. From Eq. 2.31 in the R&amp;W book, we see that we can adjust this amount by multiplying the covarience term with a signal variance term <span class="math inline">\(\sigma_f^2\)</span>:</p>
+<p><span class="math inline">\(k_{sq-exp}(x_p, x_q) = \sigma_f^2 exp(- \frac{1}{2\ell^2}(x_p - x_q)^2) +\sigma_n^2\delta_pq\)</span></p>
+<p>We can do a similar thing for the Matern kernel. Although in the current implementation of the <code>draw_GP_posterior_samples_at_x_grid</code>, we don’t have this signal variance term, it should be easy to add <span class="math inline">\(\sigma_f^2\)</span> to our function and set <code>sigma_f = 4.0</code> in this case.</p>
+</div>

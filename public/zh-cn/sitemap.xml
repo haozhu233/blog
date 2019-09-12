@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://zhuhao.org/zh-cn/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://zhuhao.org/cn/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/zh-cn/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://zhuhao.org/cn/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/zh-cn/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://zhuhao.org/cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/zh-cn/about/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/about/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/zh-cn/projects/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/projects/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/projects/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/zh-cn/contact/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/contact/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/contact/"
+                />
+  </url>
+  
+</urlset>

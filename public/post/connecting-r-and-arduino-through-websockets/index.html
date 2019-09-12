@@ -15,12 +15,12 @@
 Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Today, the most popular boards of this kind includes ESP8266 or ESP32."/>
 
 
-    <base href="/post/connecting-r-and-arduino-through-websockets/">
+    <base href="https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/">
     <title>
   Connecting R and arduino wirelessly through websockets · Hao Zhu
 </title>
 
-    <link rel="canonical" href="/post/connecting-r-and-arduino-through-websockets/">
+    <link rel="canonical" href="https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
@@ -29,7 +29,7 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
     
       
       
-      <link rel="stylesheet" href="/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
+      <link rel="stylesheet" href="https://zhuhao.org/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
     
 
     
@@ -38,19 +38,19 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
 
     
 
-    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://zhuhao.org/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zhuhao.org/images/favicon-16x16.png" sizes="16x16">
 
     
 
-    <meta name="generator" content="Hugo 0.53" />
+    <meta name="generator" content="Hugo 0.58.1" />
   </head>
 
   <body class=" ">
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    <a class="navigation-title" href="https://zhuhao.org/">
       Hao Zhu
     </a>
     <input type="checkbox" id="menu-toggle" />
@@ -59,25 +59,27 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
       
         
           <li class="navigation-item">
-            <a class="navigation-link" href="/about/">About</a>
+            <a class="navigation-link" href="https://zhuhao.org/about/">About</a>
           </li>
         
           <li class="navigation-item">
-            <a class="navigation-link" href="/post/">Blog</a>
+            <a class="navigation-link" href="https://zhuhao.org/post/">Blog</a>
           </li>
         
           <li class="navigation-item">
-            <a class="navigation-link" href="/projects/">Projects</a>
+            <a class="navigation-link" href="https://zhuhao.org/projects/">Projects</a>
           </li>
         
           <li class="navigation-item">
-            <a class="navigation-link" href="/contact/">Contact me</a>
+            <a class="navigation-link" href="https://zhuhao.org/contact/">Contact me</a>
           </li>
         
       
       
         
         
+        
+          
         
           
             
@@ -87,10 +89,15 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
               
             
             <li class="navigation-item">
-              <a href="/cn/">中文</a>
+              <a href="https://zhuhao.org/cn/"></a>
             </li>
           
         
+          
+            
+            <li class="navigation-item">
+              <a href="https://zhuhao.org/zh-cn/">中文</a>
+            </li>
           
         
       
@@ -122,15 +129,15 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
           </div>
           <div class="categories">
   <i class="fas fa-folder"></i>
-    <a href="/categories/r/">R</a></div>
+    <a href="https://zhuhao.org/categories/r/">R</a></div>
 
           <div class="tags">
   <i class="fas fa-tag"></i>
-    <a href="/tags/arduino/">arduino</a>
+    <a href="https://zhuhao.org/tags/arduino/">arduino</a>
       <span class="separator">•</span>
-    <a href="/tags/r/">R</a>
+    <a href="https://zhuhao.org/tags/r/">R</a>
       <span class="separator">•</span>
-    <a href="/tags/tutorial/">tutorial</a></div>
+    <a href="https://zhuhao.org/tags/tutorial/">tutorial</a></div>
 
         </div>
       </header>
@@ -138,7 +145,7 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
       <div>
         
 
-<p>In the <a href="/post/connect-arduino-chips-with-r/">last post</a>, I demonstrated how to send data from arduino to R through serial connection. This time, I&rsquo;m going to talk about how to connect R and arduino through wireless <strong>websocket</strong> connection. Trust me, it&rsquo;s not as hard as it sounds like.</p>
+<p>In the <a href="https://zhuhao.org/post/connect-arduino-chips-with-r/">last post</a>, I demonstrated how to send data from arduino to R through serial connection. This time, I&rsquo;m going to talk about how to connect R and arduino through wireless <strong>websocket</strong> connection. Trust me, it&rsquo;s not as hard as it sounds like.</p>
 
 <h2 id="hardware-requirements">Hardware requirements</h2>
 
@@ -146,7 +153,7 @@ Hardware requirements Obviously, you need an arduino board that can connect to t
 
 <p>If you are in the US, you can get a development ESP32 board on Amazon for ~$11. You can even think about getting one with a small LED screen, which can tell you the IP addresses when you go wireless.</p>
 
-<p><img src="/post/2019-02-08-connecting-r-and-arduino-through-websockets_files/amazon_esp32.png" alt="" width="400px"/></p>
+<p><img src="https://zhuhao.org/post/2019-02-08-connecting-r-and-arduino-through-websockets_files/amazon_esp32.png" alt="" width="400px"/></p>
 
 <p>In this example, I&rsquo;m using the ESP8266 chip which I used in the previous example.</p>
 
@@ -241,7 +248,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 }</pre></div>
 <p>After you compile the script and upload it to your chip, you should be able to see something like this:</p>
 
-<p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/Screen Shot 2019-02-11 at 3.57.42 PM.png" alt="" width="200px"/></p>
+<p><img src="https://zhuhao.org/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/Screen Shot 2019-02-11 at 3.57.42 PM.png" alt="" width="200px"/></p>
 
 <h2 id="connecting-r-to-the-websocket-server">Connecting R to the websocket server</h2>
 
@@ -256,7 +263,7 @@ con &lt;- ar_ws_init(<span style="color:#0ff;font-weight:bold">&#34;ws://192.168
 ar_ws_plotter(con)</code></pre></div>
 <p>Now, you get the same interface as your serial plotter! I hope this is not too easy. :P</p>
 
-<p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/ar_ws_plotter.png" alt="" width="80%"/></p>
+<p><img src="https://zhuhao.org/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/ar_ws_plotter.png" alt="" width="80%"/></p>
 
 <p>Note that the default reading frequency here is 20Hz (50ms). If your frequency is too high, it might clog R session.</p>
 
@@ -264,8 +271,8 @@ ar_ws_plotter(con)</code></pre></div>
 
 <p>If you have a crappy Wifi router, you might experience some package loss. One way to examine that is to let your arduino log its time. Below you can see a comparison between the private hotspot hosted by my cellphone and a <em>guest</em> network I found in the public space.</p>
 
-<p><img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="45%" style="display: inline-block;"/>
-<img src="/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="45%"/></p>
+<p><img src="https://zhuhao.org/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/hotspot.png" alt="" width="45%" style="display: inline-block;"/>
+<img src="https://zhuhao.org/post/2019-02-11-connecting-r-and-arduino-through-websockets_files/guestwifi.png" alt="" width="45%"/></p>
 
       </div>
 

@@ -3,147 +3,113 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/cn/post/arduino.cn/</loc>
+    <loc>https://zhuhao.org/cn/tags/arduino/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/cn/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="https://zhuhao.org/tags/arduino/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="/cn/"
+                href="https://zhuhao.org/cn/tags/arduino/"
                 />
   </url>
   
   <url>
-    <loc>/cn/tags/arduino/</loc>
+    <loc>https://zhuhao.org/cn/categories/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/arduino/"
+                href="https://zhuhao.org/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="/cn/tags/arduino/"
+                href="https://zhuhao.org/cn/categories/"
                 />
   </url>
   
   <url>
-    <loc>/cn/categories/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>/cn/post/</loc>
+    <loc>https://zhuhao.org/cn/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/post/"
+                href="https://zhuhao.org/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="/cn/post/"
+                href="https://zhuhao.org/cn/"
                 />
   </url>
   
   <url>
-    <loc>/cn/tags/</loc>
+    <loc>https://zhuhao.org/cn/post/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="https://zhuhao.org/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="/cn/tags/"
+                href="https://zhuhao.org/cn/post/"
                 />
   </url>
   
   <url>
-    <loc>/cn/tags/%E4%B8%AD%E6%96%87/</loc>
+    <loc>https://zhuhao.org/cn/tags/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://zhuhao.org/cn/tags/"
+                />
   </url>
   
   <url>
-    <loc>/cn/categories/%E4%B8%AD%E6%96%87/</loc>
+    <loc>https://zhuhao.org/cn/tags/%E4%B8%AD%E6%96%87/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/cn/about/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/about/"
-                />
-  </url>
-  
-  <url>
-    <loc>/cn/projects/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/projects/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/projects/"
-                />
-  </url>
-  
-  <url>
-    <loc>/cn/tags/%E6%83%B3%E6%B3%95/</loc>
+    <loc>https://zhuhao.org/cn/categories/%E4%B8%AD%E6%96%87/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/cn/contact/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/contact/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/contact/"
-                />
+    <loc>https://zhuhao.org/cn/post/arduino.cn/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/cn/tags/%E6%83%B3%E6%B3%95/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

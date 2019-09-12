@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on </title>
-    <link>/cn/tags/</link>
-    <description>Recent content in Tags on </description>
+    <title>Tags on Hao Zhu</title>
+    <link>https://zhuhao.org/cn/tags/</link>
+    <description>Recent content in Tags on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 26 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/cn/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhuhao.org/cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Arduino</title>
-      <link>/cn/tags/arduino/</link>
+      <title>arduino</title>
+      <link>https://zhuhao.org/cn/tags/arduino/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/cn/tags/arduino/</guid>
+      <guid>https://zhuhao.org/cn/tags/arduino/</guid>
       <description></description>
     </item>
     
     <item>
       <title>中文</title>
-      <link>/cn/tags/%E4%B8%AD%E6%96%87/</link>
+      <link>https://zhuhao.org/cn/tags/%E4%B8%AD%E6%96%87/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/cn/tags/%E4%B8%AD%E6%96%87/</guid>
+      <guid>https://zhuhao.org/cn/tags/%E4%B8%AD%E6%96%87/</guid>
       <description></description>
     </item>
     
     <item>
       <title>想法</title>
-      <link>/cn/tags/%E6%83%B3%E6%B3%95/</link>
+      <link>https://zhuhao.org/cn/tags/%E6%83%B3%E6%B3%95/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/cn/tags/%E6%83%B3%E6%B3%95/</guid>
+      <guid>https://zhuhao.org/cn/tags/%E6%83%B3%E6%B3%95/</guid>
       <description></description>
     </item>
     

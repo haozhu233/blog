@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deep Learning on Hao Zhu</title>
+    <link>https://zhuhao.org/tags/deep-learning/</link>
+    <description>Recent content in Deep Learning on Hao Zhu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://zhuhao.org/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Implementing Gaussian Process in Python and R</title>
+      <link>https://zhuhao.org/post/gp_python_r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhuhao.org/post/gp_python_r/</guid>
+      <description>Background Gaussian Process (GP) can be represented in the form of
+\(f(\mathbf{x}) \sim \mathcal{GP}(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x&amp;#39;}))\)
+where \(m(\mathbf{x})\) is the mean function and \(k(\mathbf{x}, \mathbf{x&amp;#39;})\) is the covariance/kernel function. In this homework, we are trying to create some kernel functions from scratch and sample function values from the GP Prior and the GP Posterior.
+ Define mean &amp;amp; kernel functions For simplicity, our mean function is set to be 0 for all x inputs.</description>
+    </item>
+    
+  </channel>
+</rss>

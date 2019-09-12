@@ -92,7 +92,7 @@ disqusShortname = "haozhu233"
         url = "/contact/"
 
 
-    [languages.cn]
+    [languages.zh-cn]
         languagename = "中文"
         title = ""
 
@@ -107,19 +107,19 @@ disqusShortname = "haozhu233"
             [[languages.cn.menu.main]]
             name = "关于"
             weight = 1
-            url = "/cn/about/"
+            url = "/zh-cn/about/"
 
             [[languages.cn.menu.main]]
             name = "中文博客"
             weight = 2
-            url = "/cn/post/"
+            url = "/ch-cn/post/"
 
             [[languages.cn.menu.main]]
             name = "开源项目"
             weight = 3
-            url = "/cn/projects/"
+            url = "/zh-cn/projects/"
 
             [[languages.cn.menu.main]]
             name = "联系方式"
             weight = 5
-            url = "/cn/contact/"
+            url = "/zh-cn/contact/"

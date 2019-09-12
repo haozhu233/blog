@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>https://zhuhao.org/zh-cn/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://zhuhao.org/zh-cn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于</title>
+      <link>https://zhuhao.org/zh-cn/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhuhao.org/zh-cn/about/</guid>
+      <description>这里是朱昊的博客。中文么，就随意了。我尽量养成勤动笔的习惯，以后没事写写，长短无所谓，希望别插旗。</description>
+    </item>
+    
+    <item>
+      <title>开源项目</title>
+      <link>https://zhuhao.org/zh-cn/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhuhao.org/zh-cn/projects/</guid>
+      <description>等会再写哈</description>
+    </item>
+    
+    <item>
+      <title>联系方式</title>
+      <link>https://zhuhao.org/zh-cn/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhuhao.org/zh-cn/contact/</guid>
+      <description>在推特上找我呗，或者我还有个咸鱼微博号 豪猪233。</description>
+    </item>
+    
+  </channel>
+</rss>
