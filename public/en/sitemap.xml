@@ -3,23 +3,8 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zhuhao.org/tags/arduino/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="https://zhuhao.org/cn/tags/arduino/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhuhao.org/tags/arduino/"
-                />
-  </url>
-  
-  <url>
     <loc>https://zhuhao.org/categories/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
@@ -38,13 +23,23 @@
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <loc>https://zhuhao.org/categories/deep-learning/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/tags/deep-learning/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/tags/gaussian-process/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://zhuhao.org/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
@@ -63,8 +58,13 @@
   </url>
   
   <url>
+    <loc>https://zhuhao.org/post/gp_python_r/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhuhao.org/post/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
@@ -78,18 +78,18 @@
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/r/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <loc>https://zhuhao.org/tags/python/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/categories/r/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <loc>https://zhuhao.org/tags/r/</loc>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://zhuhao.org/tags/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
@@ -105,6 +105,31 @@
                 hreflang="en"
                 href="https://zhuhao.org/tags/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/tags/arduino/</loc>
+    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="https://zhuhao.org/cn/tags/arduino/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/tags/arduino/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/</loc>
+    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/categories/r/</loc>
+    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>

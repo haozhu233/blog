@@ -2,7 +2,9 @@
 title: "Implementing Gaussian Process in Python and R"
 author: Hao Zhu
 date: "2019-09-12"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 slug: gp_python_r
 categories:
   - Deep Learning
@@ -11,20 +13,27 @@ tags:
   - Python
   - Deep Learning
   - Gaussian Process
-draft: yes
 ---
 
 
 
+<pre class="r"><code>library(reticulate)
+reticulate::use_condaenv(&quot;dl&quot;)
+knitr::opts_chunk$set(message = F, warning = F)</code></pre>
+<p>This blog post is trying to implementing Gaussian Process (GP) in both Python and R. The main purpose is for my personal practice and hopefully it can also be a reference for future me and other people. In fact, it’s actually converted from my first homework in a <a href="https://www.cs.tufts.edu/comp/150BDL/2019f/">Bayesian Deep Learning class</a>.</p>
+<p>A interesting finding is that the implementation in R is much faster than the one using <code>numpy</code>.</p>
+<p>All of the equations or figures mentioned in this post can be referened in the <a href="http://www.gaussianprocess.org/gpml/chapters/">Rasmussen &amp; Williams’ textbook for Gaussian Process</a>.</p>
 <div id="background" class="section level1">
 <h1>Background</h1>
 <p>Gaussian Process (GP) can be represented in the form of</p>
 <p><span class="math inline">\(f(\mathbf{x}) \sim \mathcal{GP}(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x&#39;}))\)</span></p>
-<p>where <span class="math inline">\(m(\mathbf{x})\)</span> is the mean function and <span class="math inline">\(k(\mathbf{x}, \mathbf{x&#39;})\)</span> is the covariance/kernel function. In this homework, we are trying to create some kernel functions from scratch and sample function values from the GP Prior and the GP Posterior.</p>
+<p>where <span class="math inline">\(m(\mathbf{x})\)</span> is the mean function and <span class="math inline">\(k(\mathbf{x}, \mathbf{x&#39;})\)</span> is the covariance/kernel function. In this post, we are trying to create some kernel functions from scratch. We will also create methods to sample values from the prior and the posterior.</p>
 </div>
-<div id="define-mean-kernel-functions" class="section level1">
-<h1>Define mean &amp; kernel functions</h1>
+<div id="mean-kernel-functions" class="section level1">
+<h1>Mean &amp; kernel functions</h1>
 <p>For simplicity, our mean function is set to be 0 for all x inputs.</p>
+<div id="implementations-in-python" class="section level2">
+<h2>Implementations in Python</h2>
 <pre class="python"><code>import numpy as np
 from scipy.special import gamma, kv
 import matplotlib.pyplot as plt
@@ -32,32 +41,64 @@ import matplotlib.pyplot as plt
 def mean_func(x):
     return np.zeros(len(x))
     
-# Squared Exponential kernel (Eq. 4.9 in the R&amp;W book)
+# Squared Exponential kernel (Eq. 4.9)
 def sqexp_kernel_func(x1, x2, l = 1):
-    return np.exp(-0.5 * (np.subtract.outer(x1, x2)/l)**2)</code></pre>
-<p>In this assignment, we are implementing two popular kernels, namely the Squared Exponential kernel and the Matern kernel.</p>
-<p>The is defined as below:</p>
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
-<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-4-1.png" alt="Covariance function for the Squared Exponential kernel" width="672" />
-<p class="caption">
-Figure 1: Covariance function for the Squared Exponential kernel
-</p>
-</div>
-<p>The Matern kernel (Eq. 4.14) is defined as below:</p>
-<pre class="python"><code>def matern_kernel_func(x1, x2, l = 1, v = 1):
+    return np.exp(-0.5 * (np.subtract.outer(x1, x2)/l)**2)
+    
+# The Matern kernel (Eq. 4.14)
+def matern_kernel_func(x1, x2, l = 1, v = 1):
     r = np.abs(np.subtract.outer(x1, x2))
     r[r == 0] = 1e-8
     part1 = 2 ** (1 - v) / gamma(v)
     part2 = (np.sqrt(2 * v) * r / l) ** v
     part3 = kv(v, np.sqrt(2 * v) * r / l)
     return part1 * part2 * part3</code></pre>
-<div class="figure"><span id="fig:unnamed-chunk-6"></span>
-<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-6-1.png" alt="Reproducing Figure 4.1 for the Matern kernel" width="672" />
-<p class="caption">
-Figure 2: Reproducing Figure 4.1 for the Matern kernel
-</p>
+<p>Let’s try to recreate the input-distance to covariance figure using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&amp;W textbook.</p>
+<pre class="python"><code>sqexp_x1 = np.zeros(30)
+sqexp_x2 = np.linspace(0, 3, 30)
+def sqexp_kernel_func2(x1, x2, l = 1):
+    return np.exp(-0.5 * ((x1 - x2)/l)**2)
+sqexp_y_half = sqexp_kernel_func2(sqexp_x1, sqexp_x2, 0.5)
+sqexp_y_2 = sqexp_kernel_func2(sqexp_x1, sqexp_x2, 2)
+sqexp_y_10 = sqexp_kernel_func2(sqexp_x1, sqexp_x2, 10)
+
+plt.figure(figsize = (10, 3))
+plt.subplot(121)
+plt.plot(sqexp_x2, sqexp_y_half, &#39;b&#39;, label = &quot;$\\ell$=0.5&quot;)
+plt.plot(sqexp_x2, sqexp_y_2, &#39;r:&#39;, label = &quot;$\\ell$=2&quot;)
+plt.plot(sqexp_x2, sqexp_y_10, &#39;g:&#39;, label = &quot;$\\ell$=10&quot;)
+plt.legend(loc = &quot;upper right&quot;)
+plt.xlabel(&quot;input distance, r&quot;)
+plt.ylabel(&quot;covariance, k(r)&quot;)
+plt.title(&quot;Squared Exponential kernel&quot;)
+
+matern_x1 = np.zeros(30)
+matern_x2 = np.linspace(0.00001, 3, 30)
+def matern_kernel_func2(x1, x2, l = 1, v = 1):
+    r = np.abs(x1 - x2)
+    part1 = 2 ** (1 - v) / gamma(v)
+    part2 = (np.sqrt(2 * v) * r / l) ** v
+    part3 = kv(v, np.sqrt(2 * v) * r / l)
+    return part1 * part2 * part3
+matern_y_half = matern_kernel_func2(matern_x1, matern_x2, 1, 0.5)
+matern_y_2 = matern_kernel_func2(matern_x1, matern_x2, 1, 2)
+matern_y_10 = matern_kernel_func2(matern_x1, matern_x2, 1, 10)
+
+plt.subplot(122)
+plt.plot(matern_x2, matern_y_half, &#39;b&#39;, label = &quot;$\\ell$=1,$\\nu$=0.5&quot;)
+plt.plot(matern_x2, matern_y_2, &#39;r:&#39;, label = &quot;$\\ell$=1,$\\nu$=2&quot;)
+plt.plot(matern_x2, matern_y_10, &#39;g:&#39;, label = &quot;$\\ell$=1,$\\nu$=10&quot;)
+plt.legend(loc = &quot;upper right&quot;)
+plt.xlabel(&quot;input distance, r&quot;)
+plt.ylabel(&quot;covariance, k(r)&quot;)
+plt.title(&quot;Matern kernel&quot;)
+plt.show()</code></pre>
+<p><img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
 </div>
-<p>I also tried to recreate Figure 4.1 of the R&amp;W book using the function we defined here. The result, shown in Figure 2, is pretty close.</p>
+<div id="implementation-in-r" class="section level2">
+<h2>Implementation in R</h2>
+<p>Now let’s try to do the same thing in R.</p>
+</div>
 </div>
 <div id="problem-1-sampling-from-the-prior" class="section level1">
 <h1>Problem 1: Sampling from the Prior</h1>
@@ -76,20 +117,20 @@ Figure 2: Reproducing Figure 4.1 for the Matern kernel
     return out</code></pre>
 <div id="a-1b" class="section level2">
 <h2>1a &amp; 1b</h2>
-<div class="figure"><span id="fig:unnamed-chunk-8"></span>
-<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-8-1.png" alt="Samples from the prior using a squared exponential kernel with different hyperparameter $\ell$" width="960" />
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-6-1.png" alt="Samples from the prior using a squared exponential kernel with different hyperparameter $\ell$" width="960" />
 <p class="caption">
-Figure 3: Samples from the prior using a squared exponential kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
+Figure 1: Samples from the prior using a squared exponential kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
 </p>
 </div>
 <p>The sampling from the prior using the squared exponential kernel is shown in Figure 3 above. As suggested by the R&amp;W book, hyperparameter length scale <span class="math inline">\(\ell\)</span> could be understood as “the distance you have to move in input space before the function value can change significantly”, which in the end controls the smoothness of the function. As <span class="math inline">\(\ell\)</span> increases, the function will be more smooth.</p>
 </div>
 <div id="c-1d" class="section level2">
 <h2>1c &amp; 1d</h2>
-<div class="figure"><span id="fig:unnamed-chunk-9"></span>
-<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-9-1.png" alt="Samples from the prior using a Matern kernel with different hyperparameter $\ell$ and $\nu$" width="960" />
+<div class="figure"><span id="fig:unnamed-chunk-7"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-7-1.png" alt="Samples from the prior using a Matern kernel with different hyperparameter $\ell$ and $\nu$" width="960" />
 <p class="caption">
-Figure 4: Samples from the prior using a Matern kernel with different hyperparameter <span class="math inline">\(\ell\)</span> and <span class="math inline">\(\nu\)</span>
+Figure 2: Samples from the prior using a Matern kernel with different hyperparameter <span class="math inline">\(\ell\)</span> and <span class="math inline">\(\nu\)</span>
 </p>
 </div>
 <p>The sampling from the prior using the Matern kernel is shown in Figure 4. The length scale <span class="math inline">\(\ell\)</span> again controls the scales of changes of the covariates. The new hypterparameter <span class="math inline">\(\nu\)</span> controls the sharpness of the ridge of the covariance. Both of these two hyperparameters are related to the smoothness of the function.</p>
@@ -127,10 +168,10 @@ def draw_GP_posterior_samples_at_x_grid(
     return out, fsb, cov_fs</code></pre>
 <div id="a-2b" class="section level2">
 <h2>2a &amp; 2b</h2>
-<div class="figure"><span id="fig:unnamed-chunk-11"></span>
-<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-11-1.png" alt="Samples from the posterior using a Squared Exponential kernel with different hyperparameter $\ell$" width="960" />
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-9-1.png" alt="Samples from the posterior using a Squared Exponential kernel with different hyperparameter $\ell$" width="960" />
 <p class="caption">
-Figure 5: Samples from the posterior using a Squared Exponential kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
+Figure 3: Samples from the posterior using a Squared Exponential kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
 </p>
 </div>
 <p>The posterior prediction plots using the Squared Exponential kernel are displayed in Figure 5.</p>
@@ -138,10 +179,10 @@ Figure 5: Samples from the posterior using a Squared Exponential kernel with dif
 </div>
 <div id="c" class="section level2">
 <h2>2c</h2>
-<div class="figure"><span id="fig:unnamed-chunk-12"></span>
-<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-12-1.png" alt="Samples from the posterior using a Matern kernel with different hyperparameter $\ell$" width="960" />
+<div class="figure"><span id="fig:unnamed-chunk-10"></span>
+<img src="/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-10-1.png" alt="Samples from the posterior using a Matern kernel with different hyperparameter $\ell$" width="960" />
 <p class="caption">
-Figure 6: Samples from the posterior using a Matern kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
+Figure 4: Samples from the posterior using a Matern kernel with different hyperparameter <span class="math inline">\(\ell\)</span>
 </p>
 </div>
 <p>The posterior prediction plots using the Squared Exponential kernel are displayed in Figure 6.</p>

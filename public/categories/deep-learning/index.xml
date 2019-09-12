@@ -17,10 +17,8 @@
       <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zhuhao.org/post/gp_python_r/</guid>
-      <description>Background Gaussian Process (GP) can be represented in the form of
-\(f(\mathbf{x}) \sim \mathcal{GP}(m(\mathbf{x}), k(\mathbf{x}, \mathbf{x&amp;#39;}))\)
-where \(m(\mathbf{x})\) is the mean function and \(k(\mathbf{x}, \mathbf{x&amp;#39;})\) is the covariance/kernel function. In this homework, we are trying to create some kernel functions from scratch and sample function values from the GP Prior and the GP Posterior.
- Define mean &amp;amp; kernel functions For simplicity, our mean function is set to be 0 for all x inputs.</description>
+      <description>library(reticulate) reticulate::use_condaenv(&amp;quot;dl&amp;quot;) knitr::opts_chunk$set(message = F, warning = F) This blog post is trying to implementing Gaussian Process (GP) in both Python and R. The main purpose is for my personal practice and hopefully it can also be a reference for future me and other people. In fact, it’s actually converted from my first homework in a Bayesian Deep Learning class.
+A interesting finding is that the implementation in R is much faster than the one using numpy.</description>
     </item>
     
   </channel>
