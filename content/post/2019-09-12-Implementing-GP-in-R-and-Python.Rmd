@@ -47,13 +47,16 @@ import matplotlib.pyplot as plt
 def mean_func(x):
     return np.zeros(len(x))
     
+def get_distance(x1, x2):
+    return np.subtract.outer(x1, x2)
+    
 # Squared Exponential kernel (Eq. 4.9)
-def sqexp_kernel_func(x1, x2, l = 1):
-    return np.exp(-0.5 * (np.subtract.outer(x1, x2)/l)**2)
+def sqexp_kernel_func(r, l = 1):
+    return np.exp(-0.5 * (r/l)**2)
     
 # The Matern kernel (Eq. 4.14)
-def matern_kernel_func(x1, x2, l = 1, v = 1):
-    r = np.abs(np.subtract.outer(x1, x2))
+def matern_kernel_func(r, l = 1, v = 1):
+    r = np.abs(r)
     r[r == 0] = 1e-8
     part1 = 2 ** (1 - v) / gamma(v)
     part2 = (np.sqrt(2 * v) * r / l) ** v
@@ -66,17 +69,13 @@ Let's try to recreate the input-distance to covariance figure  using the functio
 ```{python}
 sqexp_x1 = np.zeros(30)
 sqexp_x2 = np.linspace(0, 3, 30)
-def sqexp_kernel_func2(x1, x2, l = 1):
-    return np.exp(-0.5 * ((x1 - x2)/l)**2)
-sqexp_y_half = sqexp_kernel_func2(sqexp_x1, sqexp_x2, 0.5)
-sqexp_y_2 = sqexp_kernel_func2(sqexp_x1, sqexp_x2, 2)
-sqexp_y_10 = sqexp_kernel_func2(sqexp_x1, sqexp_x2, 10)
+sqexp_r = sqexp_x2 - sqexp_x1
 
 plt.figure(figsize = (10, 3))
 plt.subplot(121)
-plt.plot(sqexp_x2, sqexp_y_half, 'b', label = "$\\ell$=0.5")
-plt.plot(sqexp_x2, sqexp_y_2, 'r:', label = "$\\ell$=2")
-plt.plot(sqexp_x2, sqexp_y_10, 'g:', label = "$\\ell$=10")
+plt.plot(sqexp_x2, sqexp_kernel_func(sqexp_r, 0.5), 'b', label = "$\\ell$=0.5")
+plt.plot(sqexp_x2, sqexp_kernel_func(sqexp_r, 2), 'r:', label = "$\\ell$=2")
+plt.plot(sqexp_x2, sqexp_kernel_func(sqexp_r, 10), 'g:', label = "$\\ell$=10")
 plt.legend(loc = "upper right")
 plt.xlabel("input distance, r")
 plt.ylabel("covariance, k(r)")
@@ -84,20 +83,12 @@ plt.title("Squared Exponential kernel")
 
 matern_x1 = np.zeros(30)
 matern_x2 = np.linspace(0.00001, 3, 30)
-def matern_kernel_func2(x1, x2, l = 1, v = 1):
-    r = np.abs(x1 - x2)
-    part1 = 2 ** (1 - v) / gamma(v)
-    part2 = (np.sqrt(2 * v) * r / l) ** v
-    part3 = kv(v, np.sqrt(2 * v) * r / l)
-    return part1 * part2 * part3
-matern_y_half = matern_kernel_func2(matern_x1, matern_x2, 1, 0.5)
-matern_y_2 = matern_kernel_func2(matern_x1, matern_x2, 1, 2)
-matern_y_10 = matern_kernel_func2(matern_x1, matern_x2, 1, 10)
+matern_r = matern_x2 - matern_x1
 
 plt.subplot(122)
-plt.plot(matern_x2, matern_y_half, 'b', label = "$\\ell$=1,$\\nu$=0.5")
-plt.plot(matern_x2, matern_y_2, 'r:', label = "$\\ell$=1,$\\nu$=2")
-plt.plot(matern_x2, matern_y_10, 'g:', label = "$\\ell$=1,$\\nu$=10")
+plt.plot(matern_x2, matern_kernel_func(matern_r, 1, 0.5), 'b', label = "$\\ell$=1,$\\nu$=0.5")
+plt.plot(matern_x2, matern_kernel_func(matern_r, 1, 2), 'r:', label = "$\\ell$=1,$\\nu$=2")
+plt.plot(matern_x2, matern_kernel_func(matern_r, 1, 10), 'g:', label = "$\\ell$=1,$\\nu$=10")
 plt.legend(loc = "upper right")
 plt.xlabel("input distance, r")
 plt.ylabel("covariance, k(r)")
@@ -119,7 +110,7 @@ def draw_GP_prior_samples_at_x_grid(
         random_seed = 42,
         n_samples = 5):
     x_mean = mean_func(x_grid_G)
-    x_cov = cov_func(x_grid_G, x_grid_G, **cov_args)
+    x_cov = cov_func(get_distance(x_grid_G, x_grid_G), **cov_args)
 
     # Use consistent random number generator for reproducibility
     prng = np.random.RandomState(int(random_seed))
@@ -191,10 +182,10 @@ def draw_GP_posterior_samples_at_x_grid(
         random_seed=42,
         n_samples=5):
     # In this case x = x_train_N, xs (x star) = x_grid_G
-    k_xx = cov_func(x_train_N, x_train_N, **cov_args)
-    k_xxs = cov_func(x_train_N, x_grid_G, **cov_args)
-    k_xsx = cov_func(x_grid_G, x_train_N, **cov_args)
-    k_xsxs = cov_func(x_grid_G, x_grid_G, **cov_args)
+    k_xx = cov_func(get_distance(x_train_N, x_train_N), **cov_args)
+    k_xxs = cov_func(get_distance(x_train_N, x_grid_G), **cov_args)
+    k_xsx = cov_func(get_distance(x_grid_G, x_train_N), **cov_args)
+    k_xsxs = cov_func(get_distance(x_grid_G, x_grid_G), **cov_args)
     
     I = np.identity(k_xx.shape[1])
     k_xx_noise = np.linalg.inv(k_xx + sigma ** 2 * I)
