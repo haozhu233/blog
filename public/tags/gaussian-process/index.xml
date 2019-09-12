@@ -6,6 +6,7 @@
     <description>Recent content in Gaussian Process on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zhuhao.org/tags/gaussian-process/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>Implementing Gaussian Process in Python and R</title>
       <link>https://zhuhao.org/post/gp_python_r/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
       
       <guid>https://zhuhao.org/post/gp_python_r/</guid>
       <description>Background Gaussian Process (GP) can be represented in the form of
