@@ -48,7 +48,7 @@ Matern kernel (Eq. 4.14)
 
 $k_{Matern}(r) = \frac{2^{1-\nu}}{\Gamma(\nu)}(\frac{\sqrt{2\nu}r}{\ell})^{\nu}K_{\nu}(\frac{\sqrt{2\nu}r}{\ell})$
 
-<div style="display: inline-block;vertical-align:top; width: 50%;">
+<div style="display: inline-block;vertical-align:top; width: 45%;">
 
 ## Implementations in Python
 ```{python}
@@ -75,7 +75,10 @@ def matern_kernel_func(r, l = 1, v = 1):
 ```
 
 </div>
-<div style="display: inline-block;vertical-align:top; width: 50%;"> test</div>
+<div style="display: inline-block;vertical-align:top; width: 45%;"> 
+
+## R implementation
+</div>
 Now let's try to recreate the input-distance to covariance figure  using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&W textbook. 
 
 ```{python, echo = F}
