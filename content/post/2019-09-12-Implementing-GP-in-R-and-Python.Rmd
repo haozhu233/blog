@@ -1,5 +1,5 @@
 ---
-title: "Implementing Gaussian Process in Python and R"
+title: "Implementing Gaussian Process in R and Python"
 author: Hao Zhu
 date: "2019-09-12"
 output: 
@@ -76,7 +76,7 @@ def matern_kernel_func(r, l = 1, v = 1):
 
 Now let's try to recreate the input-distance to covariance figure  using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&W textbook. 
 
-```{python}
+```{python, echo = F}
 sqexp_x1 = np.zeros(30)
 sqexp_x2 = np.linspace(0, 3, 30)
 sqexp_r = sqexp_x2 - sqexp_x1
@@ -133,7 +133,9 @@ matern_kernel_func <- function(r, l = 1, v = 1) {
   part3 = besselK(sqrt(2*v) * r / l, nu = v)
   return(part1 * part2 * part3)
 }
+```
 
+```{r, echo = F}
 r = seq(0.00001, 3, length = 30)
 sqexp_plot <- plot_ly(type = 'scatter', mode = 'lines') %>%
   add_trace(x = r, y = sqexp_kernel_func(r, 0.5), name = "l=0.5") %>%
