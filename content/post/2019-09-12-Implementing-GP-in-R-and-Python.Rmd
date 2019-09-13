@@ -49,12 +49,22 @@ def mean_func(x):
     
 def get_distance(x1, x2):
     return np.subtract.outer(x1, x2)
-    
-# Squared Exponential kernel (Eq. 4.9)
+```
+
+Squared Exponential kernel (Eq. 4.9)
+
+$k_{SE}(r) = exp(-\frac{r^2}{2l^2})$
+
+```{python}
 def sqexp_kernel_func(r, l = 1):
     return np.exp(-0.5 * (r/l)**2)
-    
-# The Matern kernel (Eq. 4.14)
+```
+
+Matern kernel (Eq. 4.14)
+
+$k_{Matern}(r) = \frac{2^{1-\nu}}{\Gamma(\nu)}(\frac{\sqrt{2\nu}r}{\ell})^{\nu}K_{\nu}(\frac{\sqrt{2\nu}r}{\ell})$
+
+```{python}
 def matern_kernel_func(r, l = 1, v = 1):
     r = np.abs(r)
     r[r == 0] = 1e-8
@@ -64,7 +74,7 @@ def matern_kernel_func(r, l = 1, v = 1):
     return part1 * part2 * part3
 ```
 
-Let's try to recreate the input-distance to covariance figure  using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&W textbook. 
+Now let's try to recreate the input-distance to covariance figure  using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&W textbook. 
 
 ```{python}
 sqexp_x1 = np.zeros(30)
@@ -99,8 +109,46 @@ plt.show()
 ## Implementation in R
 Now let's try to do the same thing in R.
 
-```{r}
+```{r, message=F, fig.height=3}
+library(MASS)
+library(plotly)
+
+mean_func <- function(x) {
+  rep(0, length(x))
+}
+
+get_distance <- function(x1, x2) {
+  outer(x1, x2, FUN = "-")
+}
+
+sqexp_kernel_func <- function(r, l = 1) {
+  exp(-0.5 * (r/l)^2)
+}
+
+matern_kernel_func <- function(r, l = 1, v = 1) {
+  r <- abs(r)
+  r[r == 0] <- 1e-8
+  part1 = 2^(1-v) / gamma(v)
+  part2 = (sqrt(2*v) * r / l)^v
+  part3 = besselK(sqrt(2*v) * r / l, nu = v)
+  return(part1 * part2 * part3)
+}
+
+r = seq(0.00001, 3, length = 30)
+sqexp_plot <- plot_ly(type = 'scatter', mode = 'lines') %>%
+  add_trace(x = r, y = sqexp_kernel_func(r, 0.5), name = "l=0.5") %>%
+  add_trace(x = r, y = sqexp_kernel_func(r, 2), name = "l=2") %>%
+  add_trace(x = r, y = sqexp_kernel_func(r, 10), name = "l=10") 
+matern_plot <- plot_ly(type = 'scatter', mode = 'lines') %>%
+  add_trace(x = r, y = matern_kernel_func(r, v=0.5), name = "l=1,v=0.5") %>%
+  add_trace(x = r, y = matern_kernel_func(r, v=2), name = "l=1,v=2") %>%
+  add_trace(x = r, y = matern_kernel_func(r, v=10), name = "l=1,v=10") 
+subplot(sqexp_plot, matern_plot)
 ```
+
+## Comparing the kernel performance
+
+
 
 # Problem 1: Sampling from the Prior
 For Problem 1, I used the code skeleton provided on the course website. I also added a `cov_args` argument and used the `Key Word Arguments` in the `cov_func` call so it is more flexible to call different arguments in those covariance functions. 
