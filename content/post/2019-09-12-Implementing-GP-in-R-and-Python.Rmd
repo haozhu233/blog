@@ -38,6 +38,18 @@ where $m(\mathbf{x})$ is the mean function and $k(\mathbf{x}, \mathbf{x'})$ is t
 # Mean & kernel functions
 For simplicity, our mean function is set to be 0 for all x inputs.
 
+$m(\textbf{x}) = 0$
+
+Squared Exponential kernel (Eq. 4.9)
+
+$k_{SE}(r) = exp(-\frac{r^2}{2l^2})$
+
+Matern kernel (Eq. 4.14)
+
+$k_{Matern}(r) = \frac{2^{1-\nu}}{\Gamma(\nu)}(\frac{\sqrt{2\nu}r}{\ell})^{\nu}K_{\nu}(\frac{\sqrt{2\nu}r}{\ell})$
+
+<div style="display: inline-block;vertical-align:top; width: 50%;">
+
 ## Implementations in Python
 ```{python}
 import numpy as np
@@ -49,22 +61,10 @@ def mean_func(x):
     
 def get_distance(x1, x2):
     return np.subtract.outer(x1, x2)
-```
 
-Squared Exponential kernel (Eq. 4.9)
-
-$k_{SE}(r) = exp(-\frac{r^2}{2l^2})$
-
-```{python}
 def sqexp_kernel_func(r, l = 1):
     return np.exp(-0.5 * (r/l)**2)
-```
 
-Matern kernel (Eq. 4.14)
-
-$k_{Matern}(r) = \frac{2^{1-\nu}}{\Gamma(\nu)}(\frac{\sqrt{2\nu}r}{\ell})^{\nu}K_{\nu}(\frac{\sqrt{2\nu}r}{\ell})$
-
-```{python}
 def matern_kernel_func(r, l = 1, v = 1):
     r = np.abs(r)
     r[r == 0] = 1e-8
@@ -74,6 +74,8 @@ def matern_kernel_func(r, l = 1, v = 1):
     return part1 * part2 * part3
 ```
 
+</div>
+<div> test</div>
 Now let's try to recreate the input-distance to covariance figure  using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&W textbook. 
 
 ```{python, echo = F}
