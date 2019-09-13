@@ -75,7 +75,7 @@ def matern_kernel_func(r, l = 1, v = 1):
 ```
 
 </div>
-<div> test</div>
+<div style="display: inline-block;vertical-align:top; width: 50%;"> test</div>
 Now let's try to recreate the input-distance to covariance figure  using the functions we defined here. Our result is the same as the figures (e.g. Figure 4.1) in the R&W textbook. 
 
 ```{python, echo = F}
