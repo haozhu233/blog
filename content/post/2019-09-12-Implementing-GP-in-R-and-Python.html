@@ -96,11 +96,11 @@ x2 = np.random.rand(100)
 start = process_time()
 for i in range(50): sqexp_test = sqexp_kernel(get_r(x1, x2))
 print(&quot;SE kernel for rand:&quot; + str((process_time() - start) / 50), &quot; s&quot;)</code></pre>
-<pre><code>## SE kernel for rand:0.0006078399999999995  s</code></pre>
+<pre><code>## SE kernel for rand:0.0005926399999999887  s</code></pre>
 <pre class="python"><code>start = process_time()
 for i in range(50): matern_test = matern_kernel(get_r(x1, x2))
 print(&quot;Matern kernel for rand:&quot; + str((process_time() - start) / 50), &quot; s&quot;)</code></pre>
-<pre><code>## Matern kernel for rand:0.005904959999999999  s</code></pre>
+<pre><code>## Matern kernel for rand:0.006543400000000013  s</code></pre>
 </div>
 <div style="display: inline-block;vertical-align:top; width: 48%;">
 <h3 id="r-performance">R performance</h3>
@@ -109,11 +109,11 @@ x2 = runif(100)
 start = Sys.time()
 for(i in 1:50) se_test = sqexp_kernel(get_r(x1, x2))
 print(paste(&quot;SE kernel for rand:&quot;, (Sys.time() - start)/ 100, &quot;s&quot;))</code></pre>
-<pre><code>## [1] &quot;SE kernel for rand: 0.000420022010803223 s&quot;</code></pre>
+<pre><code>## [1] &quot;SE kernel for rand: 0.000433628559112549 s&quot;</code></pre>
 <pre class="r"><code>start = Sys.time()
 for(i in 1:50) matern_test = matern_kernel(get_r(x1, x2))
 print(paste(&quot;Matern kernel for rand:&quot;, (Sys.time() - start)/ 100, &quot;s&quot;))</code></pre>
-<pre><code>## [1] &quot;Matern kernel for rand: 0.00153196811676025 s&quot;</code></pre>
+<pre><code>## [1] &quot;Matern kernel for rand: 0.0015577507019043 s&quot;</code></pre>
 </div>
 <p>The results are quite comparable. I also checked the performance when it scales up, it’s still quite similar. In fact, especially for Matern kernel, when the size of the input vectors get big, I feel like it’s slightly faster to do it in R.</p>
 </div>
@@ -226,7 +226,7 @@ for (i in seq(length(l))) {
       l = l[i], v = v[j], n_samples = 10, random_seed = 100
     )
     matplot(x_star, t(dt), &quot;l&quot;, col = rgb(0.3, 0.3, 0.3, 0.4), lty = 1,
-            main = paste(&quot;l=&quot;, l[i], &quot;,v=&quot;, v[j]), ylim = c(-15, 15))
+            main = paste(&quot;l=&quot;, l[i], &quot;,v=&quot;, v[j]), ylim = c(-8, 8))
     points(x = x_train, y = y_train, pch = 16, col = &quot;red&quot;)
   }
 }</code></pre>
