@@ -112,7 +112,7 @@ disqusShortname = "haozhu233"
             [[languages.zh-cn.menu.main]]
             name = "中文博客"
             weight = 2
-            url = "/ch-cn/post/"
+            url = "/zh-cn/post/"
 
             [[languages.zh-cn.menu.main]]
             name = "开源项目"
