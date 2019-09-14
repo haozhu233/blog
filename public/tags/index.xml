@@ -2,102 +2,102 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Hao Zhu</title>
-    <link>https://zhuhao.org/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhuhao.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Deep Learning</title>
-      <link>https://zhuhao.org/tags/deep-learning/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/deep-learning/</guid>
+      <guid>/tags/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gaussian Process</title>
-      <link>https://zhuhao.org/tags/gaussian-process/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <link>/tags/gaussian-process/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/gaussian-process/</guid>
+      <guid>/tags/gaussian-process/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://zhuhao.org/tags/python/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <link>/tags/python/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/python/</guid>
+      <guid>/tags/python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://zhuhao.org/tags/r/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <link>/tags/r/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>arduino</title>
-      <link>https://zhuhao.org/tags/arduino/</link>
+      <link>/tags/arduino/</link>
       <pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/arduino/</guid>
+      <guid>/tags/arduino/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tutorial</title>
-      <link>https://zhuhao.org/tags/tutorial/</link>
+      <link>/tags/tutorial/</link>
       <pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/tutorial/</guid>
+      <guid>/tags/tutorial/</guid>
       <description></description>
     </item>
     
     <item>
       <title>design</title>
-      <link>https://zhuhao.org/tags/design/</link>
+      <link>/tags/design/</link>
       <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/design/</guid>
+      <guid>/tags/design/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ideas</title>
-      <link>https://zhuhao.org/tags/ideas/</link>
+      <link>/tags/ideas/</link>
       <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/ideas/</guid>
+      <guid>/tags/ideas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R package</title>
-      <link>https://zhuhao.org/tags/r-package/</link>
+      <link>/tags/r-package/</link>
       <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/r-package/</guid>
+      <guid>/tags/r-package/</guid>
       <description></description>
     </item>
     
     <item>
       <title>kableExtra</title>
-      <link>https://zhuhao.org/tags/kableextra/</link>
+      <link>/tags/kableextra/</link>
       <pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/tags/kableextra/</guid>
+      <guid>/tags/kableextra/</guid>
       <description></description>
     </item>
     

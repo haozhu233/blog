@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Python on Hao Zhu</title>
-    <link>https://zhuhao.org/tags/python/</link>
+    <link>/tags/python/</link>
     <description>Recent content in Python on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhuhao.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Implementing Gaussian Process in R and Python</title>
-      <link>https://zhuhao.org/post/gp_python_r/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <title>Implementing Gaussian Process in Python and R</title>
+      <link>/post/gp_python_r/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/post/gp_python_r/</guid>
+      <guid>/post/gp_python_r/</guid>
       <description>library(reticulate) reticulate::use_condaenv(&amp;quot;dl&amp;quot;) knitr::opts_chunk$set(message = F, warning = F) This blog post is trying to implementing Gaussian Process (GP) in both Python and R. The main purpose is for my personal practice and hopefully it can also be a reference for future me and other people. In fact, it’s actually converted from my first homework in a Bayesian Deep Learning class.
 A interesting finding is that the implementation in R is much faster than the one using numpy.</description>
     </item>

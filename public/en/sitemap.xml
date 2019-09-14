@@ -3,224 +3,224 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zhuhao.org/categories/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/categories/"
+                href="/cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/categories/"
+                href="/zh-cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/categories/"
+                href="/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/deep-learning/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/tags/deep-learning/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/categories/deep-learning/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/categories/deep-learning/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/gaussian-process/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/tags/gaussian-process/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/"
+                href="/cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/"
+                href="/zh-cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/"
+                href="/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/gp_python_r/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/post/gp_python_r/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/post/"
+                href="/cn/post/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/post/"
+                href="/post/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/python/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/tags/python/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/r/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/tags/r/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/</loc>
-    <lastmod>2019-09-12T00:00:00+00:00</lastmod>
+    <loc>/tags/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/tags/"
+                href="/cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/tags/"
+                href="/zh-cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/tags/"
+                href="/tags/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/arduino/</loc>
+    <loc>/tags/arduino/</loc>
     <lastmod>2019-02-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/tags/arduino/"
+                href="/cn/tags/arduino/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/tags/arduino/"
+                href="/tags/arduino/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/</loc>
+    <loc>/post/connecting-r-and-arduino-through-websockets/</loc>
     <lastmod>2019-02-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/categories/r/</loc>
+    <loc>/categories/r/</loc>
     <lastmod>2019-02-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/tutorial/</loc>
+    <loc>/tags/tutorial/</loc>
     <lastmod>2019-02-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/design/</loc>
+    <loc>/tags/design/</loc>
     <lastmod>2019-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/ideas/</loc>
+    <loc>/tags/ideas/</loc>
     <lastmod>2019-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/tips-on-designing-a-hex-sticker-for-rstats-packages/</loc>
+    <loc>/post/tips-on-designing-a-hex-sticker-for-rstats-packages/</loc>
     <lastmod>2019-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/connect-arduino-chips-with-r/</loc>
+    <loc>/post/connect-arduino-chips-with-r/</loc>
     <lastmod>2019-01-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/r-package/</loc>
+    <loc>/tags/r-package/</loc>
     <lastmod>2019-01-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/start-and-pause-in-a-streaming-plot-using-plotly/</loc>
+    <loc>/post/start-and-pause-in-a-streaming-plot-using-plotly/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/kableextra/</loc>
+    <loc>/tags/kableextra/</loc>
     <lastmod>2018-01-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/what-s-new-in-kableextra-0-7-0/</loc>
+    <loc>/post/what-s-new-in-kableextra-0-7-0/</loc>
     <lastmod>2018-01-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/post/2015-04-03-redcap-api-and-r-shiny/</loc>
+    <loc>/post/2015-04-03-redcap-api-and-r-shiny/</loc>
     <lastmod>2015-04-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhuhao.org/about/</loc>
+    <loc>/about/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/about/"
+                href="/zh-cn/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/about/"
+                href="/about/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/contact/</loc>
+    <loc>/contact/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/contact/"
+                href="/zh-cn/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/contact/"
+                href="/contact/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/projects/</loc>
+    <loc>/projects/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/projects/"
+                href="/zh-cn/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/projects/"
+                href="/projects/"
                 />
   </url>
   

@@ -3,101 +3,101 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zhuhao.org/zh-cn/</loc>
+    <loc>/zh-cn/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/"
+                href="/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/"
+                href="/cn/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/"
+                href="/zh-cn/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/zh-cn/categories/</loc>
+    <loc>/zh-cn/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/categories/"
+                href="/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/categories/"
+                href="/cn/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/categories/"
+                href="/zh-cn/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/zh-cn/tags/</loc>
+    <loc>/zh-cn/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/tags/"
+                href="/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="cn"
-                href="https://zhuhao.org/cn/tags/"
+                href="/cn/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/tags/"
+                href="/zh-cn/tags/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/zh-cn/about/</loc>
+    <loc>/zh-cn/about/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/about/"
+                href="/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/about/"
+                href="/zh-cn/about/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/zh-cn/projects/</loc>
+    <loc>/zh-cn/projects/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/projects/"
+                href="/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/projects/"
+                href="/zh-cn/projects/"
                 />
   </url>
   
   <url>
-    <loc>https://zhuhao.org/zh-cn/contact/</loc>
+    <loc>/zh-cn/contact/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/contact/"
+                href="/contact/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/contact/"
+                href="/zh-cn/contact/"
                 />
   </url>
   

@@ -1,7 +1,7 @@
 ---
-title: "Implementing Gaussian Process in R and Python"
+title: "Implementing Gaussian Process in Python and R"
 author: Hao Zhu
-date: "2019-09-12"
+date: "2019-09-14"
 output: html_document
 slug: gp_python_r
 categories:

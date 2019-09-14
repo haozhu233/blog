@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Hao Zhu</title>
-    <link>https://zhuhao.org/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 12 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhuhao.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Deep Learning</title>
-      <link>https://zhuhao.org/categories/deep-learning/</link>
-      <pubDate>Thu, 12 Sep 2019 00:00:00 +0000</pubDate>
+      <link>/categories/deep-learning/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/categories/deep-learning/</guid>
+      <guid>/categories/deep-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>https://zhuhao.org/categories/r/</link>
+      <link>/categories/r/</link>
       <pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://zhuhao.org/categories/r/</guid>
+      <guid>/categories/r/</guid>
       <description></description>
     </item>
     
