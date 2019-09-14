@@ -139,17 +139,17 @@ plt.show()
 ## Comparing the kernel performance
 
 <div style="display: inline-block;vertical-align:top; width: 48%;">
-### numpy performance
+### Python performance
 ```{python}
-import time
+from time import process_time
 x1 = np.random.rand(100)
 x2 = np.random.rand(100)
-start = time.clock()
+start = process_time()
 for i in range(50): sqexp_test = sqexp_kernel(get_r(x1, x2))
-print("SE kernel for rand:" + str((time.clock() - start) / 50), " s")
-start = time.clock()
+print("SE kernel for rand:" + str((process_time() - start) / 50), " s")
+start = process_time()
 for i in range(50): matern_test = matern_kernel(get_r(x1, x2))
-print("Matern kernel for rand:" + str((time.clock() - start) / 50), " s")
+print("Matern kernel for rand:" + str((process_time() - start) / 50), " s")
 ```
 
 </div>
@@ -162,26 +162,9 @@ x2 = runif(100)
 start = Sys.time()
 for(i in 1:50) se_test = sqexp_kernel(get_r(x1, x2))
 print(paste("SE kernel for rand:", (Sys.time() - start)/ 100, "s"))
-
 start = Sys.time()
 for(i in 1:50) matern_test = matern_kernel(get_r(x1, x2))
 print(paste("Matern kernel for rand:", (Sys.time() - start)/ 100, "s"))
-# x3 = sample(5000, 5000)
-# x4 = sample(5000, 5000)
-# 
-# start <- Sys.time()
-# sqexp_test <- sqexp_kernel(get_r(x1, x2))
-# print(paste("SE kernel for rand:", Sys.time() - start, "s"))
-# start <- Sys.time()
-# sqexp_test <- sqexp_kernel(get_r(x3, x4))
-# print(paste("SE kernel for Int:", Sys.time() - start, "s"))
-# 
-# start <- Sys.time()
-# matern_test <- matern_kernel(get_r(x1, x2))
-# print(paste("Matern kernel for rand:", Sys.time() - start, "s"))
-# start <- Sys.time()
-# matern_test <- matern_kernel(get_r(x3, x4))
-# print(paste("Matern kernel for Int:", Sys.time() - start, "s"))
 ```
 
 </div>
@@ -213,6 +196,7 @@ def sample_prior(
 
 <div style="display: inline-block;vertical-align:top; width: 48%;">
 
+### Implementations in R
 ```{r}
 sample_prior <- function(
   x, mean_func, cov_func, ..., random_seed = -1, n_samples = 5
@@ -302,7 +286,7 @@ sample_posterior <- function(
 </div>
 
 This time let's try to fit some points in R.
-```{r, fig.width = 4, fig.height=4}
+```{r, fig.width = 8, fig.height=8}
 x_train <- c(-10, -8, -5, 3, 7, 15)
 y_train <- c(-5, -2, 3, 3, 2, 5)
 x_star <- seq(-20, 20, length = 200)
@@ -321,25 +305,6 @@ for (i in seq(length(l))) {
     points(x = x_train, y = y_train, pch = 16, col = "red")
   }
 }
-# aaa <- map2(c(0.25, 1, 4), c(0.5, 2, 8),  ~sample_posterior(
-#   x_train, y_train, x_star, mean_func, matern_kernel, 
-#   l = .x, v = .y, n_samples = 5
-# ))
-# dt <- expand.grid(l = c(0.25, 1, 4), v = c(0.5, 2, 8)) %>%
-#   mutate(data = map2(l, v, function(l, v) {
-#     out <- data.frame(t(sample_posterior(
-#       x_train, y_train, x_star, mean_func, matern_kernel, 
-#       l = l, v = v, n_samples = 10)))
-#     out$x <- x_star
-#     gather(out, "key", "value", -x)
-#   })) %>%
-#   unnest() %>%
-#   mutate(l = paste("l =", l), v = paste("v =", v))
-# 
-# 
-# ggplot(data = dt, aes(x = x, y = value, group = key)) +
-#   geom_path(alpha = 0.5, color = "gray") +
-#   facet_grid(v ~ l) 
 ```
 
 Note, that when $\ell$ is small, it is easier for the predicted posterior to return to normal (prior), which is the mean function, 0 (see the points around x = 0). As $\ell$ increases, it becomes more and more likely the predicted $y_{x=0}$ to stay at the "local" value, which is provided by the nearest neighbor in `y`.

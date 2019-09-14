@@ -124,7 +124,7 @@ A interesting finding is that the implementation in R is much faster than the on
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              7 minutes read
+              6 minutes read
             </span>
           </div>
           <div class="categories">
@@ -222,19 +222,18 @@ matern_kernel &lt;- function(r, l = 1, v = 1) {
 <div id="comparing-the-kernel-performance" class="section level2">
 <h2>Comparing the kernel performance</h2>
 <div style="display: inline-block;vertical-align:top; width: 48%;">
-<h3 id="numpy-performance">numpy performance</h3>
-<pre class="python"><code>import time
+<h3 id="python-performance">Python performance</h3>
+<pre class="python"><code>from time import process_time
 x1 = np.random.rand(100)
 x2 = np.random.rand(100)
-start = time.clock()</code></pre>
-<pre><code>## /Users/haozhu/anaconda3/envs/dl/bin/python:1: DeprecationWarning: time.clock has been deprecated in Python 3.3 and will be removed from Python 3.8: use time.perf_counter or time.process_time instead</code></pre>
-<pre class="python"><code>for i in range(50): sqexp_test = sqexp_kernel(get_r(x1, x2))
-print(&quot;SE kernel for rand:&quot; + str((time.clock() - start) / 50), &quot; s&quot;)</code></pre>
-<pre><code>## SE kernel for rand:0.000318839999999998  s</code></pre>
-<pre class="python"><code>start = time.clock()
+start = process_time()
+for i in range(50): sqexp_test = sqexp_kernel(get_r(x1, x2))
+print(&quot;SE kernel for rand:&quot; + str((process_time() - start) / 50), &quot; s&quot;)</code></pre>
+<pre><code>## SE kernel for rand:0.0006776799999999916  s</code></pre>
+<pre class="python"><code>start = process_time()
 for i in range(50): matern_test = matern_kernel(get_r(x1, x2))
-print(&quot;Matern kernel for rand:&quot; + str((time.clock() - start) / 50), &quot; s&quot;)</code></pre>
-<pre><code>## Matern kernel for rand:0.0029630400000000014  s</code></pre>
+print(&quot;Matern kernel for rand:&quot; + str((process_time() - start) / 50), &quot; s&quot;)</code></pre>
+<pre><code>## Matern kernel for rand:0.006126159999999992  s</code></pre>
 </div>
 <div style="display: inline-block;vertical-align:top; width: 48%;">
 <h3 id="r-performance">R performance</h3>
@@ -243,27 +242,11 @@ x2 = runif(100)
 start = Sys.time()
 for(i in 1:50) se_test = sqexp_kernel(get_r(x1, x2))
 print(paste(&quot;SE kernel for rand:&quot;, (Sys.time() - start)/ 100, &quot;s&quot;))</code></pre>
-<pre><code>## [1] &quot;SE kernel for rand: 0.00044158935546875 s&quot;</code></pre>
+<pre><code>## [1] &quot;SE kernel for rand: 0.000487151145935059 s&quot;</code></pre>
 <pre class="r"><code>start = Sys.time()
 for(i in 1:50) matern_test = matern_kernel(get_r(x1, x2))
 print(paste(&quot;Matern kernel for rand:&quot;, (Sys.time() - start)/ 100, &quot;s&quot;))</code></pre>
-<pre><code>## [1] &quot;Matern kernel for rand: 0.00141691923141479 s&quot;</code></pre>
-<pre class="r"><code># x3 = sample(5000, 5000)
-# x4 = sample(5000, 5000)
-# 
-# start &lt;- Sys.time()
-# sqexp_test &lt;- sqexp_kernel(get_r(x1, x2))
-# print(paste(&quot;SE kernel for rand:&quot;, Sys.time() - start, &quot;s&quot;))
-# start &lt;- Sys.time()
-# sqexp_test &lt;- sqexp_kernel(get_r(x3, x4))
-# print(paste(&quot;SE kernel for Int:&quot;, Sys.time() - start, &quot;s&quot;))
-# 
-# start &lt;- Sys.time()
-# matern_test &lt;- matern_kernel(get_r(x1, x2))
-# print(paste(&quot;Matern kernel for rand:&quot;, Sys.time() - start, &quot;s&quot;))
-# start &lt;- Sys.time()
-# matern_test &lt;- matern_kernel(get_r(x3, x4))
-# print(paste(&quot;Matern kernel for Int:&quot;, Sys.time() - start, &quot;s&quot;))</code></pre>
+<pre><code>## [1] &quot;Matern kernel for rand: 0.0017116904258728 s&quot;</code></pre>
 </div>
 <p>The results are quite comparable. I also checked the performance when it scales up, it’s still quite similar. In fact, especially for Matern kernel, when the size of the input vectors get big, I feel like it’s slightly faster to do it in R.</p>
 </div>
@@ -288,6 +271,7 @@ print(paste(&quot;Matern kernel for rand:&quot;, (Sys.time() - start)/ 100, &quo
     return out</code></pre>
 </div>
 <div style="display: inline-block;vertical-align:top; width: 48%;">
+<h3 id="implementations-in-r-1">Implementations in R</h3>
 <pre class="r"><code>sample_prior &lt;- function(
   x, mean_func, cov_func, ..., random_seed = -1, n_samples = 5
 ) {
@@ -339,7 +323,7 @@ for l_i, l in enumerate([0.25, 1.0, 4.0]):
     return out, fsb, cov_fs</code></pre>
 </div>
 <div style="display: inline-block;vertical-align:top; width: 48%;">
-<h3 id="implementations-in-r-1">Implementations in R</h3>
+<h3 id="implementations-in-r-2">Implementations in R</h3>
 <pre class="r"><code>sample_posterior &lt;- function(
   x, y, x_star, mean_func, cov_func, ...,
   sigma_n = 0.1, random_seed = -1, n_samples = 5
@@ -379,26 +363,7 @@ for (i in seq(length(l))) {
     points(x = x_train, y = y_train, pch = 16, col = &quot;red&quot;)
   }
 }</code></pre>
-<p><img src="https://zhuhao.org/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-12-1.png" width="384" /></p>
-<pre class="r"><code># aaa &lt;- map2(c(0.25, 1, 4), c(0.5, 2, 8),  ~sample_posterior(
-#   x_train, y_train, x_star, mean_func, matern_kernel, 
-#   l = .x, v = .y, n_samples = 5
-# ))
-# dt &lt;- expand.grid(l = c(0.25, 1, 4), v = c(0.5, 2, 8)) %&gt;%
-#   mutate(data = map2(l, v, function(l, v) {
-#     out &lt;- data.frame(t(sample_posterior(
-#       x_train, y_train, x_star, mean_func, matern_kernel, 
-#       l = l, v = v, n_samples = 10)))
-#     out$x &lt;- x_star
-#     gather(out, &quot;key&quot;, &quot;value&quot;, -x)
-#   })) %&gt;%
-#   unnest() %&gt;%
-#   mutate(l = paste(&quot;l =&quot;, l), v = paste(&quot;v =&quot;, v))
-# 
-# 
-# ggplot(data = dt, aes(x = x, y = value, group = key)) +
-#   geom_path(alpha = 0.5, color = &quot;gray&quot;) +
-#   facet_grid(v ~ l) </code></pre>
+<p><img src="https://zhuhao.org/post/2019-09-12-Implementing-GP-in-R-and-Python_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
 <p>Note, that when <span class="math inline">\(\ell\)</span> is small, it is easier for the predicted posterior to return to normal (prior), which is the mean function, 0 (see the points around x = 0). As <span class="math inline">\(\ell\)</span> increases, it becomes more and more likely the predicted <span class="math inline">\(y_{x=0}\)</span> to stay at the “local” value, which is provided by the nearest neighbor in <code>y</code>.</p>
 </div>
 </div>
