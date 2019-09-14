@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Hao Zhu">
+    <meta name="description" content="Hao&#39;s Blog">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="library(reticulate) reticulate::use_condaenv(&#34;dl&#34;) knitr::opts_chunk$set(message = F, warning = F) This blog post is trying to implementing Gaussian Process (GP) in both Python and R. The main purpose is for my personal practice and hopefully it can also be a reference for future me and other people. In fact, it’s actually converted from my first homework in a Bayesian Deep Learning class.
+A interesting finding is that the implementation in R is much faster than the one using numpy."/>
+
+
+    <base href="https://zhuhao.org/post/2019-09-12-implementing-gp-in-r-and-python/">
+    <title>
+   · Hao Zhu
+</title>
+
+    <link rel="canonical" href="https://zhuhao.org/post/2019-09-12-implementing-gp-in-r-and-python/">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zhuhao.org/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zhuhao.org/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zhuhao.org/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.58.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zhuhao.org/">
+      Hao Zhu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/post/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="https://zhuhao.org/cn/"></a>
+            </li>
+          
+        
+          
+            
+            <li class="navigation-item">
+              <a href="https://zhuhao.org/zh-cn/">中文</a>
+            </li>
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title"></h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='0001-01-01T00:00:00Z'>
+                January 1, 0001
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              6 minutes read
+            </span>
+          </div>
+          
+          
+        </div>
+      </header>
+
+      <div>
+        
+
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">library(reticulate)
+reticulate::use_condaenv(&#34;dl&#34;)
+knitr::opts_chunk$set(message = F, warning = F)</pre></div>
+<p>This blog post is trying to implementing Gaussian Process (GP) in both
+Python and R. The main purpose is for my personal practice and hopefully
+it can also be a reference for future me and other people. In fact, it’s
+actually converted from my first homework in a <a href="https://www.cs.tufts.edu/comp/150BDL/2019f/">Bayesian Deep Learning
+class</a>.</p>
+
+<p>A interesting finding is that the implementation in R is much faster
+than the one using <code>numpy</code>.</p>
+
+<p>All of the equations or figures mentioned in this post can be referened
+in the <a href="http://www.gaussianprocess.org/gpml/chapters/">Rasmussen &amp; Williams’ textbook for Gaussian
+Process</a>.</p>
+
+<h1 id="background">Background</h1>
+
+<p>Gaussian Process (GP) can be represented in the form of</p>
+
+<p><em>f</em>(<strong>x</strong>) ∼ 𝒢𝒫(<em>m</em>(<strong>x</strong>), <em>k</em>(<strong>x</strong>, <strong>x</strong><strong>′</strong>))</p>
+
+<p>where <em>m</em>(<strong>x</strong>) is the mean function and <em>k</em>(<strong>x</strong>, <strong>x</strong><strong>′</strong>) is the
+covariance/kernel function. In this post, we are trying to create some
+kernel functions from scratch. We will also create methods to sample
+values from the prior and the posterior.</p>
+
+<h1 id="mean-kernel-functions">Mean &amp; kernel functions</h1>
+
+<p>For simplicity, our mean function is set to be 0 for all x inputs.</p>
+
+<p><em>m</em>(<strong>x</strong>) = 0</p>
+
+<p>Squared Exponential kernel (Eq. 4.9)</p>
+
+<p>$k_{SE}&reg; = exp(-\frac{r^2}{2l^2})$</p>
+
+<p>Matern kernel (Eq. 4.14)</p>
+
+<p>$k_{Matern}&reg; = \frac{2^{1-\nu}}{\Gamma(\nu)}(\frac{\sqrt{2\nu}r}{\ell})^{\nu}K_{\nu}(\frac{\sqrt{2\nu}r}{\ell})$</p>
+
+<h2 id="implementations-in-python">Implementations in Python</h2>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import numpy as np
+from scipy.special import gamma, kv
+import matplotlib.pyplot as plt
+
+def mean_func(x):
+    return np.zeros(len(x))
+
+def get_r(x1, x2):
+    return np.subtract.outer(x1, x2)
+
+def sqexp_kernel(r, l = 1):
+    return np.exp(-0.5 * (r/l)**2)
+
+def matern_kernel(r, l = 1, v = 1):
+    r = np.abs(r)
+    r[r == 0] = 1e-8
+    part1 = 2 ** (1 - v) / gamma(v)
+    part2 = (np.sqrt(2 * v) * r / l) ** v
+    part3 = kv(v, np.sqrt(2 * v) * r / l)
+    return part1 * part2 * part3</pre></div>
+<h2 id="implementations-in-r">Implementations in R</h2>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">library(MASS)
+library(plotly)
+
+mean_func &lt;- function(x) {
+  rep(0, length(x))
+}
+
+get_r &lt;- function(x1, x2) {
+  outer(x1, x2, FUN = &#34;-&#34;)
+}
+
+sqexp_kernel &lt;- function(r, l = 1) {
+  exp(-0.5 * (r/l)^2)
+}
+
+matern_kernel &lt;- function(r, l = 1, v = 1) {
+  r &lt;- abs(r)
+  r[r == 0] &lt;- 1e-8
+  part1 = 2^(1-v) / gamma(v)
+  part2 = (sqrt(2*v) * r / l)^v
+  part3 = besselK(sqrt(2*v) * r / l, nu = v)
+  return(part1 * part2 * part3)
+}</pre></div>
+<p>Now let’s try to recreate the input-distance to covariance figure using
+the functions we defined here. Our result (done in python for my
+homework) is the same as the figures (e.g. Figure 4.1) in the R&amp;W
+textbook.</p>
+
+<p><img src="2019-09-12-Implementing-GP-in-R-and-Python_files/figure-markdown_strict/unnamed-chunk-4-1.png" width="960" /></p>
+
+<h2 id="comparing-the-kernel-performance">Comparing the kernel performance</h2>
+
+<h3 id="numpy-performance">numpy performance</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">import time 
+x1 = np.random.rand(5000)
+x2 = np.random.rand(5000)
+x3 = np.random.randint(0, 5000, size = 5000)
+x4 = np.random.randint(0, 5000, size = 5000)
+start = time.clock()
+
+## /Users/haozhu/anaconda3/envs/dl/bin/python:1: DeprecationWarning: time.clock has been deprecated in Python 3.3 and will be removed from Python 3.8: use time.perf_counter or time.process_time instead
+
+sqexp_test = sqexp_kernel(get_r(x1, x2))
+print(&#34;SE kernel for rand:&#34; + str(time.clock() - start), &#34; s&#34;)
+
+## SE kernel for rand:0.8347180000000005  s
+
+start = time.clock()
+sqexp_test = sqexp_kernel(get_r(x3, x4))
+print(&#34;SE kernel for Int:&#34; + str(time.clock() - start), &#34; s&#34;)
+
+## SE kernel for Int:5.584125  s
+
+start = time.clock()
+matern_test = matern_kernel(get_r(x1, x2))
+print(&#34;Matern kernel for rand:&#34; + str(time.clock() - start), &#34; s&#34;)
+
+## Matern kernel for rand:9.463818999999999  s
+
+start = time.clock()
+matern_test = matern_kernel(get_r(x3, x4))
+
+## /Users/haozhu/anaconda3/envs/dl/bin/python:7: RuntimeWarning: invalid value encountered in multiply
+
+print(&#34;Matern kernel for Int:&#34; + str(time.clock() - start), &#34; s&#34;)
+
+## Matern kernel for Int:4.217103000000002  s</pre></div>
+<h3 id="r-performance">R performance</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x1 = runif(5000)
+x2 = runif(5000)
+x3 = sample(5000, 5000)
+x4 = sample(5000, 5000)
+
+start &lt;- Sys.time()
+sqexp_test &lt;- sqexp_kernel(get_r(x1, x2))
+print(paste(&#34;SE kernel for rand:&#34;, Sys.time() - start, &#34;s&#34;))
+
+## [1] &#34;SE kernel for rand: 1.70622801780701 s&#34;
+
+start &lt;- Sys.time()
+sqexp_test &lt;- sqexp_kernel(get_r(x3, x4))
+print(paste(&#34;SE kernel for Int:&#34;, Sys.time() - start, &#34;s&#34;))
+
+## [1] &#34;SE kernel for Int: 0.73152494430542 s&#34;
+
+start &lt;- Sys.time()
+matern_test &lt;- matern_kernel(get_r(x1, x2))
+print(paste(&#34;Matern kernel for rand:&#34;, Sys.time() - start, &#34;s&#34;))
+
+## [1] &#34;Matern kernel for rand: 9.08597087860107 s&#34;
+
+start &lt;- Sys.time()
+matern_test &lt;- matern_kernel(get_r(x3, x4))
+print(paste(&#34;Matern kernel for Int:&#34;, Sys.time() - start, &#34;s&#34;))
+
+## [1] &#34;Matern kernel for Int: 3.58708500862122 s&#34;</pre></div>
+<p>Well, it looks like the method we implemented in R is slightly faster
+than what we created with <code>numpy</code>.</p>
+
+<h1 id="sampling-function">Sampling function</h1>
+
+<h2 id="sampling-from-the-prior">Sampling from the Prior</h2>
+
+<h3 id="implementations-in-python-1">Implementations in Python</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def sample_prior(
+        x, mean_func, cov_func, cov_args = {}, 
+        random_seed = -1, n_samples = 5):
+    x_mean = mean_func(x)
+    x_cov = cov_func(get_r(x, x), **cov_args)
+    random_seed = int(random_seed)
+    if random_seed &lt; 0:
+        prng = np.random
+    else:
+        prng = np.random.RandomState(random_seed)
+    out = prng.multivariate_normal(x_mean, x_cov, n_samples)
+    return out
+
+sample_prior &lt;- function(
+  x, mean_func, cov_func, ..., random_seed = -1, n_samples = 5
+) {
+  x_mean &lt;- mean_func(x)
+  x_cov &lt;- cov_func(get_r(x, x), ...)
+  random_seed &lt;- as.integer(random_seed)
+  if (random_seed &gt; 0) set.seed(random_seed)
+  return(MASS::mvrnorm(n_sample, x_mean, x_cov))
+}</pre></div>
+<p>Let’s try to get a few samples from the prior with SE kernel at
+different length-scales ℓ. This time, let’s do it in python.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">plt.figure(figsize = (10, 3))
+x = np.linspace(-20, 20, 200)
+for l_i, l in enumerate([0.25, 1.0, 4.0]):
+    y = sample_prior(x, mean_func, sqexp_kernel, 
+                     {&#34;l&#34;: l}, n_samples = 5)
+    plt.subplot(131 + l_i)
+    for i in range(5):
+        plt.plot(x, y[i, :], &#34;-&#34;, alpha = 0.3)
+    plt.title(&#34;$\\ell$ = &#34; + str(l))</pre></div>
+<p><img src="2019-09-12-Implementing-GP-in-R-and-Python_files/figure-markdown_strict/unnamed-chunk-9-1.png" width="960" /></p>
+
+<h2 id="sampling-from-the-posterior">Sampling from the Posterior</h2>
+
+<p>Here we will implement “Prediction using Noisy Observations” because the
+Noise-free version can be understood as a special case of the noisy one
+with <em>σ</em><sub><em>n</em></sub> = 0.</p>
+
+<h3 id="implementations-in-python-2">Implementations in Python</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">def sample_posterior(
+    x, y, x_star, mean_func, cov_func, cov_args = {},
+    sigma_n = 0.1, random_seed = -1, n_samples = 5
+):
+    k_xx = cov_func(get_r(x, x), **cov_args)
+    k_xxs = cov_func(get_r(x, x_star), **cov_args)
+    k_xsx = cov_func(get_r(x_star, x), **cov_args)
+    k_xsxs = cov_func(get_r(x_star, x_star), **cov_args)
+
+    I = np.identity(k_xx.shape[1])
+    k_xx_noise = np.linalg.inv(k_xx + sigma ** 2 * I)
+    kxsx_kxxNoise = np.matmul(k_xsx, k_xx_noise)
+    # Eq.2.23, 24
+    fsb = np.matmul(kxsx_kxxNoise, y_train_N)
+    cov_fs = k_xsxs - np.matmul(kxsx_kxxNoise, k_xxs)
+    random_seed = int(random_seed)
+    if random_seed &lt; 0:
+        prng = np.random
+    else:
+        prng = np.random.RandomState(random_seed)
+    out = prng.multivariate_normal(fsb, cov_fs, n_samples)
+    return out, fsb, cov_fs</pre></div>
+<h3 id="implementations-in-r-1">Implementations in R</h3>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">sample_posterior &lt;- function(
+  x, y, x_star, mean_func, cov_func, ...,
+  sigma_n = 0.1, random_seed = -1, n_samples = 5
+) {
+  k_xx = cov_func(get_r(x, x), ...)
+  k_xxs = cov_func(get_r(x, x_star), ...)
+  k_xsx = cov_func(get_r(x_star, x), ...)
+  k_xsxs = cov_func(get_r(x_star, x_star), ...)
+
+  I = diag(1, dim(k_xx)[1])
+  k_xx_noise = solve(k_xx + sigma_n ^ 2 * I)
+  kxsx_kxxNoise = k_xsx %*% k_xx_noise
+  # Eq.2.23, 24
+  fsb = kxsx_kxxNoise %*% y
+  cov_fs = k_xsxs - kxsx_kxxNoise %*% k_xxs
+  random_seed &lt;- as.integer(random_seed)
+  if (random_seed &gt; 0) set.seed(random_seed)
+  return(MASS::mvrnorm(n_samples, fsb, cov_fs))
+}</pre></div>
+<p>This time let’s try to fit some points in R.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">x_train &lt;- c(-10, -8, -5, 3, 7, 15)
+y_train &lt;- sample(20, 6) - 10
+x_star &lt;- seq(-20, 20, length = 200)
+
+par(mfrow = c(3, 3))
+l &lt;- c(0.25, 1, 4)
+v &lt;- c(0.5, 2, 8)
+for (i in range(length(l))) {
+  for (j in range(length(v))) {
+    dt &lt;- sample_posterior(
+      x_train, y_train, x_star, mean_func, matern_kernel, 
+      l = l[i], v = v[j], n_samples = 5
+    )
+    matplot(x_star, t(dt), &#34;l&#34;, col = rgb(0.3, 0.3, 0.3, 0.5), lty = 1)
+    points(x = x_train, y = y_train, pch = 16, col = &#34;red&#34;)
+  }
+}
+# aaa &lt;- map2(c(0.25, 1, 4), c(0.5, 2, 8),  ~sample_posterior(
+#   x_train, y_train, x_star, mean_func, matern_kernel, 
+#   l = .x, v = .y, n_samples = 5
+# ))
+# dt &lt;- expand.grid(l = c(0.25, 1, 4), v = c(0.5, 2, 8)) %&gt;%
+#   mutate(data = map2(l, v, function(l, v) {
+#     out &lt;- data.frame(t(sample_posterior(
+#       x_train, y_train, x_star, mean_func, matern_kernel, 
+#       l = l, v = v, n_samples = 10)))
+#     out$x &lt;- x_star
+#     gather(out, &#34;key&#34;, &#34;value&#34;, -x)
+#   })) %&gt;%
+#   unnest() %&gt;%
+#   mutate(l = paste(&#34;l =&#34;, l), v = paste(&#34;v =&#34;, v))
+# 
+# 
+# ggplot(data = dt, aes(x = x, y = value, group = key)) +
+#   geom_path(alpha = 0.5, color = &#34;gray&#34;) +
+#   facet_grid(v ~ l) </pre></div>
+<p><img src="2019-09-12-Implementing-GP-in-R-and-Python_files/figure-markdown_strict/unnamed-chunk-12-1.png" alt="" /></p>
+
+      </div>
+
+      <footer>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "haozhu233" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/luizdepra/hugo-coder/">Coder</a> & <a href="https://github.com/rstudio/blogdown">blogdown</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </body>
+</html>
