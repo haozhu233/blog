@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R package on Hao Zhu</title>
-    <link>/tags/r-package/</link>
+    <link>https://zhuhao.org/tags/r-package/</link>
     <description>Recent content in R package on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/r-package/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhuhao.org/tags/r-package/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Connecting Arduino Chips with R</title>
-      <link>/post/connect-arduino-chips-with-r/</link>
+      <link>https://zhuhao.org/post/connect-arduino-chips-with-r/</link>
       <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/connect-arduino-chips-with-r/</guid>
+      <guid>https://zhuhao.org/post/connect-arduino-chips-with-r/</guid>
       <description>For now, the example below requires you to have a Mac or Linux computer. Windows support might come later.
  Sensors are fun. They are small electronic chips that can sense this world. Our smartphones have a bunch of sensors, like gyroscope and accelerometer, but you can also connect these sensors with either an Arduino or a Raspberry Pi. (In this post, I won&amp;rsquo;t talk about Raspberry Pi because although I have one Raspberry Pi at home, the only thing I did with that board so far is to get it out of box&amp;hellip; 😳)</description>
     </item>
     
     <item>
       <title>What’s New in kableExtra 0.7.0</title>
-      <link>/post/what-s-new-in-kableextra-0-7-0/</link>
+      <link>https://zhuhao.org/post/what-s-new-in-kableextra-0-7-0/</link>
       <pubDate>Tue, 16 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/what-s-new-in-kableextra-0-7-0/</guid>
+      <guid>https://zhuhao.org/post/what-s-new-in-kableextra-0-7-0/</guid>
       <description>kableExtra 0.7.0 is on CRAN now. This update includes quite a few long-waited new features, including immediate display of HTML table in the Viewer panel and a remake for footnote (in replacement for add_footnote), and some important bug fixes.
 New Features Live view of HTML table in RStudio HTML tables generated through kableExtra now has its own class and will be previewed in the Viewer panel when it’s printed.</description>
     </item>

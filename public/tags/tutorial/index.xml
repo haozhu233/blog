@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tutorial on Hao Zhu</title>
-    <link>/tags/tutorial/</link>
+    <link>https://zhuhao.org/tags/tutorial/</link>
     <description>Recent content in tutorial on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 11 Feb 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhuhao.org/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Connecting R and arduino wirelessly through websockets</title>
-      <link>/post/connecting-r-and-arduino-through-websockets/</link>
+      <link>https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/</link>
       <pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/connecting-r-and-arduino-through-websockets/</guid>
+      <guid>https://zhuhao.org/post/connecting-r-and-arduino-through-websockets/</guid>
       <description>In the last post, I demonstrated how to send data from arduino to R through serial connection. This time, I&amp;rsquo;m going to talk about how to connect R and arduino through wireless websocket connection. Trust me, it&amp;rsquo;s not as hard as it sounds like.
 Hardware requirements Obviously, you need an arduino board that can connect to the Internet. Today, the most popular boards of this kind includes ESP8266 or ESP32.</description>
     </item>
     
     <item>
       <title>Connecting Arduino Chips with R</title>
-      <link>/post/connect-arduino-chips-with-r/</link>
+      <link>https://zhuhao.org/post/connect-arduino-chips-with-r/</link>
       <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/connect-arduino-chips-with-r/</guid>
+      <guid>https://zhuhao.org/post/connect-arduino-chips-with-r/</guid>
       <description>For now, the example below requires you to have a Mac or Linux computer. Windows support might come later.
  Sensors are fun. They are small electronic chips that can sense this world. Our smartphones have a bunch of sensors, like gyroscope and accelerometer, but you can also connect these sensors with either an Arduino or a Raspberry Pi. (In this post, I won&amp;rsquo;t talk about Raspberry Pi because although I have one Raspberry Pi at home, the only thing I did with that board so far is to get it out of box&amp;hellip; 😳)</description>
     </item>
     
     <item>
       <title>Start and Pause in a Streaming Plot using plotly</title>
-      <link>/post/start-and-pause-in-a-streaming-plot-using-plotly/</link>
+      <link>https://zhuhao.org/post/start-and-pause-in-a-streaming-plot-using-plotly/</link>
       <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/start-and-pause-in-a-streaming-plot-using-plotly/</guid>
+      <guid>https://zhuhao.org/post/start-and-pause-in-a-streaming-plot-using-plotly/</guid>
       <description>plotly has a very nice example about how to making a streaming plot in R. When I was working on the arduino package, I need this feature because I want to create a plotting panel where data will be plotted once collected. So I used that example and quickly created a streaming app.
 Here is the core part from the example
 p &amp;lt;- plot_ly( y = c(rand(),rand(),rand()), type = &amp;#39;scatter&amp;#39;, mode = &amp;#39;lines&amp;#39;, line = list( color = &amp;#39;#25FEFD&amp;#39;, width = 3 ) ) %&amp;gt;% layout(yaxis = list(range = c(0,10))) output$plot &amp;lt;- renderPlotly(p) observeEvent(input$button, { while(TRUE){ Sys.</description>
