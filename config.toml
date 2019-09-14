@@ -96,30 +96,30 @@ disqusShortname = "haozhu233"
         languagename = "中文"
         title = ""
 
-        [languages.cn.params]
+        [languages.zh-cn.params]
             author = "朱昊"
             description = ""
             info = "R开发者，喜欢 数据可视化，IoT 和 计算机视觉"
             keywords = "博客，开发，R"
 
-        [languages.cn.menu]
+        [languages.zh-cn.menu]
 
-            [[languages.cn.menu.main]]
+            [[languages.zh-cn.menu.main]]
             name = "关于"
             weight = 1
             url = "/zh-cn/about/"
 
-            [[languages.cn.menu.main]]
+            [[languages.zh-cn.menu.main]]
             name = "中文博客"
             weight = 2
             url = "/ch-cn/post/"
 
-            [[languages.cn.menu.main]]
+            [[languages.zh-cn.menu.main]]
             name = "开源项目"
             weight = 3
             url = "/zh-cn/projects/"
 
-            [[languages.cn.menu.main]]
+            [[languages.zh-cn.menu.main]]
             name = "联系方式"
             weight = 5
             url = "/zh-cn/contact/"

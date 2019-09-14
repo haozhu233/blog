@@ -7,11 +7,6 @@
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="cn"
-                href="/cn/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="zh-cn"
                 href="/zh-cn/categories/"
                 />
@@ -23,12 +18,12 @@
   </url>
   
   <url>
-    <loc>/tags/deep-learning/</loc>
+    <loc>/categories/deep-learning/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/deep-learning/</loc>
+    <loc>/tags/deep-learning/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -40,11 +35,6 @@
   <url>
     <loc>/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -65,16 +55,6 @@
   <url>
     <loc>/post/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/post/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/post/"
-                />
   </url>
   
   <url>
@@ -92,11 +72,6 @@
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
-                hreflang="cn"
-                href="/cn/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="zh-cn"
                 href="/zh-cn/tags/"
                 />
@@ -110,16 +85,6 @@
   <url>
     <loc>/tags/arduino/</loc>
     <lastmod>2019-02-11T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="cn"
-                href="/cn/tags/arduino/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="/tags/arduino/"
-                />
   </url>
   
   <url>
@@ -165,6 +130,26 @@
   <url>
     <loc>/post/start-and-pause-in-a-streaming-plot-using-plotly/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/arduino.cn/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/%E6%83%B3%E6%B3%95/</loc>
+    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>

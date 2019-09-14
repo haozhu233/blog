@@ -10,16 +10,19 @@
     <meta name="keywords" content="blog,developer,personal">
 
     <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="REDCap API and R Shiny"/>
-<meta name="twitter:description" content="REDCap, as says on its website, is a &ldquo;mature and secure web application for building and managing online surveys and databases&rdquo;. It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes."/>
+<meta name="twitter:title" content="关于arduino下一步的想法"/>
+<meta name="twitter:description" content="昨天发了个从arduino往R里传数据的推，结果火了，整个下午手机一直有推特的提示，就一直在被分神 😑。下次遇到这种事（还有下次吗），得把提示关掉。。
+Streaming arduino sensor signals right into @rstudio! I wonder if there is really anything #rstats can’t do 😎😎😎 pic.twitter.com/nT6q6TT6xc
+&mdash; Hao Zhu (@haozhu233) January 25, 2019  这个还没发布的包arduino并不是很完美，本来就是用rcpp导的一个所谓“简单”的serial包，因为依赖POSIX （我也不熟），在Windows上没法运行。我昨晚看到个C&#43;&#43;的libserialport，感觉有希望，可以弄到R里来。接下来这段时间可以看一下，这样在arduino下个版本时就可以实现全平台。
+还有些想做的，我想去买个大号的slider 挂在arduino上，然后用在shiny app里，哇，想着就美滋滋。"/>
 
 
-    <base href="/post/2015-04-03-redcap-api-and-r-shiny/">
+    <base href="/post/arduino.cn/">
     <title>
-  REDCap API and R Shiny · Hao Zhu
+  关于arduino下一步的想法 · Hao Zhu
 </title>
 
-    <link rel="canonical" href="/post/2015-04-03-redcap-api-and-r-shiny/">
+    <link rel="canonical" href="/post/arduino.cn/">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
@@ -104,32 +107,46 @@
     <article>
       <header>
         <div class="post-title">
-          <h1 class="title">REDCap API and R Shiny</h1>
+          <h1 class="title">关于arduino下一步的想法</h1>
         </div>
         <div class="post-meta">
           <div class="date">
             <span class="posted-on">
               <i class="fas fa-calendar"></i>
-              <time datetime='2015-04-03T00:00:00Z'>
-                April 3, 2015
+              <time datetime='2019-01-26T00:00:00Z'>
+                January 26, 2019
               </time>
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              2 minutes read
+              One minute read
             </span>
           </div>
-          
-          
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="/categories/%E4%B8%AD%E6%96%87/">中文</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="/tags/%E4%B8%AD%E6%96%87/">中文</a>
+      <span class="separator">•</span>
+    <a href="/tags/%E6%83%B3%E6%B3%95/">想法</a>
+      <span class="separator">•</span>
+    <a href="/tags/arduino/">arduino</a></div>
+
         </div>
       </header>
 
       <div>
-        <p><a href="http://project-redcap.org/">REDCap</a>, as says on its website, is a &ldquo;mature and secure web application for building and managing online surveys and databases&rdquo;. It is used in many clinical researches as the database and the database management tool. One of the benefits of combining the usage of REDCap and R is that REDCap has an API (application programming interface), which can be used to easily export and import data into R. In this way, it can reduce the burden of data transformation and reduce possible human mistakes. It allows us to streamline the whole process of data collection, data cleaning and data analysis. In fact, there have been quite a few people who practiced this methodology. There is a R package called <a href="http://cran.r-project.org/web/packages/REDCapR/index.html">REDCapR</a> on CRAN and here is its <a href="https://github.com/OuhscBbmc/REDCapR">github repo</a>. Thanks to their efforts, the process of importing data from the REDCap API is a lot easier than it used to be. There are some other interesting materials that might be helpful. I&rsquo;m listing them here: <a href="http://biostat.mc.vanderbilt.edu/wiki/pub/Main/JoAnnAlvarez/api.pdf">(Slide)Using the API through R to automate Redcap exports</a>and<a href="http://www.thomasrehman.net/2011/07/14/r-tip-directly-access-the-redcap-api-from-r/">R Tip – Directly Access the REDCap API from R</a>.</p>
+        <p>昨天发了个从arduino往R里传数据的推，结果火了，整个下午手机一直有推特的提示，就一直在被分神 😑。下次遇到这种事（还有下次吗），得把提示关掉。。</p>
 
-<p>What I&rsquo;m trying to say in this blog post is that after we import the real-time-updated data from the REDCap API, we can use <a href="http://shiny.rstudio.com/">&ldquo;R shiny&rdquo;</a> to maximize the benefits of having a streamline process. With R shiny, we can build a project website (better be an internal website for clinical research), which can display the real-time study enrollment information and some basic demographic information as the enrollment continues. REDCap itself has some basic data analytic tools to do some basic analyses but those tool are preprogramed and cannot fit in all the needs. The combination of REDCap API and R shiny allows statistical programmers and statisticians to build customized displaying panels, which can accurately demonstrate to investigators what they need to know during the study.</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Streaming arduino sensor signals right into <a href="https://twitter.com/rstudio?ref_src=twsrc%5Etfw">@rstudio</a>! I wonder if there is really anything <a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> can’t do 😎😎😎 <a href="https://t.co/nT6q6TT6xc">pic.twitter.com/nT6q6TT6xc</a></p>&mdash; Hao Zhu (@haozhu233) <a href="https://twitter.com/haozhu233/status/1088851449096880128?ref_src=twsrc%5Etfw">January 25, 2019</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-<p>I&rsquo;m going to pilot this method in a study I&rsquo;m recently working on. I&rsquo;ll provide an update on this post later this year based on my practice.</p>
+
+<p>这个还没发布的包<code>arduino</code>并不是很完美，本来就是用rcpp导的一个所谓<a href="https://github.com/todbot/arduino-serial">“简单”的serial包</a>，因为依赖POSIX （我也不熟），在Windows上没法运行。我昨晚看到个C++的<a href="https://sigrok.org/api/libserialport/unstable/index.html">libserialport</a>，感觉有希望，可以弄到R里来。接下来这段时间可以看一下，这样在<code>arduino</code>下个版本时就可以实现全平台。</p>
+
+<p>还有些想做的，我想去买个大号的slider 挂在arduino上，然后用在shiny app里，哇，想着就美滋滋。</p>
 
       </div>
 
