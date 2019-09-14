@@ -300,8 +300,9 @@ for (i in seq(length(l))) {
       x_train, y_train, x_star, mean_func, matern_kernel, 
       l = l[i], v = v[j], n_samples = 10, random_seed = 100
     )
-    matplot(x_star, t(dt), "l", col = rgb(0.3, 0.3, 0.3, 0.4), lty = 1,
-            main = paste("l=", l[i], ",v=", v[j]), ylim = c(-8, 8))
+    matplot(x_star, t(dt), "l", col = rgb(0.3, 0.3, 0.3, 0.3), lty = 1,
+            main = paste("l=", l[i], ",v=", v[j]), ylim = c(-8, 8),
+            xlab = "x", ylab = "y")
     points(x = x_train, y = y_train, pch = 16, col = "red")
   }
 }
