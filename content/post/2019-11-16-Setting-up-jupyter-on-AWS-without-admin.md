@@ -42,7 +42,7 @@ $ chmod 0700 ~/.ssh
 Then, let's try to log in from your computer. In most other cases, I usually just login using `ssh` directly. However, for this AWS server, for some reason, for the first time login, you will have to login using `ssh-copy-id` and enter password to login for the last time 
 
 ```
-$ ssh-copy-id -i hao@aws-gpu-3.eecs.tufts.edu
+$ ssh-copy-id -i your_name@your_aws_server
 ```
 
 In the future, you can just login with regular `ssh` and you shouldn't need to enter password any more. 
