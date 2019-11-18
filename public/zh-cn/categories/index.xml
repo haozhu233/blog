@@ -6,9 +6,19 @@
     <description>Recent content in Categories on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Sat, 26 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://zhuhao.org/zh-cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>中文</title>
+      <link>https://zhuhao.org/zh-cn/categories/%E4%B8%AD%E6%96%87/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhuhao.org/zh-cn/categories/%E4%B8%AD%E6%96%87/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

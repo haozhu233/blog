@@ -3,8 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhuhao.org/tags/aws/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhuhao.org/categories/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
@@ -14,6 +19,71 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://zhuhao.org/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/tags/jupyter/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/post/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/post/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/post/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/tags/python/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/categories/python/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/post/jupyter-on-non-admin-aws/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhuhao.org/tags/</loc>
+    <lastmod>2019-11-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-cn"
+                href="https://zhuhao.org/zh-cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zhuhao.org/tags/"
                 />
   </url>
   
@@ -33,32 +103,7 @@
   </url>
   
   <url>
-    <loc>https://zhuhao.org/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://zhuhao.org/"
-                />
-  </url>
-  
-  <url>
     <loc>https://zhuhao.org/post/gp_python_r/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/post/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/tags/python/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -68,23 +113,18 @@
   </url>
   
   <url>
-    <loc>https://zhuhao.org/tags/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <loc>https://zhuhao.org/tags/arduino/</loc>
+    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://zhuhao.org/zh-cn/tags/"
+                href="https://zhuhao.org/zh-cn/tags/arduino/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zhuhao.org/tags/"
+                href="https://zhuhao.org/tags/arduino/"
                 />
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/tags/arduino/</loc>
-    <lastmod>2019-02-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -130,26 +170,6 @@
   <url>
     <loc>https://zhuhao.org/post/start-and-pause-in-a-streaming-plot-using-plotly/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/categories/%E4%B8%AD%E6%96%87/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/tags/%E4%B8%AD%E6%96%87/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/post/arduino.cn/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhuhao.org/tags/%E6%83%B3%E6%B3%95/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>

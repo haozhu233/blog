@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Hao Zhu">
+    <meta name="description" content="Hao&#39;s Blog">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Setting up Jupyter Notebook on an AWS machine where you don&#39;t have admin access"/>
+<meta name="twitter:description" content="When you have admin access to an AWS EC2 machine/Google Cloud or you can access the control console through either the web interface or cli, you basically just need to follow the following guides.
+For AWS: https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter.html
+For Google Cloud: https://course.fast.ai/start_gcp.html
+However, I recently came across the case that someone has already very kindly setup the computing environment for me on EC2. However, since it&rsquo;s for a class project and the server is managed by the department, as you can imagine, I have neither the root access nor the access to the cloud console."/>
+
+
+    <base href="https://zhuhao.org/post/jupyter-on-non-admin-aws/">
+    <title>
+  Setting up Jupyter Notebook on an AWS machine where you don&#39;t have admin access · Hao Zhu
+</title>
+
+    <link rel="canonical" href="https://zhuhao.org/post/jupyter-on-non-admin-aws/">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Merriweather:300,700|Source+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" integrity="sha256-oSrCnRYXvHG31SBifqP2PM1uje7SJUyX0nTwO2RJV54=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://zhuhao.org/css/coder.min.ac37073bc2826cd28ef57364a9fe339de7ebcb26dafc22fd832cb35cf5b1d048.css" integrity="sha256-rDcHO8KCbNKO9XNkqf4znefryyba/CL9gyyzXPWx0Eg=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://zhuhao.org/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://zhuhao.org/images/favicon-16x16.png" sizes="16x16">
+
+    
+
+    <meta name="generator" content="Hugo 0.58.1" />
+  </head>
+
+  <body class=" ">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://zhuhao.org/">
+      Hao Zhu
+    </a>
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/post/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://zhuhao.org/contact/">Contact me</a>
+          </li>
+        
+      
+      
+        
+        
+        
+          
+        
+          
+            
+              <li class="navigation-item menu-separator">
+                <span>|</span>
+              </li>
+              
+            
+            <li class="navigation-item">
+              <a href="https://zhuhao.org/zh-cn/">中文</a>
+            </li>
+          
+        
+      
+    </ul>
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Setting up Jupyter Notebook on an AWS machine where you don&#39;t have admin access</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2019-11-16T00:00:00Z'>
+                November 16, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              4 minutes read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="https://zhuhao.org/categories/python/">python</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://zhuhao.org/tags/python/">python</a>
+      <span class="separator">•</span>
+    <a href="https://zhuhao.org/tags/jupyter/">jupyter</a>
+      <span class="separator">•</span>
+    <a href="https://zhuhao.org/tags/aws/">aws</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+
+<p>When you have admin access to an AWS EC2 machine/Google Cloud or you can access the control console through either the web interface or cli, you basically just need to follow the following guides.</p>
+
+<p>For AWS: <a href="https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter.html">https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter.html</a></p>
+
+<p>For Google Cloud: <a href="https://course.fast.ai/start_gcp.html">https://course.fast.ai/start_gcp.html</a></p>
+
+<p>However, I recently came across the case that someone has already very kindly setup the computing environment for me on EC2. However, since it&rsquo;s for a class project and the server is managed by the department, as you can imagine, I have neither the root access nor the access to the cloud console.</p>
+
+<p>Here is how I get around and setup Jupyter notebook there.</p>
+
+<h1 id="generate-ssh-keypair-between-your-computer-and-the-server">Generate ssh keypair between your computer and the server</h1>
+
+<p>Running Jupyter remotely needs you to set up an ssh key. Since we can&rsquo;t access the AWS console, you should generate on your computer using <code>ssh-keygen</code>.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh-keygen -t rsa -b 4096 -C &#34;your_email@gmail.com&#34;</pre></div>
+<p>Follow the promote and generate a pair of public and private key under <code>~/.ssh/</code>. In this case, let&rsquo;s say we name this pair as &lsquo;aws_class&rsquo;, you will get 2 files <code>aws_class</code> and <code>aws_class.pub</code>. Note that AWS only supports RSA key so you need <code>-t rsa</code> there. When you are asked to enter a passphrase, you can hit Enter to skip.</p>
+
+<p>Then, you should copy content of the pub key <code>aws_class.pub</code> and paste it in <code>~/.ssh/authorized_keys</code> on the AWS server. Note that this file may not exist so you might need to create that. If it exists, just paste your pub key to this file. The <code>authorized_keys</code> file can hold multiple pub keys.</p>
+
+<p>You also need to make sure both of your <code>~/.ssh/authorized_keys</code> and <code>~/.ssh/</code> folder has proper aceess permision.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ chmod 0600 ~/.ssh/authorized_keys
+$ chmod 0700 ~/.ssh</pre></div>
+<p>Then, let&rsquo;s try to log in from your computer. In most other cases, I usually just login using <code>ssh</code> directly. However, for this AWS server, for some reason, for the first time login, you will have to login using <code>ssh-copy-id</code> and enter password to login for the last time</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh-copy-id -i hao@aws-gpu-3.eecs.tufts.edu</pre></div>
+<p>In the future, you can just login with regular <code>ssh</code> and you shouldn&rsquo;t need to enter password any more.</p>
+
+<h1 id="setting-up-conda-environment-and-install-jupyter">Setting up conda environment and install jupyter</h1>
+
+<p>For this part, it&rsquo;s pretty typical. Just follow the normal way of installing conda. Since I don&rsquo;t have sudo access, I installed anaconda in my home directory.</p>
+
+<p>For this server specifically, note that since the cuda driver is 8.0, which is not compatible with the latest stable pytorch. I install pytorch 1.0, which is the last version that support cuda 8.0.</p>
+
+<p>Another thing to be noted is that, after I finish the installation, I found that somehow the bash on this server is not refreshed after I log out. It means that when you call <code>conda</code>, you may see errors like &ldquo;conda: command not found&rdquo; because all the settings conda inserted into your .bashrc file won&rsquo;t be reloaded. One way to fix this is to manually start a bash instance</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ exec bash</pre></div>
+<p>Then you can just create an environment and install the packages you need.</p>
+
+<p>My final note here is that a jupyter has already been installed on this server but it&rsquo;s for python 2. You need to install jupyter notebook/lab in your environment again.</p>
+
+<h1 id="setup-password-and-ssl-certificate-for-your-jupyter">Setup password and SSL certificate for your jupyter</h1>
+
+<p>You won&rsquo;t want to type in the token for jupyter session when you connect remotely. Therefore, you are recommended to setup a password for your jupyter. As the same time, it&rsquo;s also a good practice to setup SSL for the server.</p>
+
+<p>You can just follow the official AWS guide on this: <a href="https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter-config.html">https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter-config.html</a></p>
+
+<p>Since this is a self-signed certificate, you can download that to your laptop.</p>
+
+<p>Here are the key commands:</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ jupyter notebook password</pre></div><div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ cd ~
+$ mkdir ssl
+$ cd ssl
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem</pre></div>
+<h1 id="start-the-jupyter-server">Start the jupyter server</h1>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">jupyter notebook --certfile=~/ssl/mycert.pem --keyfile ~/ssl/mykey.key</pre></div>
+<p>It&rsquo;s up to you whether to use <code>nohup</code> to run it</p>
+
+<h1 id="start-the-connection-between-your-computer-and-the-jupyter-server">Start the connection between your computer and the jupyter server</h1>
+
+<p>Again following the <a href="https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter-configure-client-linux.html">AWS toturial</a>, we can use the ssh private key we generate in Step 1 to connct to the jupyter server.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">$ ssh -i ~/.ssh/aws_class -N -f -L 8888:localhost:8888 your_name@your_aws_server_address</pre></div>
+<p>You should be able to access jupyter at <code>localhost:8888</code>. You will be asked to type in the password you created earlier and you should be all set.</p>
+
+      </div>
+
+      <footer>
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "haozhu233" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+     © 2019
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/luizdepra/hugo-coder/">Coder</a> & <a href="https://github.com/rstudio/blogdown">blogdown</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  </body>
+</html>

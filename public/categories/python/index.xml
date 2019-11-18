@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Hao Zhu</title>
-    <link>https://zhuhao.org/tags/python/</link>
-    <description>Recent content in Python on Hao Zhu</description>
+    <title>python on Hao Zhu</title>
+    <link>https://zhuhao.org/categories/python/</link>
+    <description>Recent content in python on Hao Zhu</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://zhuhao.org/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhuhao.org/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,16 +21,6 @@
 For AWS: https://docs.aws.amazon.com/dlami/latest/devguide/setup-jupyter.html
 For Google Cloud: https://course.fast.ai/start_gcp.html
 However, I recently came across the case that someone has already very kindly setup the computing environment for me on EC2. However, since it&amp;rsquo;s for a class project and the server is managed by the department, as you can imagine, I have neither the root access nor the access to the cloud console.</description>
-    </item>
-    
-    <item>
-      <title>Implementing Gaussian Process in Python and R</title>
-      <link>https://zhuhao.org/post/gp_python_r/</link>
-      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhuhao.org/post/gp_python_r/</guid>
-      <description>library(reticulate) reticulate::use_condaenv(&amp;quot;dl&amp;quot;) knitr::opts_chunk$set(message = F, warning = F) This blog post is trying to implementing Gaussian Process (GP) in both Python and R. The main purpose is for my personal practice and hopefully it can also be a reference for future me and other people. In fact, it’s actually converted from my first homework in a Bayesian Deep Learning class.
-All of the equations or figures mentioned in this post can be referened in the Rasmussen &amp;amp; Williams’ textbook for Gaussian Process.</description>
     </item>
     
   </channel>
