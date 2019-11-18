@@ -1,5 +1,5 @@
 ---
-title: Setting up Jupyter Notebook on an AWS machine where you don't have admin access
+title: Setting up Jupyter Notebook on an AWS machine without admin access
 author: Hao Zhu
 date: '2019-11-16'
 slug: jupyter-on-non-admin-aws

@@ -221,11 +221,11 @@ x2 = np.random.rand(100)
 start = process_time()
 for i in range(50): sqexp_test = sqexp_kernel(get_r(x1, x2))
 print(&quot;SE kernel for rand:&quot; + str((process_time() - start) / 50), &quot; s&quot;)</code></pre>
-<pre><code>## SE kernel for rand:0.0006159599999999976  s</code></pre>
+<pre><code>## SE kernel for rand:0.0007137600000000077  s</code></pre>
 <pre class="python"><code>start = process_time()
 for i in range(50): matern_test = matern_kernel(get_r(x1, x2))
 print(&quot;Matern kernel for rand:&quot; + str((process_time() - start) / 50), &quot; s&quot;)</code></pre>
-<pre><code>## Matern kernel for rand:0.005904480000000003  s</code></pre>
+<pre><code>## Matern kernel for rand:0.006106800000000003  s</code></pre>
 </div>
 <div style="display: inline-block;vertical-align:top; width: 48%;">
 <h3 id="r-performance">R performance</h3>
@@ -234,11 +234,11 @@ x2 = runif(100)
 start = Sys.time()
 for(i in 1:50) se_test = sqexp_kernel(get_r(x1, x2))
 print(paste(&quot;SE kernel for rand:&quot;, (Sys.time() - start)/ 100, &quot;s&quot;))</code></pre>
-<pre><code>## [1] &quot;SE kernel for rand: 0.000539448261260986 s&quot;</code></pre>
+<pre><code>## [1] &quot;SE kernel for rand: 0.000458450317382813 s&quot;</code></pre>
 <pre class="r"><code>start = Sys.time()
 for(i in 1:50) matern_test = matern_kernel(get_r(x1, x2))
 print(paste(&quot;Matern kernel for rand:&quot;, (Sys.time() - start)/ 100, &quot;s&quot;))</code></pre>
-<pre><code>## [1] &quot;Matern kernel for rand: 0.0015927004814148 s&quot;</code></pre>
+<pre><code>## [1] &quot;Matern kernel for rand: 0.00156241893768311 s&quot;</code></pre>
 </div>
 <p>The results are quite comparable. I also checked the performance when it scales up, it’s still quite similar. In fact, especially for Matern kernel, when the size of the input vectors get big, I feel like it’s slightly faster to do it in R.</p>
 </div>
