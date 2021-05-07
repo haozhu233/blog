@@ -2,7 +2,8 @@
 title: "Implementing Gaussian Process in Python and R"
 author: Hao Zhu
 date: "2019-09-14"
-output: html_document
+output: md_document
+always_allow_html: true
 slug: gp_python_r
 categories:
   - Deep Learning
@@ -15,7 +16,7 @@ tags:
 
 ```{r}
 library(reticulate)
-reticulate::use_condaenv("dl")
+reticulate::use_condaenv("~/miniforge3/envs/py38")
 knitr::opts_chunk$set(message = F, warning = F)
 ```
 

@@ -3,6 +3,8 @@ title: What’s New in kableExtra 0.7.0
 author: Hao Zhu
 date: '2018-01-16'
 slug: what-s-new-in-kableextra-0-7-0
+output: md_document
+always_allow_html: true
 categories:
   - R
 tags:
